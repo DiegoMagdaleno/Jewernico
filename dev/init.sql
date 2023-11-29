@@ -115,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `jewernico_gina`.`producto` (
   `IdMaterial` INT NOT NULL,
   `IdCategoria` INT NOT NULL,
   `Stock` INT NOT NULL,
+  `RutaImagen` VARCHAR(2048) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`),
   INDEX `fk_Producto_Material1_idx` (`IdMaterial` ASC) VISIBLE,
   INDEX `fk_Producto_Categoria1_idx` (`IdCategoria` ASC) VISIBLE,
