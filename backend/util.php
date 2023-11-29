@@ -39,8 +39,8 @@ function getToken()
 {
     $headers = apache_request_headers();
 
-    if (isset($headers["authorization"])) {
-        $authorization = $headers["authorization"];
+    if (isset($headers["Authorization"])) {
+        $authorization = $headers["Authorization"];
         $authorizationArray = explode(" ", $authorization);
 
         if (count($authorizationArray) == 2 && $authorizationArray[0] == "Bearer") {
@@ -61,14 +61,17 @@ function validateToken()
     }
     $db = Flight::db();
 
-    $query = $db->prepare("SELECT * FROM usuarios WHERE Id = :id");
+    $query = $db->prepare("SELECT * FROM usuario WHERE Id = :id");
     $query->execute(
         array(
-            ":id" => $info->data["id"],
+            ":id" => $info->data->id,
         )
     );
     $rows = $query->fetchColumn();
-    return $rows;
+    if ($rows == 0) {
+        return false;
+    } else {
+        return $info;
+    }
 }
-
 ?>

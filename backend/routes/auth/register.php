@@ -11,13 +11,14 @@ Flight::route("POST /register", function () {
     $permissionLevel = 0;
 
     if (isset($data["nivelPermisos"])) {
-        if ($token = validateToken()) {
-            if ($token->data["nivelPermisos"] == 2) {
+        $token = validateToken();
+        if ($token != false) {
+            if ($token->data->nivelPermisos == 2) {
                 $permissionLevel = $data["nivelPermisos"];
             }
         }
     }
-    
+
 
     $query = $db->prepare("SELECT * FROM usuario WHERE CorreoElectronico = :correoElectronico");
     $query->execute(
@@ -73,6 +74,7 @@ Flight::route("POST /register", function () {
             ),
             200
         );
+        return;
     }
 });
 
