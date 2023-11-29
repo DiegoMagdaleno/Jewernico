@@ -15,5 +15,6 @@ Flight::register(
 
 require 'routes/auth/login.php';
 require 'routes/auth/register.php';
+require 'routes/users.php';
 
 Flight::start();
