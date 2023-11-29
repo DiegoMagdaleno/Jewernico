@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `jewernico_gina`.`usuario` (
   `Password` VARCHAR(255) COLLATE 'utf8mb3_spanish_ci' NOT NULL,
   `NivelPermisos` INT UNSIGNED NOT NULL DEFAULT '0',
   `IntentosDeLogin` INT(1) UNSIGNED NULL DEFAULT '0',
-  `IdPregunta` INT NOT NULL,
+  `IdPregunta` INT,
   PRIMARY KEY (`Id`, `IdPregunta`),
   UNIQUE INDEX `CorreoElectronico_UNIQUE` (`CorreoElectronico` ASC) VISIBLE,
   INDEX `fk_usuario_pregunta1_idx` (`IdPregunta` ASC) VISIBLE,
