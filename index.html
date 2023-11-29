@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewernico - Base de datos</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="grid h-screen content-center justify-center align-center z-0">
+        <div class="flex justify-between content-center flex-row w-screen items-center">
+            <div class="join join-vertical px-4">
+                <button class="btn btn-primary join-item" name="consultas">Consultas</button>
+                <button class="btn join-item" name="abc">ABC</button>
+            </div>
+            <div class="card w-50 bg-base-100 shadow-xl mx-auto">
+                <div class="card-body">
+                    <div role="tablist" class="tabs tabs-boxed" id="select-tabs">
+                        <a role="tab" class="tab tab-active" data-num="0">Tablas</a>
+                        <a role="tab" class="tab" data-num="1">Consultas sencillas</a>
+                        <a role="tab" class="tab" data-num="2">Consultas multitabla</a>
+                        <a role="tab" class="tab" data-num="3">Consultas con Having</a>
+                    </div>
+                    <h3 class="card-title mt-4" id="about-current-view-title"></h3>
+                    <p class="mb-2" id="about-current-view-instructions"></p>
+                    <div id="dataviewer">
+                        <form class="flex justify-between">
+                            <select class="select select-bordered w-full max-w-xs" id="query-selector"></select>
+                            <input type="button" class="btn btn-primary" value="Consultar" id="make-query" />
+                        </form>
+                        <div id="query-args"></div>
+                        <div id="query-result" class="m-4"></div>
+                        <div id="abc-controls">
+                            <button class="btn btn-primary" id="abc-add">Agregar</button>
+                            <button class="btn btn-disabled" id="abc-update">Editar</button>
+                            <button class="btn btn-disabled" id="abc-delete">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <dialog id="abc-dialog" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" id="close-modal-button">✕</button>
+            </form>
+            <h3 class="font-bold text-lg" id="abc-dialog-title"></h3>
+            <div id="abc-form"></div>
+        </div>
+    </dialog>
+
+    <script src="ui.js" type="module"></script>
+</body>
+
+</html>
