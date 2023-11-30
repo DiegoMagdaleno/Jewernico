@@ -1,0 +1,3 @@
+const STATE = {
+    currentView: 'products',
+}

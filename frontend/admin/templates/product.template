@@ -1,0 +1,15 @@
+{{for products}}
+    <tr>
+        <td>
+            <label>
+                <input type="checkbox" class="checkbox">
+            </label>
+        </td>
+        <td>{{:Nombre}}</td>
+        <td>{{:Descripcion}}</td>
+        <td>{{:Precio}}</td>
+        <td>{{:Material}}</td>
+        <td>{{:Categoria}}</td>
+        <td>{{:Stock}}</td>
+    </tr>
+{{/for}}

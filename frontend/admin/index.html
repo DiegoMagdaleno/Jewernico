@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://www.jsviews.com/download/jsrender.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/state.js"></script>
+</head>
+
+<body>
+    <div class="grid grid-cols-6 grid-rows-1">
+        <aside class="transform top-0 left-0 bg-white h-full grid-span-1">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-center h-16 border-b border-gray-200">
+                    <h1 class="text-lg font-semibold text-gray-800">Mi aplicación</h1>
+                </div>
+                <div class="flex flex-col flex-1 overflow-y-auto">
+                    <ul class="flex flex-col py-4 space-y-1">
+                        <li>
+                            <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                <i class="icon-home"></i>
+                                <span class="mx-4 font-medium">Inicio</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                <i class="icon-shopping-cart"></i>
+                                <span class="mx-4 font-medium">Pedidos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                <i class="icon-collection"></i>
+                                <span class="mx-4 font-medium">Colecciones</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                                <i class="icon-box"></i>
+                                <span class="mx-4 font-medium">Productos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <div class="col-span-5 row-span-1" id="current-panel-render" style="background: #f7f6f9">
+        </div>
+    </div>
+    <script id="productTemplate" type="text/x-jsrender">
+    {{for}}
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" class="checkbox">
+                </label>
+            </td>
+            <td>{{>Nombre}}</td>
+            <td>{{>Descripcion}}</td>
+            <td>{{>Precio}}</td>
+            <td>{{>Material}}</td>
+            <td>{{>Categoria}}</td>
+            <td>{{>Stock}}</td>
+        </tr>
+    {{/for}}
+    </script>
+    <script type="text/javascript">
+
+        if (STATE.currentView == 'products') {
+            $('#current-panel-render').load('views/products.html');
+            let products = [];
+            const productsRequest = axios.get('http://localhost/php_course/Jewernico/backend/products');
+            const categoriesRequest = axios.get('http://localhost/php_course/Jewernico/backend/categories');
+            const materialsRequest = axios.get('http://localhost/php_course/Jewernico/backend/materials');
+            axios.all([productsRequest, categoriesRequest, materialsRequest]).then(axios.spread((...responses) => {
+                const productsResponse = responses[0];
+                const categoriesResponse = responses[1];
+                const materialsResponse = responses[2];
+                products = productsResponse.data;
+                const categories = categoriesResponse.data;
+                const materials = materialsResponse.data;
+                products.forEach(product => {
+                    product.Categoria = categories.find(category => category.Id == product.IdMaterial).Nombre;
+                    product.Material = materials.find(material => material.Id == product.IdCategoria).Nombre;
+                });
+                console.log(products);
+                console.log("Render: " + $('#productTemplate').render(products));
+                $('#productList').html(
+                    $('#productTemplate').render(products)
+                );
+            })).catch(errors => {
+                console.log(errors);
+            });
+        }
+    </script>
+</body>
+
+</html>
