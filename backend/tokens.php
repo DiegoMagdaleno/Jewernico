@@ -3,6 +3,7 @@
 require_once "vendor/autoload.php";
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 function generateToken($key, $data, $exp) {
     $data = array(

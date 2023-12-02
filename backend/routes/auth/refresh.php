@@ -10,13 +10,13 @@ Flight::route("POST /refresh_token", function () {
     $tokenCookie = Flight::request()->cookies->token;
 
     try {
-        $token = checkToken($tokenCookie, "ALGUNA_LLAVE_SECRETA");
+        $token = checkToken($tokenCookie, "ALGUNA_CLAVE_SECRETA");
         // Nice! lets get the refresh token
         $refreshTokenReq = $data["refreshToken"];
         try {
-            checkToken($refreshTokenReq, "ALGUNA_LLAVE_SECRETA");
+            checkToken($refreshTokenReq, "ALGUNA_CLAVE_SECRETA");
             // Perfect lets create a new token
-            $newToken = generateToken("ALGUNA_LLAVE_SECRETA", $token->data, strtotime("now") + 3600);
+            $newToken = generateToken("ALGUNA_CLAVE_SECRETA", $token->data, strtotime("now") + 60 * 60 * 24);
             Flight::json(
                 array(
                     "token" => $newToken
@@ -26,7 +26,7 @@ Flight::route("POST /refresh_token", function () {
             Flight::json(
                 array(
                     "status" => 401,
-                    "message" => "Token expirado"
+                    "message" => "Token de refresco expirado"
                 ),
                 401
             );

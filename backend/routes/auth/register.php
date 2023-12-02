@@ -70,7 +70,7 @@ Flight::route("POST /register", function () {
 
         $now = time();
 
-        $jwt = generateToken($key, $dataToken, $now + 3600);
+        $jwt = generateToken($key, $dataToken, $now + 60 * 60 * 24);
         $jwtRefresh = generateToken($key, $dataRefreshToken, $now + 640800);
 
         Flight::json(

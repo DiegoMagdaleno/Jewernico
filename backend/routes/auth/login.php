@@ -41,8 +41,8 @@ Flight::route("POST /login", function () {
                 "nivelPermisos" => $user["NivelPermisos"],
             );
 
-            $jwt = generateToken($dataToken, $key, $now + 3600, );
-            $jwtRefresh = generateToken($dataRefreshToken, $key, $now + 604800);
+            $jwt = generateToken($key, $dataToken, $now + 60 * 60 * 24);
+            $jwtRefresh = generateToken($key, $dataRefreshToken, $now + 604800);
 
             Flight::json(
                 array(
