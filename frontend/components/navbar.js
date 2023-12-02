@@ -39,7 +39,7 @@ $(document).ready(function() {
     }
 
     navbarStart.append(createDropdown());
-    navbarStart.append($('<a>').addClass('btn btn-ghost text-xl').text('daisyUI'));
+    navbarStart.append($('<a>').addClass('btn btn-ghost text-xl').text('Jewernico'));
 
     var navCenterMenu = $('<ul>').addClass('menu menu-horizontal px-1')
         .append(createNavItem('Item 1'))
@@ -54,7 +54,7 @@ $(document).ready(function() {
         .append(createNavItem('Item 3'));
     navbarCenter.append(navCenterMenu);
 
-    navbarEnd.append($('<a>').addClass('btn').text('Button'));
+    navbarEnd.append($('<a>').addClass('btn').text('Iniciar sesión'));
 
     navbar.append(navbarStart, navbarCenter, navbarEnd);
 
