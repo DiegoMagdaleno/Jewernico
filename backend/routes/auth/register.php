@@ -10,12 +10,15 @@ Flight::route("POST /register", function () {
     $db = Flight::db();
     $permissionLevel = 0;
 
+    $tokenCookie = Flight::request()->cookies->token;
+
     if (isset($data["nivelPermisos"])) {
-        $token = validateToken();
-        if ($token != false) {
-            if ($token->data->nivelPermisos == 2) {
+        try {
+            $token = validateToken($tokenCookie);
+            if ($token != NULL && $token->data->nivelPermisos == 2) {
                 $permissionLevel = $data["nivelPermisos"];
             }
+        } catch (Exception $e) {
         }
     }
 
@@ -74,7 +77,7 @@ Flight::route("POST /register", function () {
         );
 
         $jwt = JWT::encode($token, $key, "HS256");
-        $jwtRefresh = JWT::encode($token, $key, "HS256");
+        $jwtRefresh = JWT::encode($refreshToken, $key, "HS256");
 
         Flight::json(
             array(
