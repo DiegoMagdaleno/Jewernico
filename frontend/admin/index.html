@@ -71,32 +71,47 @@
     {{/for}}
     </script>
     <script type="text/javascript">
-
         if (STATE.currentView == 'products') {
-            $('#current-panel-render').load('views/products.html');
-            let products = [];
-            const productsRequest = axios.get('http://localhost/php_course/Jewernico/backend/products');
-            const categoriesRequest = axios.get('http://localhost/php_course/Jewernico/backend/categories');
-            const materialsRequest = axios.get('http://localhost/php_course/Jewernico/backend/materials');
-            axios.all([productsRequest, categoriesRequest, materialsRequest]).then(axios.spread((...responses) => {
-                const productsResponse = responses[0];
-                const categoriesResponse = responses[1];
-                const materialsResponse = responses[2];
-                products = productsResponse.data;
-                const categories = categoriesResponse.data;
-                const materials = materialsResponse.data;
-                products.forEach(product => {
-                    product.Categoria = categories.find(category => category.Id == product.IdMaterial).Nombre;
-                    product.Material = materials.find(material => material.Id == product.IdCategoria).Nombre;
+            $(document).ready(function () {
+                $('#current-panel-render').load('views/products.html');
+                let products = [];
+                const productsRequest = axios.get('http://localhost/php_course/Jewernico/backend/products');
+                const categoriesRequest = axios.get('http://localhost/php_course/Jewernico/backend/categories');
+                const materialsRequest = axios.get('http://localhost/php_course/Jewernico/backend/materials');
+                axios.all([productsRequest, categoriesRequest, materialsRequest]).then(axios.spread((...responses) => {
+                    const productsResponse = responses[0];
+                    const categoriesResponse = responses[1];
+                    const materialsResponse = responses[2];
+                    products = productsResponse.data;
+                    const categories = categoriesResponse.data;
+                    const materials = materialsResponse.data;
+                    products.forEach(product => {
+                        product.Categoria = categories.find(category => category.Id == product.IdMaterial).Nombre;
+                        product.Material = materials.find(material => material.Id == product.IdCategoria).Nombre;
+                    });
+                    $('#productList').html(
+                        $('#productTemplate').render(products)
+                    );
+
+                    $('#check-all').change(function () {
+                        if ($(this).is(':checked')) {
+                            $('.checkbox').prop('checked', true);
+                        } else {
+                            $('.checkbox').prop('checked', false);
+                        }
+                    });
+
+                    $('.checkbox').change(function () {
+                        if ($('.checkbox:checked').length == $('.checkbox').length) {
+                            $('#check-all').prop('checked', true);
+                        } else {
+                            $('#check-all').prop('checked', false);
+                        }
+                    });
+                })).catch(errors => {
+                    console.log(errors);
                 });
-                console.log(products);
-                console.log("Render: " + $('#productTemplate').render(products));
-                $('#productList').html(
-                    $('#productTemplate').render(products)
-                );
-            })).catch(errors => {
-                console.log(errors);
-            });
+            })
         }
     </script>
 </body>
