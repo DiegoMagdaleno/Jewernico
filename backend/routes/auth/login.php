@@ -21,7 +21,7 @@ Flight::route("POST /login", function () {
 
     $user = $query->fetch();
 
-    $key = "ALGUNA_CLAVE_SECRETA"; // ESTA LLAVE ES SOLO PORQUE ESTE PROYECTO ES DE TESTING
+    $key = "ALGUNA_CLAVE_SECRETA";
     $now = strtotime("now");
 
     if ($user) {
@@ -39,10 +39,21 @@ Flight::route("POST /login", function () {
                 "key" => $key
             );
 
+            $refreshToken = array(
+                "data" => [
+                    "id" => $user["Id"],
+                    "nivelPermisos" => $user["NivelPermisos"],
+                ],
+                "exp" => $now + 604800,
+                "key"=> $key
+            );
+
             $jwt = JWT::encode($token, $key, "HS256");
+            $jwtRefresh = JWT::encode($token, $key, "HS256");
             Flight::json(
                 array(
-                    "token" => $jwt
+                    "token" => $jwt,
+                    "refreshToken" => $jwtRefresh,
                 )
             );
         } else {

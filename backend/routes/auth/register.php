@@ -64,13 +64,24 @@ Flight::route("POST /register", function () {
             "key" => $key
         );
 
+        $refreshToken = array(
+            $data => [
+                "id" => $userId,
+                "nivelPermisos" => $permissionLevel,
+            ],
+            "exp" => strtotime("now") + 604800,
+            "key" => $key
+        );
+
         $jwt = JWT::encode($token, $key, "HS256");
+        $jwtRefresh = JWT::encode($token, $key, "HS256");
 
         Flight::json(
             array(
                 "status" => 200,
                 "message" => "Usuario creado",
-                "token" => $jwt
+                "token" => $jwt,
+                "refreshToken" => $jwtRefresh,
             ),
             200
         );
