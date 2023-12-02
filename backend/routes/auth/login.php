@@ -1,6 +1,7 @@
 <?php
 
 require_once("vendor/autoload.php");
+require_once("tokens.php");
 
 use Firebase\JWT\JWT;
 
@@ -21,28 +22,32 @@ Flight::route("POST /login", function () {
 
     $user = $query->fetch();
 
-    $key = "ALGUNA_CLAVE_SECRETA"; // ESTA LLAVE ES SOLO PORQUE ESTE PROYECTO ES DE TESTING
+    $key = "ALGUNA_CLAVE_SECRETA";
     $now = strtotime("now");
 
     if ($user) {
         if (password_verify($data["password"], $user["Password"])) {
-            $token = array(
-                "data" => [
-                    "id" => $user["Id"],
-                    "nombre" => $user["Nombre"],
-                    "apellidoMaterno" => $user["ApellidoMaterno"],
-                    "apellidoPaterno" => $user["ApellidoPaterno"],
-                    "correoElectronico" => $user["CorreoElectronico"],
-                    "nivelPermisos" => $user["NivelPermisos"],
-                ],
-                "exp" => $now + 3600,
-                "key" => $key
+            $dataToken = array(
+                "id" => $user["Id"],
+                "nombre" => $user["Nombre"],
+                "apellidoMaterno" => $user["ApellidoMaterno"],
+                "apellidoPaterno" => $user["ApellidoPaterno"],
+                "correoElectronico" => $user["CorreoElectronico"],
+                "nivelPermisos" => $user["NivelPermisos"],
             );
 
-            $jwt = JWT::encode($token, $key, "HS256");
+            $dataRefreshToken = array(
+                "id" => $user["Id"],
+                "nivelPermisos" => $user["NivelPermisos"],
+            );
+
+            $jwt = generateToken($key, $dataToken, $now + 60 * 60 * 24);
+            $jwtRefresh = generateToken($key, $dataRefreshToken, $now + 604800);
+
             Flight::json(
                 array(
-                    "token" => $jwt
+                    "token" => $jwt,
+                    "refreshToken" => $jwtRefresh,
                 )
             );
         } else {

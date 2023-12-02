@@ -1,7 +1,7 @@
 <?php
 
 require_once("vendor/autoload.php");
-require_once("util.php");
+require_once("tokens.php");
 
 use Firebase\JWT\JWT;
 
@@ -10,12 +10,15 @@ Flight::route("POST /register", function () {
     $db = Flight::db();
     $permissionLevel = 0;
 
+    $tokenCookie = Flight::request()->cookies->token;
+
     if (isset($data["nivelPermisos"])) {
-        $token = validateToken();
-        if ($token != false) {
-            if ($token->data->nivelPermisos == 2) {
+        try {
+            $token = checkToken($tokenCookie, "ALGUNA_CLAVE_SECRETA");
+            if ($token != NULL && $token->data->nivelPermisos == 2) {
                 $permissionLevel = $data["nivelPermisos"];
             }
+        } catch (Exception $e) {
         }
     }
 
@@ -51,26 +54,31 @@ Flight::route("POST /register", function () {
 
         $userId = $db->lastInsertId();
         $key = "ALGUNA_CLAVE_SECRETA"; // ESTA LLAVE ES SOLO PORQUE ESTE PROYECTO ES DE TESTING
-        $token = array(
-            $data => [
+        $dataToken = array(
                 "id" => $userId,
                 "nombre" => $data["nombre"],
                 "apellidoMaterno" => $data["apellidoMaterno"],
                 "apellidoPaterno" => $data["apellidoPaterno"],
                 "correoElectronico" => $data["correoElectronico"],
                 "nivelPermisos" => $permissionLevel,
-            ],
-            "exp" => strtotime("now") + 3600,
-            "key" => $key
         );
 
-        $jwt = JWT::encode($token, $key, "HS256");
+        $dataRefreshToken = array(
+                "id" => $userId,
+                "nivelPermisos" => $permissionLevel,
+        );
+
+        $now = time();
+
+        $jwt = generateToken($key, $dataToken, $now + 60 * 60 * 24);
+        $jwtRefresh = generateToken($key, $dataRefreshToken, $now + 640800);
 
         Flight::json(
             array(
                 "status" => 200,
                 "message" => "Usuario creado",
-                "token" => $jwt
+                "token" => $jwt,
+                "refreshToken" => $jwtRefresh,
             ),
             200
         );
