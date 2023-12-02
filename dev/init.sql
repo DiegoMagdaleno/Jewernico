@@ -115,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `jewernico_gina`.`producto` (
   `IdMaterial` INT NOT NULL,
   `IdCategoria` INT NOT NULL,
   `Stock` INT NOT NULL,
+  `Descuento` DOUBLE UNSIGNED NULL DEFAULT NULL,
   `RutaImagen` VARCHAR(2048) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`),
   INDEX `fk_Producto_Material1_idx` (`IdMaterial` ASC) VISIBLE,
@@ -208,6 +209,45 @@ CREATE TABLE IF NOT EXISTS `jewernico_gina`.`tener` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table: `jewernico_gina`.`carrito`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jewernico_gina`.`carrito` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `IdUsuario` INT NOT NULL,
+  PRIMARY KEY (`Id`),
+  INDEX `fk_Carrito_Usuario_idx` (`IdUsuario` ASC) VISIBLE,
+  CONSTRAINT `fk_Carrito_Usuario`
+    FOREIGN KEY (`IdUsuario`)
+    REFERENCES `jewernico_gina`.`usuario` (`Id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table: `jewernico_gina`.`detalle_carrito`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `jewernico_gina`.`detalle_carrito` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `IdCarrito` INT NOT NULL,
+  `IdProducto` INT NOT NULL,
+  `Cantidad` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`Id`),
+  INDEX `fk_DetalleCarrito_Carrito_idx` (`IdCarrito` ASC) VISIBLE,
+  INDEX `fk_DetalleCarrito_Producto_idx` (`IdProducto` ASC) VISIBLE,
+  CONSTRAINT `fk_DetalleCarrito_Carrito`
+    FOREIGN KEY (`IdCarrito`)
+    REFERENCES `jewernico_gina`.`carrito` (`Id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_DetalleCarrito_Producto`
+    FOREIGN KEY (`IdProducto`)
+    REFERENCES `jewernico_gina`.`producto` (`Id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+)
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
