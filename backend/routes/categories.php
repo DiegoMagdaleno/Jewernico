@@ -42,5 +42,13 @@ Flight::route("POST /categories", function () {
                 200
             );
         }
+    } catch (Exception $e) {
+        Flight::json(
+            array(
+                "status" => 500,
+                "message" => $e->getMessage()
+            ),
+            500
+        );
     }
 });

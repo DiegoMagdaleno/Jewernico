@@ -77,3 +77,8 @@ Flight::route("POST /products", function () {
         );
     }
 });
+
+Flight::route("GET /products/@category", function($category){
+
+});
+
