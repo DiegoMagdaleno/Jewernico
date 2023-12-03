@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="p-8 flex items-center">
+        <div class="w-1/2 pr-4 ml-10">
+            <h1 class="text-lg font-bold">Añadir Producto</h1>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-1/2 pr-4 ml-32 bg-white rounded shadow-md p-8">
+            <div class="mb-4">
+                <label for="titulo" class="block text-md font-bold">Título</label>
+                <input type="text" id="titulo" name="titulo" class="w-full border p-2 rounded" placeholder="Camisa, Playera, Pantalón, etc">
+            </div>
+            <div>
+                <label for="descripcion" class="block text-md font-bold">Descripción</label>
+                <textarea id="descripcion" name="descripcion" class="w-full border p-2 rounded resize-none h-32" placeholder="Talla, Color, Diseño, etc"></textarea>
+            </div>
+        </div>
+        <div class="w-1/4 pr-4 ml-16 bg-white rounded shadow-md p-8">
+            <div class="mb-4">
+                <label for="organizacion" class="block text-md font-bold pb-4">Organización</label>
+                <select id="organizacion" name="organizacion" class="w-full border p-2 rounded">
+                    <option disabled selected>Marca</option>
+                    <option value="nike">Nike</option>
+                    <option value="pumas">Pumas</option>
+                    <option value="adidas">Adidas</option>
+                    <option value="dc">DC</option>
+                </select>
+                <hr class="my-4 border-t-2 border-gray-300 w-full">    
+                <label for="tipoproducto" class="block text-md font-bold pb-4">Tipo de Producto</label>
+                <p class="block text-sm font-semibold">Estandar</p>
+                <select id="tipoproducto" name="tipoproducto" class="w-full border p-2 rounded">
+                    <option disabled selected>Tipos</option>
+                    <option value="tipo1">Tipo 1</option>
+                    <option value="tipo2">Tipo 2</option>
+                    <option value="tipo3">Tipo 3</option>
+                    <option value="tipo4">Tipo 4</option>
+                </select>   
+                <hr class="my-4 border-t-2 border-gray-300 w-full"> 
+                <label for="etiquetas" class="block text-md font-bold pb-4">Etiquetas</label>
+                <input type="text" name="etiquetas" id="etiquetas" class="w-full border p-2 rounded" placeholder="Etiquetas">          
+            </div>
+        </div>
+    </div>
+    <div class="w-1/2 pr-4 ml-32 bg-white rounded shadow-md p-8 mt-4">
+        <div class="mb-4">
+            <label for="archivo" class="block text-md font-bold pb-4">Media</label>
+            <p class="pb-6">Añade imagenes, videos o modelos 3D para mostrar detalles del producto</p>
+            <label for="archivo" class="relative border-dotted border-2 border-blue-500 p-4 rounded-md cursor-pointer">
+                <span class="text-blue-500">Seleccionar Archivo</span>
+                <input type="file" id="archivo" name="archivo" class="hidden">
+            </label>
+        </div>
+    </div>
+    <div class="w-1/2 pr-4 ml-32 bg-white rounded shadow-md p-8 mt-4 mb-8">
+        <div class="mb-4">
+            <label for="Precio" class="block text-md font-bold pb-4">Precios</label>
+            <div class="flex">
+                <div class="mr-2">
+                    <label for="precio" class="block text-sm font-semibold">Precio</label>
+                    <input type="number" id="precio" name="precio" class="w-full border p-2 rounded" min="0" placeholder="$ 0.00">
+                </div>
+            </div>
+            <hr class="my-4 border-t-2 border-gray-300 w-full">
+            <div class="mr-2">
+                <label for="costoperitem" class="block text-sm font-semibold">Costo por Unidad</label>
+                <input type="number" id="costoperitem" name="costoperitem" class="w-full border p-2 rounded" min="0" placeholder="$ 0.00">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
