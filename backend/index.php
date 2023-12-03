@@ -19,5 +19,6 @@ require 'routes/users.php';
 require 'routes/products.php';
 require 'routes/categories.php';
 require 'routes/materials.php';
+require 'routes/auth/refresh.php';
 
 Flight::start();
