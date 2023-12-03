@@ -25,5 +25,6 @@ require 'routes/products.php';
 require 'routes/categories.php';
 require 'routes/materials.php';
 require 'routes/auth/refresh.php';
+require 'routes/captcha.php';
 
 Flight::start();

@@ -114,7 +114,7 @@ Flight::route("GET /products/minPrice/@minPrice", function($minPrice){
     Flight::json($products);
 });
 
-Flight::rout("GET /products/maxPrice/@maxPrice", function($maxPrice){
+Flight::route("GET /products/maxPrice/@maxPrice", function($maxPrice){
     $db = Flight::db();
     $query = $db->prepare("SELECT * FROM producto WHERE Precio <= maxPrice");
     $query->execute(
