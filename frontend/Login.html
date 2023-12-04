@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="cupcake">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,29 +10,32 @@
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+
+<body class="flex items-center justify-center">
     <div class="container p-8 mt-16">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 max-w-4xl mx-auto">
-            <div class="mb-8">
+            <div class="mb-4">
                 <h3 class="text-3xl font-bold pb-3">Login</h3>
-                <p class="text-lg text-gray-500 pb-4">Ingresa a tu cuenta de JewerNico</p>
+                <p class="text-lg text-gray-500 pb-2">Ingresa a tu cuenta de JewerNico</p>
             </div>
             <form>
-                <div class="mb-4 flex">
+                <div class="flex">
                     <div class="w-1/2 pr-2 pb-3">
-                        <label for="correo" class="block text-lg text-gray-500">Correo:</label>
-                        <input type="email" id="correo" name="correo" class="input input-bordered w-full max-w-sm" placeholder="tucorreo@gmail.com">
+                        <label for="correo" class="block text-lg text-gray-500 mb-2">Correo:</label>
+                        <input type="email" id="correo" name="correo" class="input input-bordered w-full max-w-sm"
+                            placeholder="tucorreo@gmail.com">
                     </div>
                     <div class="w-1/2 pl-2">
-                        <label for="contraseña" class="block text-lg text-gray-500">Contraseña:</label>
-                        <input type="password" id="contraseña" name="contraseña" class="input input-bordered w-full max-w-sm">
+                        <label for="contraseña" class="block text-lg text-gray-500 mb-2">Contraseña:</label>
+                        <input type="password" id="contraseña" name="contraseña"
+                            class="input input-bordered w-full max-w-sm">
                     </div>
                 </div>
                 <div class="mb-4 flex">
                     <div class="form-control">
                         <label class="label cursor-pointer">
                             <input type="checkbox" checked="checked" class="checkbox">
-                            <p class="block text-lg text-gray-500">Recuerdame</p>
+                            <p class="block text-lg text-gray-500 ml-2">Recuerdame</p>
                         </label>
                     </div>
                 </div>
@@ -39,4 +43,5 @@
         </div>
     </div>
 </body>
+
 </html>
