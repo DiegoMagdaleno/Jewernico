@@ -82,7 +82,8 @@
                         success: function (response) {
                             if (response.token) {
                                 document.cookie = 'token=' + response.token + '; path=/';
-                                localStorage.setItem('refreshToken', response.refreshToken);                                
+                                localStorage.setItem('refreshToken', response.refreshToken);
+                                localStorage.setItem('userId', response.id);
                                 window.location.href = 'http://localhost/php_course/Jewernico';
                             }
                         },
