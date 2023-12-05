@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acerca De</title>
+    <title>Acerca De Nosotros</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.7/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -100,6 +100,42 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+
+<div class="container mx-auto min-h-screen flex flex-col items-center justify-center">
+    <h1 class="text-4xl font-bold mb-4 text-center"><br>CONTACTANOS</h1>
+
+    <div class="card shadow-xl m-auto mt-8 p-10 bg-white w-2/3 border border-gray-300 rounded-lg">
+        <!-- Personalización de colores del formulario -->
+        <form action="/submit-contact" method="post">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Nombre</span>
+                </label>
+                <input type="text" name="name" placeholder="Introduce tu nombre"
+                    class="input input-bordered bg-white border border-gray-300">
+            </div>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Número de Celular</span>
+                </label>
+                <input type="text" name="phone_number" placeholder="Introduce tu celular"
+                    class="input input-bordered bg-white border border-gray-300">
+            </div>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Comentarios</span>
+                </label>
+                <textarea name="comment" placeholder="Introduce un comentario"
+                    class="textarea textarea-bordered h-24 bg-white border border-gray-300"></textarea>
+            </div>
+            <div class="form-control mt-6">
+                <!-- Cambio de color del botón "Enviar" -->
+                <button type="submit" class="btn btn-primary bg-rose-500">Enviar</button>
+            </div>
+        </form>
     </div>
 </div>
 
