@@ -207,8 +207,6 @@ Flight::route("POST /products/@id", function ($id) {
                     }
                 }
             } else {
-                echo "here";
-                return;
                 $filesOnFolder = glob($productDirectory . '/*');
                 foreach ($filesOnFolder as $file) {
                     unlink($file);
