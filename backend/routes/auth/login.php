@@ -36,6 +36,17 @@ Flight::route("POST /login", function () {
     $now = strtotime("now");
 
     if ($user) {
+
+        if ($user['IntentosDeLogin'] > 3) {
+            Flight::json(
+                array(
+                    'status' => 403,
+                    'message' => "La cuenta ha sido bloqueada. Ve a http://localhost/php_course/Jewernico/Frontend/recover.html para recuperarla"
+                )
+            );
+            return;
+        }
+
         if (password_verify($data["password"], $user["Password"])) {
             $dataToken = array(
                 "id" => $user["Id"],
@@ -54,6 +65,13 @@ Flight::route("POST /login", function () {
             $jwt = generateToken($key, $dataToken, $now + 60 * 60 * 24);
             $jwtRefresh = generateToken($key, $dataRefreshToken, $now + 604800);
 
+            $resetCountQuery = $db->prepare("UPDATE usuario SET IntentosDeLogin = 0 WHERE Id = :id");
+            $resetCountQuery->execute(
+                array(
+                    ":id" => $user["Id"]
+                )
+            );
+            
             Flight::json(
                 array(
                     "token" => $jwt,
@@ -62,6 +80,12 @@ Flight::route("POST /login", function () {
                 )
             );
         } else {
+            $addToCountQuery = $db->prepare("UPDATE usuario SET IntentosDeLogin = IntentosDeLogin + 1 WHERE Id = :id");
+            $addToCountQuery->execute(
+                array(
+                    ":id" => $user["Id"]
+                )
+            );
             Flight::json(
                 array(
                     "status" => 403,

@@ -23,11 +23,9 @@ Flight::route("POST /refresh_token", function () {
 
     try {
         $token = checkToken($tokenCookie, "ALGUNA_CLAVE_SECRETA");
-        // Nice! lets get the refresh token
         $refreshTokenReq = $data["refreshToken"];
         try {
             checkToken($refreshTokenReq, "ALGUNA_CLAVE_SECRETA");
-            // Perfect lets create a new token
             $newToken = generateToken("ALGUNA_CLAVE_SECRETA", $token->data, strtotime("now") + 60 * 60 * 24);
             Flight::json(
                 array(
