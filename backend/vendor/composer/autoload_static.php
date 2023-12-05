@@ -25,6 +25,7 @@ class ComposerStaticInit823e92ae3d3deceb390860de731975bf
         'P' => 
         array (
             'PhpOption\\' => 10,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'G' => 
         array (
@@ -61,6 +62,10 @@ class ComposerStaticInit823e92ae3d3deceb390860de731975bf
         'PhpOption\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Gregwar\\' => 
         array (
