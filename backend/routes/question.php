@@ -35,7 +35,7 @@ Flight::route("POST /questions/answers", function () {
     );
 });
 
-Flight::route("POST /questions/email", function () {
+Flight::route("GET /questions/email", function () {
     $db = Flight::db();
     $data = $db->request()->data->getData();
 
@@ -60,7 +60,7 @@ Flight::route("POST /questions/email", function () {
     Flight::json($result);
 });
 
-Flight::route("GET /question/validate", function () {
+Flight::route("POST /question/validate", function () {
     $db = Flight::db();
     $data = Flight::request()->data->getData();
 
