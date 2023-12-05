@@ -111,7 +111,12 @@
                             'Content-Type': 'application/json'
                         },
                         success: function (response) {
-                            // Handle successful registration, if needed
+                            if (response.token) {
+                                document.cookie = 'token=' + response.token + '; path=/';
+                                localStorage.setItem('refreshToken', response.refreshToken);
+                                localStorage.setItem('userId', response.id);
+                                window.location.href = 'http://localhost/php_course/Jewernico';
+                            }
                         },
                         error: function (response) {
                             let errorMessage = JSON.parse(response.responseText).message;
