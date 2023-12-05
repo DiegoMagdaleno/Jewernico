@@ -59,6 +59,43 @@ Flight::route("POST /products", function () {
                     ":stock" => $data["stock"]
                 )
             );
+
+            $productId = $db->lastInsertId();
+            $productDirectory = "images/products/" . $productId;
+            mkdir($productDirectory, 0777, true);
+            $savedFilesPath = [];
+
+            $files = $files['files'];
+
+            print_r($files['name']);
+
+
+            for ($i = 0; $i < count($files['name']); $i++) {
+                $newFileName = $productId . "_" . $i . ".jpg";
+                $targetFilePath = $productDirectory . "/" . $newFileName;
+
+                if (move_uploaded_file($files['tmp_name'][$i], $targetFilePath)) {
+                    $savedFilesPath[] = $targetFilePath;
+
+                    $query = $db->prepare("INSERT INTO imagen (Ruta, IdProducto) VALUES (:ruta, :idProducto)");
+                    $query->execute(
+                        array(
+                            ":ruta" => $targetFilePath,
+                            ":idProducto" => $productId
+                        )
+                    );
+                } else {
+                    Flight::json(
+                        array(
+                            "status" => 500,
+                            "message" => "Error al subir archivos"
+                        ),
+                        500
+                    );
+                    return;
+                }
+            }
+
             Flight::json(
                 array(
                     "status" => 200,
@@ -71,14 +108,15 @@ Flight::route("POST /products", function () {
         Flight::json(
             array(
                 "status" => 403,
-                "message" => "No autorizado"
+                "message" => "No autorizado, no token",
+                "e" => $e->getMessage()
             ),
             403
         );
     }
 });
 
-Flight::route("GET /products/@category", function($category){
+Flight::route("GET /products/@category", function ($category) {
     $db = Flight::db();
     $query = $db->prepare("SELECT * FROM producto WHERE IdCategoria = :idCategoria");
     $query->execute(
@@ -90,7 +128,7 @@ Flight::route("GET /products/@category", function($category){
     Flight::json($products);
 });
 
-Flight::route("GET /products/material/@material", function($material){
+Flight::route("GET /products/material/@material", function ($material) {
     $db = Flight::db();
     $query = $db->prepare("SELECT * FROM producto WHERE IdMaterial = :idMaterial");
     $query->execute(
@@ -102,7 +140,7 @@ Flight::route("GET /products/material/@material", function($material){
     Flight::json($products);
 });
 
-Flight::route("GET /products/minPrice/@minPrice", function($minPrice){
+Flight::route("GET /products/minPrice/@minPrice", function ($minPrice) {
     $db = Flight::db();
     $query = $db->prepare("SELECT * FROM producto WHERE Precio >= :minPrice");
     $query->execute(
@@ -114,7 +152,7 @@ Flight::route("GET /products/minPrice/@minPrice", function($minPrice){
     Flight::json($products);
 });
 
-Flight::route("GET /products/maxPrice/@maxPrice", function($maxPrice){
+Flight::route("GET /products/maxPrice/@maxPrice", function ($maxPrice) {
     $db = Flight::db();
     $query = $db->prepare("SELECT * FROM producto WHERE Precio <= maxPrice");
     $query->execute(
