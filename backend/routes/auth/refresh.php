@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once "vendor/autoload.php";
 require_once "tokens.php";
 
@@ -8,6 +9,17 @@ use Firebase\JWT\ExpiredException;
 Flight::route("POST /refresh_token", function () {
     $data = Flight::request()->data->getData();
     $tokenCookie = Flight::request()->cookies->token;
+
+    if ($data['captcha'] != $_SESSION['phrase']) {
+        Flight::json(
+            array(
+                "status" => 403,
+                "message" => "Captcha incorrecto"
+            ),
+            403
+        );
+        return;
+    }
 
     try {
         $token = checkToken($tokenCookie, "ALGUNA_CLAVE_SECRETA");

@@ -71,6 +71,7 @@
                     $.each(formData, function () {
                         jsonObject[this.name] = this.value || '';
                     });
+
                     let jsonData = JSON.stringify(jsonObject);
                     $.ajax({
                         url: 'http://localhost/php_course/Jewernico/backend/login',
@@ -88,6 +89,7 @@
                             }
                         },
                         error: function (response) {
+                            console.log(response);
                             let errorMessage = JSON.parse(response.responseText).message;
                             let toast = $('<div class="toast toast-end">' +
                                 '<div class="alert alert-error">' +

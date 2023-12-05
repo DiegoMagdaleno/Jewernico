@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once("vendor/autoload.php");
 require_once("tokens.php");
@@ -9,6 +10,17 @@ Flight::route("POST /login", function () {
     $request = Flight::request();
     $data = $request->data->getData();
     $db = Flight::db();
+
+    if ($data['captcha'] != $_SESSION['phrase']) {
+        Flight::json(
+            array(
+                "status" => 403,
+                "message" => "Captcha incorrecto"
+            ),
+            403
+        );
+        return;
+    }
 
     $query = $db->prepare("SELECT * FROM usuario WHERE CorreoElectronico = :correoElectronico");
     $query->execute(
