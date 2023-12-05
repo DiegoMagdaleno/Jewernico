@@ -12,7 +12,7 @@ Flight::route('GET /questions', function () {
 
 Flight::route("POST /questions/answers", function () {
     $db = Flight::db();
-    $data = $db->request()->data->getData();
+    $data = Flight::request()->data->getData();
 
     $usuario = $data["IdUsuario"];
     $pregunta = $data["IdPregunta"];
@@ -37,7 +37,7 @@ Flight::route("POST /questions/answers", function () {
 
 Flight::route("GET /questions/email", function () {
     $db = Flight::db();
-    $data = $db->request()->data->getData();
+    $data = Flight::request()->data->getData();
 
     $email = $data["correoElectronico"];
 
