@@ -10,8 +10,6 @@ Flight::route("POST /login", function () {
     $data = $request->data->getData();
     $db = Flight::db();
 
-    print_r($data);
-
     $query = $db->prepare("SELECT * FROM usuario WHERE CorreoElectronico = :correoElectronico");
     $query->execute(
         array(

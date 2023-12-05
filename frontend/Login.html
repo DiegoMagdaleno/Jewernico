@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body class="flex items-center justify-center">
@@ -18,12 +19,12 @@
                 <h3 class="text-3xl font-bold pb-3">Login</h3>
                 <p class="text-lg text-gray-500 pb-2">Ingresa a tu cuenta de JewerNico</p>
             </div>
-            <form>
+            <form action="" id="loginForm" method="post">
                 <div class="flex flex-col items-center justify-center">
                     <div class="w-1/2 pr-2 pb-3">
                         <label for="correo" class="block text-lg text-gray-500 mb-2">Correo:</label>
-                        <input type="email" id="correo" name="correoElectronico" class="input input-bordered w-full max-w-sm"
-                            placeholder="tucorreo@gmail.com" required>
+                        <input type="email" id="correo" name="correoElectronico"
+                            class="input input-bordered w-full max-w-sm" placeholder="tucorreo@gmail.com" required>
                     </div>
                     <div class="w-1/2 pl-2">
                         <label for="contraseña" class="block text-lg text-gray-500 mb-2">Contraseña:</label>
@@ -41,13 +42,71 @@
                     <div class="mb-4 flex flex-col justify-center items-center">
                         <img src="http://localhost/php_course/Jewernico/backend/captcha">
                         <label for="captcha" class="block text-lg text-gray-500 mb-2">Captcha:</label>
-                        <input type="text" id="captcha" name="captcha" class="input input-bordered w-full max-w-sm" placeholder="Introduce el codigo" required>
+                        <input type="text" id="captcha" name="captcha" class="input input-bordered w-full max-w-sm"
+                            placeholder="Introduce el codigo" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                    <input id="submitButton" type="button" class="btn btn-primary" value="Ingresar">
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#submitButton').click(function () {
+                let formValid = true;
+                $('#loginForm input[required]').each(function () {
+                    if (!$(this).val().trim()) {
+                        $(this).addClass('input-error');
+                        $('label[for="' + $(this).attr('id') + '"]').addClass('text-red-500');
+                        formValid = false;
+                    } else {
+                        $(this).removeClass('input-error');
+                        $('label[for="' + $(this).attr('id') + '"]').removeClass('text-red-500');
+                    }
+                });
+
+                if (formValid) {
+                    let formData = $('#loginForm').serializeArray();
+                    let jsonObject = {};
+                    $.each(formData, function () {
+                        jsonObject[this.name] = this.value || '';
+                    });
+                    let jsonData = JSON.stringify(jsonObject);
+                    $.ajax({
+                        url: 'http://localhost/php_course/Jewernico/backend/login',
+                        type: 'POST',
+                        data: jsonData,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        success: function (response) {
+                            if (response.token) {
+                                document.cookie = 'token=' + response.token + '; path=/';
+                                localStorage.setItem('refreshToken', response.refreshToken);                                
+                                window.location.href = 'http://localhost/php_course/Jewernico';
+                            }
+                        },
+                        error: function (response) {
+                            let errorMessage = JSON.parse(response.responseText).message;
+                            let toast = $('<div class="toast toast-end">' +
+                                '<div class="alert alert-error">' +
+                                '<span>' + errorMessage + '</span>' +
+                                '</div>' +
+                                '</div>');
+
+                            $('body').append(toast);
+
+                            setTimeout(function () {
+                                toast.fadeOut('slow', function () {
+                                    $(this).remove();
+                                });
+                            }, 5000);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
