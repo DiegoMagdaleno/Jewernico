@@ -46,6 +46,7 @@ Flight::route("POST /login", function () {
                 array(
                     "token" => $jwt,
                     "refreshToken" => $jwtRefresh,
+                    "id" => $user["Id"],
                 )
             );
         } else {
