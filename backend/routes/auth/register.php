@@ -79,6 +79,7 @@ Flight::route("POST /register", function () {
                 "message" => "Usuario creado",
                 "token" => $jwt,
                 "refreshToken" => $jwtRefresh,
+                "id" => $userId
             ),
             200
         );
