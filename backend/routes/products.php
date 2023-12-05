@@ -63,7 +63,6 @@ Flight::route("POST /products", function () {
             $productId = $db->lastInsertId();
             $productDirectory = "images/products/" . $productId;
             mkdir($productDirectory, 0777, true);
-            $savedFilesPath = [];
 
             $files = $files['files'];
 
@@ -75,7 +74,6 @@ Flight::route("POST /products", function () {
                 $targetFilePath = $productDirectory . "/" . $newFileName;
 
                 if (move_uploaded_file($files['tmp_name'][$i], $targetFilePath)) {
-                    $savedFilesPath[] = $targetFilePath;
 
                     $query = $db->prepare("INSERT INTO imagen (Ruta, IdProducto) VALUES (:ruta, :idProducto)");
                     $query->execute(
