@@ -35,14 +35,14 @@ Flight::route("POST /questions/answers", function () {
     );
 });
 
-Flight::route("GET /questions/email", function () {
+Flight::route("POST /questions/email", function () {
     $db = Flight::db();
     $data = Flight::request()->data->getData();
 
     $email = $data["correoElectronico"];
 
     $query = $db->prepare(
-        "SELECT * FROM Pregunta WHERE Id = (
+        "SELECT * FROM pregunta WHERE Id = (
             SELECT IdPregunta FROM responder WHERE IdUsuario = (
                 SELECT Id FROM usuario WHERE CorreoElectronico = :email
             )
@@ -64,25 +64,34 @@ Flight::route("POST /question/validate", function () {
     $db = Flight::db();
     $data = Flight::request()->data->getData();
 
-    $usuario = $data["IdUsuario"];
+    $email = $data["correoElectronico"];
     $pregunta = $data["IdPregunta"];
+    $respuesta = $data["Respuesta"];
 
-    $query = $db->prepare("SELECT * FROM responder WHERE IdUsuario = :usuario AND IdPregunta = :pregunta");
-    $db->execute(
+    $query = $db->prepare(
+        "SELECT * FROM usuario 
+        JOIN responder ON usuario.Id = responder.IdUsuario 
+        WHERE usuario.CorreoElectronico = :email 
+        AND responder.IdPregunta = :pregunta 
+        AND responder.Respuesta = :respuesta"
+    );
+
+    $query->execute(
         array(
-            ":usuario" => $usuario,
-            ":pregunta" => $pregunta
+            ":email" => $email,
+            ":pregunta" => $pregunta,
+            ":respuesta" => $respuesta
         )
     );
 
-    $respuesta = $query->fetchAll();
-    if (count($respuesta) > 0) {
+    $result = $query->fetchAll();
+    if (count($result) > 0) {
 
-        if ($respuesta[0]["Respuesta"] == $data["Respuesta"]) {
-            $userQuery = $db->prepare("SELECT * FROM usuario WHERE Id = :usuario");
+        if ($result[0]["Respuesta"] == $data["Respuesta"]) {
+            $userQuery = $db->prepare("SELECT * FROM usuario WHERE CorreoElectronico = :email");
             $userQuery->execute(
                 array(
-                    ":usuario" => $usuario
+                    ":email" => $email
                 )
             );
             $usuario = $userQuery->fetch();
