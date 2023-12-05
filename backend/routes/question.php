@@ -35,6 +35,31 @@ Flight::route("POST /questions/answers", function () {
     );
 });
 
+Flight::route("POST /questions/email", function () {
+    $db = Flight::db();
+    $data = $db->request()->data->getData();
+
+    $email = $data["correoElectronico"];
+
+    $query = $db->prepare(
+        "SELECT * FROM Pregunta WHERE Id = (
+            SELECT IdPregunta FROM responder WHERE IdUsuario = (
+                SELECT Id FROM usuario WHERE CorreoElectronico = :email
+            )
+        )"
+    );
+
+    $query->execute(
+        array(
+            ":email" => $email
+        )
+    );
+
+    $result = $query->fetch();
+
+    Flight::json($result);
+});
+
 Flight::route("GET /question/validate", function () {
     $db = Flight::db();
     $data = Flight::request()->data->getData();
