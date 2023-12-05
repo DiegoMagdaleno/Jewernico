@@ -19,7 +19,7 @@ Flight::route("GET /products/@id", function ($id) {
             ":id" => $id
         )
     );
-    $product = $query->fetch();
+    $product = $query->fetchAll();
     Flight::json($product);
 });
 
@@ -77,3 +77,55 @@ Flight::route("POST /products", function () {
         );
     }
 });
+
+Flight::route("GET /products/@category", function($category){
+    $db = Flight::db();
+    $query = $db->prepare("SELECT * FROM producto WHERE IdCategoria = :idCategoria");
+    $query->execute(
+        array(
+            ":idCategoria" => $category
+        )
+    );
+    $products = $query->fetchAll();
+    Flight::json($products);
+});
+
+Flight::route("GET /products/material/@material", function($material){
+    $db = Flight::db();
+    $query = $db->prepare("SELECT * FROM producto WHERE IdMaterial = :idMaterial");
+    $query->execute(
+        array(
+            ":idMaterial" => $material
+        )
+    );
+    $products = $query->fetchAll();
+    Flight::json($products);
+});
+
+Flight::route("GET /products/minPrice/@minPrice", function($minPrice){
+    $db = Flight::db();
+    $query = $db->prepare("SELECT * FROM producto WHERE Precio >= :minPrice");
+    $query->execute(
+        array(
+            ":minPrice" => $minPrice
+        )
+    );
+    $products = $query->fetchAll();
+    Flight::json($products);
+});
+
+Flight::route("GET /products/maxPrice/@maxPrice", function($maxPrice){
+    $db = Flight::db();
+    $query = $db->prepare("SELECT * FROM producto WHERE Precio <= maxPrice");
+    $query->execute(
+        array(
+            ":maxPrice" => $maxPrice
+        )
+    );
+    $products = $query->fetchAll();
+    Flight::json($products);
+});
+
+
+
+

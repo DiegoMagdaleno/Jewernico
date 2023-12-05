@@ -1,7 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
-require_once 'util.php';
+require_once 'tokens.php';
 
 Flight::route("GET /categories", function () {
     $db = Flight::db();
@@ -12,17 +12,11 @@ Flight::route("GET /categories", function () {
 });
 
 Flight::route("POST /categories", function () {
-    $token = validateToken();
+    $tokenCookie = Flight::request()->cookies->token;
 
-    if (!$token) {
-        Flight::json(
-            array(
-                "status" => 403,
-                "message" => "No autorizado"
-            ),
-            403
-        );
-    } else {
+    try {
+        $token = checkToken($tokenCookie, "ALGUNA_CLAVE_SECRETA");
+
         if ($token->data->nivelPermisos < 1) {
             Flight::json(
                 array(
@@ -48,5 +42,13 @@ Flight::route("POST /categories", function () {
                 200
             );
         }
+    } catch (Exception $e) {
+        Flight::json(
+            array(
+                "status" => 500,
+                "message" => $e->getMessage()
+            ),
+            500
+        );
     }
 });
