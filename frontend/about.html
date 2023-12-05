@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acerca De Nosotros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-eU4NzVR3w6+IEVBhBUEp98pymxeAT6f3BrfKXXp5xF0v0i0q5G4di8WQZJ3crI2n+AfkyCtvLbOLj1wZHoKuBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/c8b05d3e39.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -108,7 +110,6 @@
     <h1 class="text-4xl font-bold mb-4 text-center"><br>CONTACTANOS</h1>
 
     <div class="card shadow-xl m-auto mt-8 p-10 bg-white w-2/3 border border-gray-300 rounded-lg">
-        <!-- Personalización de colores del formulario -->
         <form action="/submit-contact" method="post">
             <div class="form-control">
                 <label class="label">
@@ -140,6 +141,82 @@
 </div>
 
 </body>
+
+
+<div id="custom-footer-container" class="bg-gradient-to-br from-green-500 to-orange-300">
+    <div id="custom-footer" class="isolate p-6 rounded text-center mb-10 text-white">
+        <h2 class="text-3xl font-bold mb-4">Get 20% off your first order</h2>
+        <p>Join our email list for exclusive offers and the latest news.</p>
+
+        <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="mt-6">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            
+            <div class="flex justify-center items-center">
+                <div class="mb-4 relative flex items-center">
+                    <input id="NewsletterForm--template--15127409393872__16401218002cee6770" type="email"
+                        name="contact[email]" class="field__input p-2 border rounded text-white" value="" aria-required="true"
+                        autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="Enter your email"
+                        required="">
+                    <label class="field__label sr-only"
+                        for="NewsletterForm--template--15127409393872__16401218002cee6770">Email</label>
+                    <button type="submit" class="ml-2 p-2 rounded bg-transparent">
+                        <i class="fas fa-arrow-right text-white"></i>
+                    </button>
+                </div>            
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container mx-auto py-12 px-4 ">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="md:col-span-1">
+                    <h2 class="text-lg font-bold mb-2">Menu</h2>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-200">Skin Care</a></li>
+                        <li><a href="#" class="text-gray-200">Hair Care</a></li>
+                        <li><a href="#" class="text-gray-200">Body Care</a></li>
+                        <li><a href="#" class="text-gray-200">Nail Polish</a></li>
+                        <li><a href="#" class="text-gray-200">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h2 class="text-lg font-bold mb-2">Our Store</h2>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-200">3455 St Laurent Blvd</a></li>
+                        <li><a href="#" class="text-gray-200">Montreal, Quebec H2X 2T6</a></li>
+                        <li><a href="#" class="text-gray-200">Mon - Fri 9 a.m. - 7 p.m.</a></li>
+                        <li><a href="#" class="text-gray-200">Sat - Sun 10a.m. - 6p.m.</a></li>
+                    </ul>
+                </div>
+                <div class="md:col-span-1">
+                    <img class="image w-1/3 h-auto rounded-l mx-auto shadow" src="Img/imagen1.jpg" alt="Elegante joyería de alta calidad." loading="lazy">
+
+                </div>
+                <div class="md:col-span-1">
+                    <h2 class="text-lg font-bold mb-2">Our Promise</h2>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-200">To create high quality, plant-based products that are safe for people and the planet.</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex justify-center items-center mt-16">
+                <ul class="flex space-x-4">
+                    <li><a href="#" class="text-white text-lg"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#" class="text-white text-lg"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" class="text-white text-lg"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#" class="text-white text-lg"><i class="fab fa-pinterest"></i></a></li>
+                    <li><a href="#" class="text-white text-lg"><i class="fab fa-tiktok"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </footer>
+</div>
+
 
 <script src="components/navbar.js"></script>
 
