@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once("vendor/autoload.php");
 require_once("tokens.php");
@@ -71,7 +70,7 @@ Flight::route("POST /login", function () {
                     ":id" => $user["Id"]
                 )
             );
-            
+
             Flight::json(
                 array(
                     "token" => $jwt,
