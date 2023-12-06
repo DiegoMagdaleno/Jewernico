@@ -42,7 +42,7 @@
         {{for}}
         <a href="frontend/product.html?id={{>Id}}" class="card w-96 bg-base-100 shadow-xl">
           <figure>
-            <img class="w-full max-h-72" src={{>Imagen}} alt="Producto" />
+            <img class="w-full max-h-72 transition duration-300 ease-in-out hover:scale-110" src={{>Imagen}} alt="Producto" />
           </figure>
           {{if Descuento}}
             <div class="badge m-4 badge-secondary absolute">{{>Descuento}}%</div>

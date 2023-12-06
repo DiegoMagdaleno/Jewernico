@@ -117,7 +117,7 @@
         dataType: "json",
         success: function (response) {
           for (let i = 0; i < response.length; i++) {
-            response[i].Imagen = "http://picsum.photos/200/300";
+            response[i].Imagen = "http://localhost/php_course/Jewernico/backend/images/productos/" + response[$i].Id + `/${response[i].Id}_0.jpg`;
           }
           let html = $("#productWelcome").render(response);
           console.log(html);
