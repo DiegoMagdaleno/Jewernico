@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="retro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="p-8 flex items-center">
+        <button class="btn btn-circle" id="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+        </button>
+        <div class="w-1/2 pr-4 ml-10">
+            <h1 class="text-lg font-bold">Añadir Producto</h1>
+        </div>
+    </div>
+    <form id="addProductForm" method="post">
+        <div class="flex">
+            <div class="w-1/2 pr-4 ml-32 bg-base-100 rounded shadow-md p-8">
+                <div class="mb-4">
+                    <label for="nombre" class="block text-md font-bold mb-2">Nombre*</label>
+                    <input type="text" id="nombre" name="nombre" class="input input-bordered w-full"
+                        placeholder="Camisa, Playera, Pantalón, etc" required>
+                </div>
+                <div>
+                    <label for="descripcion" class="block text-md font-bold mb-2">Descripción*</label>
+                    <textarea id="descripcion" name="descripcion" class="textarea textarea-bordered w-full h-48"
+                        placeholder="Talla, Color, Diseño, etc" required></textarea>
+                </div>
+            </div>
+            <div class="w-1/4 ml-8 bg-base-100 rounded shadow-md p-8">
+                <div class="mb-4">
+                    <label for="categoria" class="block text-md font-bold pb-4">Categoria*</label>
+                    <select id="categoria-select" name="idMaterial"
+                        class="w-full border p-2 rounded select select-bordered" required>
+                        <option disabled selected>Seleccionar...</option>
+                    </select>
+                    <hr class="my-4 border-t-2 border-gray-300 w-full">
+                    <label for="material" class="block text-md font-bold pb-4">Material*</label>
+                    <select id="material-select" name="idCategoria" class="w-full border p-2 select select-bordered"
+                        required>
+                        <option disabled selected>Seleccionar...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="w-1/2 pr-4 ml-32 bg-base-100 rounded shadow-md p-8 mt-4">
+            <div class="mb-4">
+                <label for="archivo" class="block text-md font-bold">Imagen*</label>
+                <p class="pb-6">Añade una imagen del producto</p>
+                <label for="archivo"
+                    class="relative border-dotted border-2 border-blue-500 p-4 rounded-md cursor-pointer">
+                    <span class="text-blue-500">Seleccionar Archivo</span>
+                    <input type="file" id="archivo" name="archivo" class="hidden">
+                </label>
+            </div>
+        </div>
+        <div class="w-1/2 pr-4 ml-32 bg-base-100 rounded shadow-md p-8 mt-4 mb-8">
+            <div class="mb-4">
+                <label for="Precio" class="block text-md font-bold pb-4">Configuración adicional</label>
+                <div class="flex">
+                    <div class="m-2">
+                        <label for="precio" class="block text-sm font-semibold mb-2">Precio*</label>
+                        <input type="number" id="precio" name="precio" class="w-full p-2 rounded input input-bordered"
+                            min="0" placeholder="$ 0.00" required>
+                    </div>
+                    <div class="m-2">
+                        <label for="descuento" class="block text-sm font-semibold mb-2">Descuento*</label>
+                        <input type="number" id="descuento" name="descuento"
+                            class="w-full border p-2 rounded input input-bordered" min="0" placeholder="0%" required>
+                    </div>
+                    <div class="m-2">
+                        <label for="stock" class="block text-sm font-semibold mb-2">Cantidad*</label>
+                        <input type="number" id="stock" name="stock"
+                            class="w-full border p-2 rounded input input-bordered" min="0" placeholder="0" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary ml-32 w-1/2 p-4 shadow-lg" id="save-button">Guardar</button>
+    </form>
+</body>
+
+</html>
