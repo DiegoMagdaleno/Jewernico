@@ -100,7 +100,13 @@ $(document).ready(function () {
 
 
     navbarStart.append(createDropdown());
-    navbarStart.append($('<a>').attr('href', 'Jewernico/index.html').addClass('btn btn-ghost text-xl').text('Jewernico'));
+
+    var currentPage = window.location.pathname.split('/').pop();
+    if (currentPage === 'index.html') {
+        navbarStart.append($('<a>').attr('href', 'index.html').addClass('btn btn-ghost text-xl').text('Jewernico'));
+    } else {
+        navbarStart.append($('<a>').attr('href', '../index.html').addClass('btn btn-ghost text-xl').text('Jewernico'));
+    }
 
     var navCenterMenu = $('<ul>').addClass('menu menu-horizontal px-1')
         .append(createNavItem('Productos', 'products.html'))
