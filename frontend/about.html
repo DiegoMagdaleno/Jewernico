@@ -13,7 +13,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-
 <body class="font-sans bg-gray-100 text-gray-800">
 
     <section id="about" class="section text-center mb-10">
@@ -115,35 +114,33 @@
 </div>
 
 
-<div class="container mx-auto min-h-screen flex flex-col items-center justify-center">
-    <h1 class="text-4xl font-bold mb-4 text-center"><br>CONTACTANOS</h1>
-
-    <div class="card shadow-xl m-auto mt-8 p-10 bg-white w-2/3 border border-gray-300 rounded-lg">
-        <form action="/submit-contact" method="post">
-            <div class="form-control">
-                <label class="label">
-                    <span class="label-text">Nombre</span>
-                </label>
-                <input type="text" name="name" placeholder="Introduce tu nombre"
-                    class="input input-bordered bg-white border border-gray-300">
+<div class="container p-8 mt-16">
+    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+            <h3 class="text-5xl font-bold pb-3">¡Contacta a JewerNico!</h3>
+            <p class="text-lg text-gray-500 pb-4">¿Tienes alguna duda o pregunta? Ingresa tus datos y estaremos encantados de contactarte!</p>
+        </div>
+        <form>
+            <div class="mb-4 flex">
+                <div class="w-1/2 pr-2 pb-3">
+                    <label for="nombre" class="block text-lg text-gray-500">Nombre:</label>
+                    <input type="text" id="name" name="name" class="input input-bordered w-full max-w-sm bg-white rounded-full p-2" placeholder="Nombre">
+                </div>
+                <div class="w-1/2 pl-2">
+                    <label for="email" class="block text-lg text-gray-500">Email:</label>
+                    <input type="email" id="email" name="email" class="input input-bordered w-full max-w-md bg-white rounded-full p-2" placeholder="Email">
+                </div>
             </div>
-            <div class="form-control">
-                <label class="label">
-                    <span class="label-text">Número de Celular</span>
-                </label>
-                <input type="text" name="phone_number" placeholder="Introduce tu celular"
-                    class="input input-bordered bg-white border border-gray-300">
+            <div class="mb-4 pb-3">
+                <label for="telefono" class="block text-lg text-gray-500">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" class="input input-bordered w-full max-w-4xl bg-white rounded-full p-2" placeholder="Teléfono">
             </div>
-            <div class="form-control">
-                <label class="label">
-                    <span class="label-text">Comentarios</span>
-                </label>
-                <textarea name="comment" placeholder="Introduce un comentario"
-                    class="textarea textarea-bordered h-24 bg-white border border-gray-300"></textarea>
+            <div class="mb-4 pb-8">
+                <label for="comentario" class="block text-lg text-gray-500">Comentario:</label>
+                <textarea id="comentario" name="comentario" class="input input-bordered w-full max-w-4xl bg-white rounded-lg p-2" placeholder="Tu comentario..."></textarea>
             </div>
-            <div class="form-control mt-6">
-                <!-- Cambio de color del botón "Enviar" -->
-                <button type="submit" class="btn btn-primary bg-rose-500">Enviar</button>
+            <div class="mb-8 text-center">
+                <button type="submit" class="bg-purple-500 text-white py-2 px-5 rounded-md">Enviar</button>
             </div>
         </form>
     </div>
