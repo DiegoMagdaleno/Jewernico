@@ -45,11 +45,11 @@ $(document).ready(function () {
                             $('<h2>').addClass('text-lg font-bold mb-2 ml-12').text('Menu'),
                             $('<ul>').addClass('space-y-2')
                                 .append(
-                                    $('<li>').append($('<a>').attr('href', '#').addClass('text-black link link-hover ml-12').text('Skin Care')),
-                                    $('<li>').append($('<a>').attr('href', '#').addClass('text-black link link-hover ml-12').text('Hair Care')),
-                                    $('<li>').append($('<a>').attr('href', '#').addClass('text-black link link-hover ml-12').text('Body Care')),
-                                    $('<li>').append($('<a>').attr('href', '#').addClass('text-black link link-hover ml-12').text('Nail Polish')),
-                                    $('<li>').append($('<a>').attr('href', '#').addClass('text-black link link-hover ml-12').text('Blog'))
+                                    $('<li>').append($('<a>').attr('href', '..index.html').addClass('text-black link link-hover ml-12').text('Inicio')),
+                                    $('<li>').append($('<a>').attr('href', 'products.html').addClass('text-black link link-hover ml-12').text('Productos')),
+                                    $('<li>').append($('<a>').attr('href', 'contact.html').addClass('text-black link link-hover ml-12').text('Contacto')),
+                                    $('<li>').append($('<a>').attr('href', 'about.html').addClass('text-black link link-hover ml-12').text('About Us')),
+                                    $('<li>').append($('<a>').attr('href', 'help.html').addClass('text-black link link-hover ml-12').text('FAQ'))
                                 )
                         ),
                     $('<div>').addClass('md:col-span-1')
@@ -80,11 +80,11 @@ $(document).ready(function () {
                 .append(
                     $('<ul>').addClass('flex space-x-4')
                         .append(
-                            $('<li>').append($('<a>').attr('href', '#').addClass('text-white text-lg').html('<i class="fab fa-facebook-f"></i>')),
-                            $('<li>').append($('<a>').attr('href', '#').addClass('text-white text-lg').html('<i class="fab fa-twitter"></i>')),
-                            $('<li>').append($('<a>').attr('href', '#').addClass('text-white text-lg').html('<i class="fab fa-instagram"></i>')),
-                            $('<li>').append($('<a>').attr('href', '#').addClass('text-white text-lg').html('<i class="fab fa-pinterest"></i>')),
-                            $('<li>').append($('<a>').attr('href', '#').addClass('text-white text-lg').html('<i class="fab fa-tiktok"></i>'))
+                            $('<li>').append($('<a>').attr('href', '#').addClass('text-black text-lg').html('<i class="fab fa-facebook-f"></i>')),
+                            $('<li>').append($('<a>').attr('href', '#').addClass('text-black text-lg').html('<i class="fab fa-twitter"></i>')),
+                            $('<li>').append($('<a>').attr('href', '#').addClass('text-black text-lg').html('<i class="fab fa-instagram"></i>')),
+                            $('<li>').append($('<a>').attr('href', '#').addClass('text-black text-lg').html('<i class="fab fa-pinterest"></i>')),
+                            $('<li>').append($('<a>').attr('href', '#').addClass('text-black text-lg').html('<i class="fab fa-tiktok"></i>'))
                         )
                 )
         );
