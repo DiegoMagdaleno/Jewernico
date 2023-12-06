@@ -48,7 +48,11 @@ Flight::route("POST /products", function () {
                 $data["descripcion"] = "";
             }
 
-            $query = $db->prepare("INSERT INTO producto (Nombre, IdCategoria, IdMaterial, Descripcion, Precio, Stock) VALUES (:nombre, :idCategoria, :idMaterial, :descripcion, :precio, :stock)");
+            if (!isset($data["descuento"])) {
+                $data["descuento"] = 0;
+            }
+
+            $query = $db->prepare("INSERT INTO producto (Nombre, IdCategoria, IdMaterial, Descripcion, Precio, Stock, Descuento) VALUES (:nombre, :idCategoria, :idMaterial, :descripcion, :precio, :stock, :descuento)");
             $query->execute(
                 array(
                     ":nombre" => $data["nombre"],
@@ -56,7 +60,8 @@ Flight::route("POST /products", function () {
                     ":idMaterial" => $data["idMaterial"],
                     ":descripcion" => $data["descripcion"],
                     ":precio" => $data["precio"],
-                    ":stock" => $data["stock"]
+                    ":stock" => $data["stock"],
+                    ":descuento" => $data["descuento"]
                 )
             );
 
