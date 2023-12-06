@@ -65,7 +65,7 @@ $(document).ready(function () {
                         ),
                     $('<div>').addClass('md:col-span-1')
                         .append(
-                            $('<img>').addClass('image w-1/2 h-1/2').attr('src', 'https://imgur.com/nGD2wpc').attr('alt', 'Elegante joyería de alta calidad.').attr('loading', 'lazy')
+                            $('<img>').addClass('image w-1/2 h-1/2').attr('src', 'https://i.imgur.com/nGD2wpc.png').attr('alt', 'Elegante joyería de alta calidad.').attr('loading', 'lazy')
                         ),
                     $('<div>').addClass('md:col-span-1')
                         .append(
