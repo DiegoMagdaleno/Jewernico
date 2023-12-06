@@ -5,7 +5,7 @@ require_once 'tokens.php';
 
 Flight::route("GET /products", function () {
     $db = Flight::db();
-    $query = $db->prepare("SELECT * FROM producto");
+    $query = $db->prepare("SELECT p.*, i.Ruta FROM producto p LEFT JOIN imagen i ON p.Id = i.IdProducto");
     $query->execute();
     $products = $query->fetchAll();
     Flight::json($products);
@@ -13,7 +13,7 @@ Flight::route("GET /products", function () {
 
 Flight::route("GET /products/@id", function ($id) {
     $db = Flight::db();
-    $query = $db->prepare("SELECT * FROM producto WHERE Id = :id");
+    $query = $db->prepare("SELECT p.*, i.Ruta FROM producto p LEFT JOIN imagen i ON p.Id = i.IdProducto WHERE p.Id = :id");
     $query->execute(
         array(
             ":id" => $id
