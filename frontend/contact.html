@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.7/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -42,5 +43,34 @@
             </form>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('form').submit(function (e) {
+                e.preventDefault();
+                let data = {
+                    correoElectronico: $('#email').val(),
+                }
+                jsonData = JSON.stringify(data);
+                axios.post("http://localhost/php_course/Jewernico/backend/email/contact", jsonData, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response) {
+                    console.log(response);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Mensaje enviado correctamente',
+                    });
+                }).catch(function (error) {
+                    console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error al enviar el mensaje',
+                    });
+                });
+            });
+        });
+    </script>
+    <script src="components/navbar.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="jewernico">
+<html lang="en" data-theme="cupcake">
 
 <head>
   <meta charset="UTF-8" />
@@ -10,6 +10,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script type="module" src="tailwind.config.js"></script>
+  <script src="https://www.jsviews.com/download/jsrender.js"></script>
 </head>
 
 <body>
@@ -68,7 +69,7 @@
       </a>
     </div>
   </section>
-  
+
 
   <section class="sec3 bg-gray-200 p-20">
     <div class="mision text-center">
@@ -135,7 +136,50 @@
       </div>
     </div>
   </footer>
-  <script src="navbar.js"></script>
+  <script id="productWelcome" type="text/x-jsrender">
+    {{for}}
+    <a href="frontend/product.html?id={{>Id}}" class="card w-96 bg-base-100 shadow-xl">
+      <figure>
+        <img class="w-full max-h-72" src={{>Imagen}} alt="Producto" />
+      </figure>
+      {{if Descuento}}
+        <div class="badge m-4 badge-secondary absolute">{{>Descuento}}%</div>
+      {{/if}}
+      <div class="card-body max-h-36 text-center">
+        <p>{{>Nombre}}</p>
+        <p>{{>Descripcion}}</p>
+        <p>${{>Precio}}</p>
+        {{if Stock}} 
+          <p class="text-green-500">En stock</p>
+        {{else}}
+          <p class="text-red-500">Agotado</p>
+        {{/if}}
+      </div>
+      <button class="btn btn-outline btn-primary mt-4">Añadir al carrito</button>
+    </a>
+    {{/for}}
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $.ajax({
+        url: "http://localhost/php_course/Jewernico/backend/products",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+          for (let i = 0; i < response.length; i++) {
+            response[i].Imagen = "http://picsum.photos/200/300";
+          }
+          let html = $("#productWelcome").render(response);
+          console.log(html);
+          $("#productosAleatorios").html(html);
+        },
+        error: function (xhr, status) {
+          console.log(xhr);
+        },
+      });
+    });
+  </script>
+  <script src="frontend/components/navbar.js"></script>
 </body>
 
 </html>
