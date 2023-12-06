@@ -51,37 +51,7 @@
     </div>
   </section>
 
-  <section class="sec4 mt-20 p-10 grid grid-cols-3 grid-rows-2">
-    <a href="#" class="card m-7 bg-base-100 shadow-xl">
-      <figure>
-        <img class="w-full max-h-72" src="https://picsum.photos/200/400" alt="Producto" />
-      </figure>
-      <div class="card-body max-h-36 text-center">
-        <p>Nombre del Producto</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-      </div>
-    </a>
-
-    <a href="#" class="card m-7 bg-base-100 shadow-xl row-start-2">
-      <figure>
-        <img class="w-full max-h-72" src="https://picsum.photos/200/300" alt="Producto" />
-      </figure>
-      <div class="badge m-4 badge-secondary absolute">Nuevo</div>
-      <div class="card-body max-h-36 text-center">
-        <p>Nombre del Producto</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-      </div>
-    </a>
-
-    <a href="#" class="card m-5  bg-base-100 shadow-xl col-span-2 row-span-2">
-      <figure class="w-full">
-        <img class="w-full h-[800px]" src="https://picsum.photos/200/500" alt="Producto" />
-      </figure>
-      <div class="card-body text-center">
-        <p>Nombre del Producto</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-      </div>
-    </a>
+  <section class="sec4 mt-20 p-10 grid grid-cols-3 grid-rows-2" id="productHighlightsRender">
   </section>
 
 
@@ -146,29 +116,6 @@
       </div>
     </a>
   </section>
-
-  <footer class="footer flex flex-col items-center">
-    <div class="space-y-4 flex flex-col items-center">
-      <h1 class="text-4xl font-bold">Obten un 20% de descuento en tu primer compra</h1>
-      <p>Unete a nuestra lista de correos para ofertas exclusivas y las ultimas noticias</p>
-      <input type="text" placeholder="Correo electronico" class="input input-bordered" />
-    </div>
-    <div class="flex flex-row max-w-2xl">
-      <div class="flex flex-col">
-        <h3 class="text-2xl font-bold">Nuestra tienda</h3>
-        <p>Avenida Arqueros 1032, Aguascalientes, Mexico</p>
-        <p clasS="font-bold">Lun - Vie</p>
-        <p>9:00 - 18:00</p>
-        <p clasS="font-bold">Sab - Dom</p>
-        <p>9:00 - 14:00</p>
-      </div>
-
-      <div class="flex flex-col">
-        <h3 class="text-2xl font-bold">Nuestra promesa</h3>
-        <p>Crear e importar joyeria tematica de alta calidad, para cualquier ocacion</p>
-      </div>
-    </div>
-  </footer>
   <script id="productWelcome" type="text/x-jsrender">
     {{for}}
     <a href="frontend/product.html?id={{>Id}}" class="card w-96 bg-base-100 shadow-xl">
@@ -191,6 +138,38 @@
       <button class="btn btn-outline btn-primary mt-4">Añadir al carrito</button>
     </a>
     {{/for}}
+  </script>
+  <script id="productsHighlights" type="text/x-jsrender">
+    <a href="#" class="card m-7 bg-base-100 shadow-xl">
+      <figure>
+        <img class="w-full max-h-72" src="https://picsum.photos/200/400" alt="Producto" />
+      </figure>
+      <div class="card-body max-h-36 text-center">
+        <p>Nombre del Producto</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card m-7 bg-base-100 shadow-xl row-start-2">
+      <figure>
+        <img class="w-full max-h-72" src="https://picsum.photos/200/300" alt="Producto" />
+      </figure>
+      <div class="badge m-4 badge-secondary absolute">Nuevo</div>
+      <div class="card-body max-h-36 text-center">
+        <p>Nombre del Producto</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+      </div>
+    </a>
+
+    <a href="#" class="card m-5  bg-base-100 shadow-xl col-span-2 row-span-2">
+      <figure class="w-full">
+        <img class="w-full h-[800px]" src="https://picsum.photos/200/500" alt="Producto" />
+      </figure>
+      <div class="card-body text-center">
+        <p>Nombre del Producto</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+      </div>
+    </a>
   </script>
   <script type="text/javascript">
     $(document).ready(function () {

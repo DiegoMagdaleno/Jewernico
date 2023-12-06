@@ -301,7 +301,7 @@ Flight::route("POST /products/@id", function ($id) {
     }
 });
 
-Flight::route("GET /products/@category", function ($category) {
+Flight::route("GET /products/category/@category", function ($category) {
     $db = Flight::db();
     $query = $db->prepare("SELECT * FROM producto WHERE IdCategoria = :idCategoria");
     $query->execute(
