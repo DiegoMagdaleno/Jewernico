@@ -250,20 +250,20 @@
                             });
 
                             if (formValid) {
-                                let formData = $('#addProductForm').serializeArray();
-                                let jsonObject = {};
-                                $.each(formData, function () {
-                                    jsonObject[this.name] = this.value || '';
-                                });
-                                let jsonData = JSON.stringify(jsonObject);
-                                console.log(jsonData);
+                                let formData = new FormData($('#addProductForm')[0]);
+                                let fileInput = document.querySelector('input[type="file"]');
+                                let files = fileInput.files;
+                                for (let i = 0; i < files.length; i++) {
+                                    if (files[i].name.toLowerCase().endsWith(".jpg")) {
+                                        formData.append('files[]', files[i]);
+                                    }
+                                }
                                 $.ajax({
                                     url: `http://localhost/php_course/Jewernico/backend/products/${STATE.products[0]}`,
                                     type: 'POST',
-                                    data: jsonData,
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
+                                    data: formData,
+                                    processData: false,
+                                    contentType: false,
                                     success: function (response) {
                                         console.log(response);
                                         Swal.fire({
@@ -365,20 +365,20 @@
                             });
 
                             if (formValid) {
-                                let formData = $('#addProductForm').serializeArray();
-                                let jsonObject = {};
-                                $.each(formData, function () {
-                                    jsonObject[this.name] = this.value || '';
-                                });
-                                let jsonData = JSON.stringify(jsonObject);
-                                console.log(jsonData);
+                                let formData = new FormData($('#addProductForm')[0]);
+                                let fileInput = document.querySelector('input[type="file"]');
+                                let files = fileInput.files;
+                                for (let i = 0; i < files.length; i++) {
+                                    if (files[i].name.toLowerCase().endsWith(".jpg")) {
+                                        formData.append('files[]', files[i]);
+                                    }
+                                }
                                 $.ajax({
                                     url: 'http://localhost/php_course/Jewernico/backend/products',
                                     type: 'POST',
-                                    data: jsonData,
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
+                                    data: formData,
+                                    processData: false,
+                                    contentType: false,
                                     success: function (response) {
                                         console.log(response);
                                         Swal.fire({
