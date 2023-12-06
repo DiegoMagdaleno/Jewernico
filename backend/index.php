@@ -28,5 +28,6 @@ require 'routes/materials.php';
 require 'routes/auth/refresh.php';
 require 'routes/captcha.php';
 require 'routes/question.php';
+require 'routes/email.php';
 
 Flight::start();

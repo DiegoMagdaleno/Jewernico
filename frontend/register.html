@@ -13,6 +13,21 @@
 </head>
 
 <body class="flex items-center justify-center">
+    <dialog id="myModal" class="modal">
+        <div class="modal-box">
+            <div class="flex flex-col items-center">
+                <form id="question-form" class="flex flex-col items-center">
+                    <label for="question">¿Cual es tu pregunta de seguridad?</label>
+                    <select id="question" name="IdPregunta" class="select select-bordered w-full max-w-xs">
+                    </select>
+                    <label for="answer">Respuesta:</label>
+                    <input type="text" id="answer" name="Respuesta" class="input input-bordered w-full max-w-sm"
+                        required>
+                    <input type="button" id="question-submit" class="btn btn-primary" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </dialog>
     <div class="container p-8 mt-16">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 max-w-4xl mx-auto">
             <div class="mb-4 flex flex-col items-center justify-center">
@@ -115,10 +130,42 @@
                                 document.cookie = 'token=' + response.token + '; path=/';
                                 localStorage.setItem('refreshToken', response.refreshToken);
                                 localStorage.setItem('userId', response.id);
-                                window.location.href = 'http://localhost/php_course/Jewernico';
+                                axios.get('http://localhost/php_course/Jewernico/backend/questions')
+                                    .then(function (response) {
+                                        let questions = response.data;
+                                        questions.forEach(function (question) {
+                                            $('#question').append('<option value="' + question.Id + '">' + question.Pregunta + '</option>');
+                                        });
+                                        $('#myModal')[0].showModal();
+                                        $('#question-submit').click(function () {
+                                            let formData = $('#question-form').serializeArray();
+                                            let jsonObject = {};
+                                            $.each(formData, function () {
+                                                jsonObject[this.name] = this.value || '';
+                                            });
+                                            jsonObject['IdUsuario'] = localStorage.getItem('userId');
+                                            let jsonData = JSON.stringify(jsonObject);
+                                            axios.post('http://localhost/php_course/Jewernico/backend/questions/answers', jsonData, {
+                                                headers: {
+                                                    'Content-Type': 'application/json'
+                                                }
+                                            })
+                                                .then(function (response) {
+                                                    $('#myModal')[0].close();
+                                                    window.location.href = 'http://localhost/php_course/Jewernico';
+                                                })
+                                                .catch(function (error) {
+                                                    console.log(error);
+                                                });
+                                        });
+                                    })
+                                    .catch(function (error) {
+                                        console.log(error);
+                                    });
                             }
                         },
                         error: function (response) {
+                            $('#myModal')[0].showModal();
                             let errorMessage = JSON.parse(response.responseText).message;
                             let toast = $('<div class="toast toast-end">' +
                                 '<div class="alert alert-error">' +

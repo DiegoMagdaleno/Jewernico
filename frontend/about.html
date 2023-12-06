@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="cupcake">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acerca De Nosotros</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@4.4.7/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-eU4NzVR3w6+IEVBhBUEp98pymxeAT6f3BrfKXXp5xF0v0i0q5G4di8WQZJ3crI2n+AfkyCtvLbOLj1wZHoKuBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.7/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/c8b05d3e39.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
@@ -14,45 +17,53 @@
 <body class="font-sans bg-gray-100 text-gray-800">
 
     <section id="about" class="section text-center mb-10">
-      <div class="isolate">
-          <div class="content color-bg-1 gradient full-width">
-              <div class="blocks">
-                  <h1 class="text-4xl font-bold mb-4"><br>Acerca de Nosotros<br></h1>
-                  <div class="text rte mx-auto max-w-2xl">
-                      <p>JewerNico es una joyería dedicada a ofrecer piezas únicas y elegantes que capturan
-                          la esencia de la belleza y la elegancia. Nos enorgullece ofrecer joyas de alta calidad
-                          que destacan por su diseño excepcional y artesanía experta. En JewerNico, creemos que cada
-                          joya cuenta una historia única y queremos ser parte de los momentos especiales de la vida
-                          de nuestros clientes. Nuestra pasión por la creatividad y la excelencia se refleja en
-                          cada pieza que creamos.</p>
-                      <br>
-                      <p>En nuestra búsqueda de la perfección, seleccionamos cuidadosamente los materiales más finos
-                          y aplicamos técnicas de fabricación avanzadas para asegurarnos de que cada joya sea una obra
-                          maestra duradera. Desde anillos de compromiso y collares elegantes hasta pulseras y aretes
-                          llamativos, cada pieza en nuestro catálogo está diseñada para destacar y complementar la
-                          belleza única de quien la lleva.</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-  
-      <div class="mb-12">
-        <img class="image w-1/4 h-auto rounded-l mx-auto shadow" src="Img/imagen1.jpg" alt="Elegante joyería de alta calidad." loading="lazy">
+        <div class="isolate">
+            <div class="content full-width">
+                <div class="blocks">
+                    <h1 class="text-4xl font-bold mb-4"><br>Acerca de Nosotros<br></h1>
+                    <div class="text rte mx-auto max-w-2xl">
+                        <p>JewerNico es una joyería dedicada a ofrecer piezas únicas y elegantes que capturan
+                            la esencia de la belleza y la elegancia. Nos enorgullece ofrecer joyas de alta calidad
+                            que destacan por su diseño excepcional y artesanía experta. En JewerNico, creemos que cada
+                            joya cuenta una historia única y queremos ser parte de los momentos especiales de la vida
+                            de nuestros clientes. Nuestra pasión por la creatividad y la excelencia se refleja en
+                            cada pieza que creamos.</p>
+                        <br>
+                        <p>En nuestra búsqueda de la perfección, seleccionamos cuidadosamente los materiales más finos
+                            y aplicamos técnicas de fabricación avanzadas para asegurarnos de que cada joya sea una obra
+                            maestra duradera. Desde anillos de compromiso y collares elegantes hasta pulseras y aretes
+                            llamativos, cada pieza en nuestro catálogo está diseñada para destacar y complementar la
+                            belleza única de quien la lleva.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="mb-12">
+        <img class="image w-1/4 h-auto rounded-l mx-auto shadow" src="Img/imagen1.jpg"
+            alt="Elegante joyería de alta calidad." loading="lazy">
     </div>
-    
+
     <section id="mission" class="section mb-10">
         <div class="isolate">
-           <div class="isolate bg-gradient-to-br from-green-500 to-orange-300 p-6 rounded text-center mb-10">
-    <div class="rich-text content-container color-background-2 gradient rich-text--full-width content-container--full-width section-template--15127409393872__1638811811c903d7ca-padding">
-      <div class="max-w-screen-md mx-auto text-white">
-        <h3 class="text-2xl font-bold mb-2">Misión</h3>
-        <p class="text-gray-200">En JewerNico, nuestra misión es crear joyas excepcionales que reflejen la individualidad y estilo de cada persona. Nos esforzamos por ofrecer piezas que inspiren emociones y se conviertan en tesoros atemporales para nuestros clientes.</p>
-        <h3 class="text-2xl font-bold mt-4 mb-2">Visión</h3>
-        <p class="text-gray-200">Nuestra visión es ser reconocidos como una joyería líder que ofrece experiencias únicas y momentos inolvidables a través de nuestras creaciones exclusivas y servicio excepcional al cliente.</p>
-        <h3 class="text-2xl font-bold mt-4 mb-2">Valores</h3>
-        <p class="text-gray-200">En JewerNico, nos guiamos por la excelencia, la integridad y la pasión. Valoramos la autenticidad en cada joya y nos comprometemos a superar las expectativas de nuestros clientes en cada interacción.</p>
-    </div>    
+            <div class="isolate bg-gradient-to-br from-green-500 to-orange-300 p-6 rounded text-center mb-10">
+                <div
+                    class="rich-text content-container color-background-2 gradient rich-text--full-width content-container--full-width section-template--15127409393872__1638811811c903d7ca-padding">
+                    <div class="max-w-screen-md mx-auto text-white">
+                        <h3 class="text-2xl font-bold mb-2">Misión</h3>
+                        <p class="text-gray-200">En JewerNico, nuestra misión es crear joyas excepcionales que reflejen
+                            la individualidad y estilo de cada persona. Nos esforzamos por ofrecer piezas que inspiren
+                            emociones y se conviertan en tesoros atemporales para nuestros clientes.</p>
+                        <h3 class="text-2xl font-bold mt-4 mb-2">Visión</h3>
+                        <p class="text-gray-200">Nuestra visión es ser reconocidos como una joyería líder que ofrece
+                            experiencias únicas y momentos inolvidables a través de nuestras creaciones exclusivas y
+                            servicio excepcional al cliente.</p>
+                        <h3 class="text-2xl font-bold mt-4 mb-2">Valores</h3>
+                        <p class="text-gray-200">En JewerNico, nos guiamos por la excelencia, la integridad y la pasión.
+                            Valoramos la autenticidad en cada joya y nos comprometemos a superar las expectativas de
+                            nuestros clientes en cada interacción.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,7 +75,7 @@
                   <div id="founder-info" class="content middle desktop-left mobile-left large gradient color-purple-500 container p-5 rounded" style="width: 500px; height: 400px; position: absolute; left: calc(10% + 100px);">
                       <div class="card bg-purple-800 p-6 rounded text-white">
                           <h2 class="text-2xl font-bold mb-4">
-                              Conoce a Nicole, Fundadora de JewerNico
+                              Conoce a Nicole, Fundador de JewerNico
                           </h2>
                           <div class="text rte body">
                               <p>Nicole, una apasionada amante de la joyería, fundó JewerNico con la visión de compartir la belleza y el significado detrás de cada pieza única. Su dedicación a la artesanía y la creatividad impulsa la excelencia en cada joya que ofrecemos.</p>
@@ -104,38 +115,39 @@
 </div>
 
 
-<div class="container p-8 mt-16">
-    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 max-w-4xl mx-auto">
-        <div class="text-center mb-8">
-            <h3 class="text-5xl font-bold pb-3">¡Contacta a JewerNico!</h3>
-            <p class="text-lg text-gray-500 pb-4">¿Tienes alguna duda o pregunta? Ingresa tus datos y estaremos encantados de contactarte!</p>
-        </div>
-        <form>
-            <div class="mb-4 flex">
-                <div class="w-1/2 pr-2 pb-3">
-                    <label for="nombre" class="block text-lg text-gray-500">Nombre:</label>
-                    <input type="text" id="name" name="name" class="input input-bordered w-full max-w-sm bg-white rounded-full p-2" placeholder="Nombre">
-                </div>
-                <div class="w-1/2 pl-2">
-                    <label for="email" class="block text-lg text-gray-500">Email:</label>
-                    <input type="email" id="email" name="email" class="input input-bordered w-full max-w-md bg-white rounded-full p-2" placeholder="Email">
-                </div>
+<div class="container mx-auto min-h-screen flex flex-col items-center justify-center">
+    <h1 class="text-4xl font-bold mb-4 text-center"><br>CONTACTANOS</h1>
+
+    <div class="card shadow-xl m-auto mt-8 p-10 bg-white w-2/3 border border-gray-300 rounded-lg">
+        <form action="/submit-contact" method="post">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Nombre</span>
+                </label>
+                <input type="text" name="name" placeholder="Introduce tu nombre"
+                    class="input input-bordered bg-white border border-gray-300">
             </div>
-            <div class="mb-4 pb-3">
-                <label for="telefono" class="block text-lg text-gray-500">Teléfono:</label>
-                <input type="text" id="telefono" name="telefono" class="input input-bordered w-full max-w-4xl bg-white rounded-full p-2" placeholder="Teléfono">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Número de Celular</span>
+                </label>
+                <input type="text" name="phone_number" placeholder="Introduce tu celular"
+                    class="input input-bordered bg-white border border-gray-300">
             </div>
-            <div class="mb-4 pb-8">
-                <label for="comentario" class="block text-lg text-gray-500">Comentario:</label>
-                <textarea id="comentario" name="comentario" class="input input-bordered w-full max-w-4xl bg-white rounded-lg p-2" placeholder="Tu comentario..."></textarea>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">Comentarios</span>
+                </label>
+                <textarea name="comment" placeholder="Introduce un comentario"
+                    class="textarea textarea-bordered h-24 bg-white border border-gray-300"></textarea>
             </div>
-            <div class="mb-8 text-center">
-                <button type="submit" class="bg-purple-500 text-white py-2 px-5 rounded-md">Enviar</button>
+            <div class="form-control mt-6">
+                <!-- Cambio de color del botón "Enviar" -->
+                <button type="submit" class="btn btn-primary bg-rose-500">Enviar</button>
             </div>
         </form>
     </div>
 </div>
-
 
 </body>
 
@@ -145,31 +157,31 @@
         <h2 class="text-3xl font-bold mb-4">Get 20% off your first order</h2>
         <p>Join our email list for exclusive offers and the latest news.</p>
 
-        <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="mt-6">
-            <input type="hidden" name="form_type" value="customer">
-            <input type="hidden" name="utf8" value="✓">
-            <input type="hidden" name="contact[tags]" value="newsletter">
-            
-            <div class="flex justify-center items-center">
-                <div class="mb-4 relative flex items-center">
-                    <input id="NewsletterForm--template--15127409393872__16401218002cee6770" type="email"
-                        name="contact[email]" class="field__input p-2 border rounded text-white" value="" aria-required="true"
-                        autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="Enter your email"
-                        required="">
-                    <label class="field__label sr-only"
-                        for="NewsletterForm--template--15127409393872__16401218002cee6770">Email</label>
-                    <button type="submit" class="ml-2 p-2 rounded bg-transparent">
-                        <i class="fas fa-arrow-right text-white"></i>
-                    </button>
-                </div>            
-            </div>
-        </form>
-    </div>
+            <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="mt-6">
+                <input type="hidden" name="form_type" value="customer">
+                <input type="hidden" name="utf8" value="✓">
+                <input type="hidden" name="contact[tags]" value="newsletter">
+
+                <div class="flex justify-center items-center">
+                    <div class="mb-4 relative flex items-center">
+                        <input id="NewsletterForm--template--15127409393872__16401218002cee6770" type="email"
+                            name="contact[email]" class="field__input p-2 border rounded text-white" value=""
+                            aria-required="true" autocorrect="off" autocapitalize="off" autocomplete="email"
+                            placeholder="Enter your email" required="">
+                        <label class="field__label sr-only"
+                            for="NewsletterForm--template--15127409393872__16401218002cee6770">Email</label>
+                        <button type="submit" class="ml-2 p-2 rounded bg-transparent">
+                            <i class="fas fa-arrow-right text-white"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
 
-    <div class="container mx-auto py-12 px-4 ">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="md:col-span-1">
+        <div class="container mx-auto py-12 px-4 ">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="md:col-span-1">
                     <h2 class="text-lg font-bold mb-2">Menu</h2>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-200">Skin Care</a></li>
@@ -190,13 +202,16 @@
                     </ul>
                 </div>
                 <div class="md:col-span-1">
-                    <img class="image w-1/3 h-auto rounded-l mx-auto shadow" src="Img/imagen1.jpg" alt="Elegante joyería de alta calidad." loading="lazy">
+                    <img class="image w-1/3 h-auto rounded-l mx-auto shadow" src="Img/imagen1.jpg"
+                        alt="Elegante joyería de alta calidad." loading="lazy">
 
                 </div>
                 <div class="md:col-span-1">
                     <h2 class="text-lg font-bold mb-2">Our Promise</h2>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-200">To create high quality, plant-based products that are safe for people and the planet.</a></li>
+                        <li><a href="#" class="text-gray-200">To create high quality, plant-based products that are safe
+                                for
+                                people and the planet.</a></li>
                     </ul>
                 </div>
             </div>
@@ -212,9 +227,9 @@
         </div>
     </div>
     </footer>
-</div>
+    </div>
 
-
+</body>
 <script src="components/navbar.js"></script>
 
 </html>
