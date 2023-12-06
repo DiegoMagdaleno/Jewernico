@@ -152,7 +152,7 @@ Flight::route("DELETE /products/@id", function ($id) {
             $imagesQuery = $db->prepare("DELETE FROM imagen WHERE IdProducto = :idProducto");
             $imagesQuery->execute(
                 array(
-                    ":id" => $id
+                    ":idProducto" => $id
                 )
             );
 
