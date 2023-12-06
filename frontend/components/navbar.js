@@ -100,21 +100,15 @@ $(document).ready(function () {
 
 
     navbarStart.append(createDropdown());
-    navbarStart.append($('<a>').addClass('btn btn-ghost text-xl').text('Jewernico'));
+    navbarStart.append($('<a>').attr('href', 'Jewernico/index.html').addClass('btn btn-ghost text-xl').text('Jewernico'));
 
     var navCenterMenu = $('<ul>').addClass('menu menu-horizontal px-1')
-        .append(createNavItem('Item 1'))
-        .append($('<li>').append(
-            $('<details>').append(
-                $('<summary>').text('Parent'),
-                $('<ul>').addClass('p-2')
-                    .append($('<li>').append($('<a>').text('Submenu 1')))
-                    .append($('<li>').append($('<a>').text('Submenu 2')))
-            )
-        ))
-        .append(createNavItem('Item 3'));
-    navbarCenter.append(navCenterMenu);
+        .append(createNavItem('Productos', 'products.html'))
+        .append(createNavItem('Contacto', 'contact.html'))
+        .append(createNavItem('About Us', 'about.html'))
+        .append(createNavItem('FAQ', 'help.html'));
 
+    navbarCenter.append(navCenterMenu);
 
     if (localStorage.getItem('userId') !== null) {
         navbarEnd.append(createDropdownWithIndicator());
