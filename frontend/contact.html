@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.7/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
@@ -60,14 +60,12 @@
                     }
                 }).then(function (response) {
                     console.log(response);
-                    // SweetAlert for success
                     Swal.fire({
                         icon: 'success',
                         title: 'Mensaje enviado correctamente',
                     });
                 }).catch(function (error) {
                     console.log(error);
-                    // SweetAlert for error
                     Swal.fire({
                         icon: 'error',
                         title: 'Error al enviar el mensaje',
