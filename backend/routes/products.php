@@ -119,6 +119,63 @@ Flight::route("POST /products", function () {
     }
 });
 
+Flight::route("DELETE /products/@id", function ($id) {
+    $tokenCookie = Flight::request()->cookies->token;
+
+    try {
+        $token = checkToken($tokenCookie, "ALGUNA_CLAVE_SECRETA");
+
+        if ($token->data->nivelPermisos < 1) {
+            Flight::json(
+                array(
+                    "status" => 403,
+                    "message" => "No autorizado"
+                ),
+                403
+            );
+        } else {
+            $db = Flight::db();
+            $query = $db->prepare("DELETE FROM producto WHERE Id = :id");
+            $query->execute(
+                array(
+                    ":id" => $id
+                )
+            );
+
+            $productDirectory = "images/products/" . $id;
+            $filesOnFolder = glob($productDirectory . '/*');
+            foreach ($filesOnFolder as $file) {
+                unlink($file);
+            }
+            rmdir($productDirectory);
+
+            $imagesQuery = $db->prepare("DELETE FROM imagen WHERE IdProducto = :idProducto");
+            $imagesQuery->execute(
+                array(
+                    ":id" => $id
+                )
+            );
+
+            Flight::json(
+                array(
+                    "status" => 200,
+                    "message" => "Producto eliminado"
+                ),
+                200
+            );
+        }
+    } catch (Exception $e) {
+        Flight::json(
+            array(
+                "status" => 403,
+                "message" => "No autorizado, no token",
+                "e" => $e->getMessage()
+            ),
+            403
+        );
+    }
+});
+
 Flight::route("POST /products/@id", function ($id) {
     $tokenCookie = Flight::request()->cookies->token;
 
