@@ -45,7 +45,7 @@ $(document).ready(function () {
                             $('<h2>').addClass('text-lg font-bold mb-2 ml-12').text('Menu'),
                             $('<ul>').addClass('space-y-2')
                                 .append(
-                                    $('<li>').append($('<a>').attr('href', '..index.html').addClass('text-black link link-hover ml-12').text('Inicio')),
+                                    $('<li>').append($('<a>').attr('href', 'index.html').addClass('text-black link link-hover ml-12').text('Inicio')),
                                     $('<li>').append($('<a>').attr('href', 'products.html').addClass('text-black link link-hover ml-12').text('Productos')),
                                     $('<li>').append($('<a>').attr('href', 'contact.html').addClass('text-black link link-hover ml-12').text('Contacto')),
                                     $('<li>').append($('<a>').attr('href', 'about.html').addClass('text-black link link-hover ml-12').text('About Us')),
@@ -65,7 +65,7 @@ $(document).ready(function () {
                         ),
                     $('<div>').addClass('md:col-span-1')
                         .append(
-                            $('<img>').addClass('image w-1/2 h-1/2').attr('src', 'https://i.imgur.com/nGD2wpc.png').attr('alt', 'Elegante joyería de alta calidad.').attr('loading', 'lazy')
+                            $('<img>').addClass('image w-1/2 h-1/2').attr('src', 'Img/diamond.png').attr('alt', 'Elegante joyería de alta calidad.').attr('loading', 'lazy')
                         ),
                     $('<div>').addClass('md:col-span-1')
                         .append(
