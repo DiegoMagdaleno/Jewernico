@@ -13,8 +13,10 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.16",
+    "axios": "^1.6.2",
     "css-loader": "^6.8.1",
     "daisyui": "^4.4.19",
+    "jquery": "^3.7.1",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.32",
     "postcss-import": "^15.1.0",
