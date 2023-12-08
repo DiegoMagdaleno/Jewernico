@@ -1,10 +1,10 @@
 <?php
 
-namespace Acme\Demo\Controller;
+namespace Acme\Jewernico\Controller;
 
 use Flight;
 
-class Demo
+class Jewernico
 {
     public static function index(): void
     {

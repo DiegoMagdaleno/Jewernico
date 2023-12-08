@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Demo\Controller;
+namespace Acme\Jewernico\Controller;
 
 use Flight;
 use Flight\template\View;

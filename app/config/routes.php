@@ -4,9 +4,14 @@
 // ROUTES
 // -------------------------------------------------- //
 
-Flight::route("/", ["\Acme\Demo\Controller\Demo", "index"]);
-Flight::route("/api/message", ["\Acme\Demo\Controller\API", "message"]);
-Flight::route("/hello", ["\Acme\Demo\Controller\Demo", "hello"]);
+Flight::route("/", ["\Acme\Jewernico\Controller\Jewernico", "index"]);
+
+
+// -------------------------------------------------- //
+// API ROUTES
+// -------------------------------------------------- //
+Flight::route("/api/message", ["\Acme\Jewernico\Controller\API", "message"]);
+
 
 // -------------------------------------------------- //
 // MAPPINGS
