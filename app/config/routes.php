@@ -8,6 +8,7 @@ Flight::route("/", ["\Acme\Jewernico\Controller\Statik", "index"]);
 Flight::route("/about-us", ["\Acme\Jewernico\Controller\Statik", "about_us"]);
 Flight::route("/products", ['\Acme\Jewernico\Controller\Products', 'load']);
 Flight::route('/contact', ['\Acme\Jewernico\Controller\Statik', 'contact']);
+Flight::route('/faq', ['\Acme\Jewernico\Controller\Statik', 'faq']);
 
 // -------------------------------------------------- //
 // API ROUTES
