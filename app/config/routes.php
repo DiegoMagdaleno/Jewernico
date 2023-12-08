@@ -4,8 +4,9 @@
 // ROUTES
 // -------------------------------------------------- //
 
-Flight::route("/", ["\Acme\Jewernico\Controller\Jewernico", "index"]);
-
+Flight::route("/", ["\Acme\Jewernico\Controller\Statik", "index"]);
+Flight::route("/about-us", ["\Acme\Jewernico\Controller\Statik", "about_us"]);
+Flight::route("/products", ['\Acme\Jewernico\Controller\Products', 'load']);
 
 // -------------------------------------------------- //
 // API ROUTES
