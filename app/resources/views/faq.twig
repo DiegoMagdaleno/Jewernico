@@ -1,0 +1,173 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+	{% include 'partials/navbar.twig' %}
+
+	<main role="main">
+		<div class="p-8 flex items-center">
+			<div class="w-1/2 pr-4 ml-10">
+				<h1 class="text-4xl font-extrabold">FAQ - Preguntas Frecuentes de JewerNico</h1>
+				<br>
+				<p class="text-lg">Si no estas familiarizado con la pagina de JewerNico, ¡No te preocupes! Por cada brillo
+					                de nuestras gemas, tenemos una pregunta que podamos responderte! En la siguiente sección tenemos varias
+					                preguntas que podran ayudarte con el manejo de tus compras o de la pagina!</p>
+				<br>
+				<p class="text-lg">¿Logramos ayudarte? Si no es el caso, no dudes en contactarnos y con gusto responderemos
+					                tus dudas!</p>
+			</div>
+			<div class="w-1/2 flex items-center justify-center">
+				<img src="resources/img/FAQ.png" alt="FAQ">
+			</div>
+		</div>
+		<div class="p-4 flex items-center">
+			<div class="w-1/4 pr-4">
+				<div class="flex flex-col space-y-2 ml-10 border.l-black">
+					<a href="#apartado1" class="text-black no-underline link link-hover font-semibold">Sección de Pedidos y Pagos</a>
+					<a href="#apartado2" class="text-black no-underline link link-hover font-semibold">Sección de Envíos</a>
+					<a href="#apartado3" class="text-black no-underline link link-hover font-semibold">Sección de Cuidado de Joyas</a>
+					<a href="#apartado4" class="text-black no-underline link link-hover font-semibold">Sección de Políticas y Seguridad</a>
+				</div>
+			</div>
+			<div class="w-3/4 mr-10">
+				<div class="bg-white p-4 shadow-xl" id="apartado1">
+					<p class="text-xl">Sección de Pedidos y Pagos</p>
+					<br>
+					<div class="flex justify-between">
+						<div class="w-1/2 pr-2">
+							<p class="font-bold">¿Como realizo un pedido?</p>
+							<p>Para realizar un pedido, simplemente navega por nuestra tienda en línea, selecciona las joyas que te gusten y agrégalas al carrito. Luego, sigue las instrucciones de pago y proporciona la información necesaria para completar tu compra.</p>
+
+							<br>
+
+							<p class="font-bold">¿Cuáles son los métodos de pago aceptados?</p>
+							<p>Aceptamos varios métodos de pago, incluyendo tarjetas de crédito/débito (Visa, MasterCard, American Express) y opciones de pago en línea como PayPal.</p>
+
+							<br>
+
+							<p class="font-bold">¿Puedo cancelar mi pedido?</p>
+							<p>Sí, puedes cancelar tu pedido dentro de las primeras 24 horas después de realizar la compra. Después de ese período, el pedido podría haber sido procesado y no se podrán realizar cancelaciones.</p>
+
+						</div>
+						<div class="w-1/2 pl-2">
+							<p class="font-bold">¿Cuánto tiempo tarda en llegar mi pedido?</p>
+							<p>El tiempo de entrega puede variar según tu ubicación y el método de envío seleccionado. Por lo general, los pedidos se procesan en 1-2 días hábiles, y el tiempo de envío estándar es de aproximadamente 5-7 días hábiles.</p>
+
+							<br>
+
+							<p class="font-bold">¿Puedo realizar cambios en mi pedido despues de realizar la compra?</p>
+							<p>Sí, puedes realizar cambios en tu pedido dentro de las primeras 24 horas después de realizar la compra. Después de ese tiempo, el pedido entra en proceso de preparación y no se pueden realizar cambios.</p>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="bg-white p-4 shadow-xl" id="apartado2">
+					<p class="text-xl">Sección de Envíos</p>
+					<br>
+					<div class="flex justify-between">
+						<div class="w-1/2 pr-2">
+							<p class="font-bold">¿Envían internacionalmente?</p>
+							<p>Sí, realizamos envíos internacionales. Durante el proceso de pago, podrás seleccionar tu ubicación y ver las opciones de envío disponibles para tu región.</p>
+
+							<br>
+
+							<p class="font-bold">¿Cómo puedo seguir las novedades y promociones?</p>
+							<p>Para mantenerte actualizado sobre novedades y promociones, te recomendamos suscribirte a nuestro boletín informativo. También puedes seguirnos en nuestras redes sociales, donde compartimos regularmente noticias, lanzamientos y ofertas especiales.</p>
+
+							<br>
+
+							<p class="font-bold">¿Cómo puedo realizar un seguimiento de mi pedido?</p>
+							<p>Una vez que tu pedido sea enviado, recibirás un correo electrónico con un enlace de seguimiento. Puedes utilizar este enlace para rastrear el estado y la ubicación actual de tu paquete.</p>
+
+						</div>
+						<div class="w-1/2 pl-2">
+							<p class="font-bold">¿Puedo cambiar la dirección de envio despues de realizar la compra?</p>
+							<p>Sí, puedes cambiar la dirección de envío dentro de las primeras 24 horas después de realizar la compra. Después de ese período, el pedido entra en proceso de preparación y no se pueden realizar cambios en la dirección de envío.</p>
+
+							<br>
+
+							<p class="font-bold">¿Tiene opciones de envío express?</p>
+							<p>Sí, ofrecemos opciones de envío express para aquellos clientes que deseen recibir sus joyas de forma más rápida. Puedes seleccionar esta opción durante el proceso de pago.</p>
+
+							<br>
+
+							<p class="font-bold">¿Ofrecen envio gratuito?</p>
+							<p>Sí, ofrecemos envío gratuito para pedidos superiores a un monto específico. La información sobre umbrales de compra para envío gratuito estará disponible durante el proceso de pago.</p>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="bg-white p-4 shadow-xl" id="apartado3">
+					<p class="text-xl">Sección de Cuidado de Joyas</p>
+					<br>
+					<div class="flex justify-between">
+						<div class="w-1/2 pr-2">
+							<p class="font-bold">¿Cómo debo de cuidar mis joyas?</p>
+							<p>Para limpiar tus joyas, sumérgelas en agua tibia con un detergente suave y frota suavemente con un cepillo suave. Evita el uso de productos químicos agresivos y sécalas completamente antes de guardarlas.</p>
+
+							<br>
+
+							<p class="font-bold">¿Puedo usar mis joyas al nadar o ducharme?</p>
+							<p>No se recomienda usar joyas al nadar o al ducharse, ya que el contacto con agua clorada o productos químicos puede dañar ciertos materiales y acelerar el desgaste.</p>
+
+							<br>
+
+							<p class="font-bold">¿Cuáles son los materiales que requieren cuidados especiales?</p>
+							<p>Algunos materiales, como las piedras preciosas y ciertos metales, pueden requerir cuidados especiales. Consulta nuestras guías de cuidado para obtener información específica sobre cada tipo de joya.</p>
+
+						</div>
+						<div class="w-1/2 pl-2">
+							<p class="font-bold">¿Es seguro usar productos de limpieza en mis joyas?</p>
+							<p>Se recomienda evitar el uso de productos químicos agresivos. Para la limpieza, utiliza métodos suaves como agua tibia y jabón suave. Si tienes dudas, consulta las recomendaciones específicas para el tipo de joya que tienes.</p>
+
+							<br>
+
+							<p class="font-bold">¿Puedo dormir con mis joyas puestas?</p>
+							<p>No es recomendable dormir con joyas puestas, ya que el contacto con las sábanas y la fricción pueden causar desgaste prematuro. Además, podría aumentar el riesgo de enredos o daños.</p>
+
+							<br>
+
+							<p class="font-bold">¿Cómo evitar que mis joyas se empañen?</p>
+							<p>Almacenar tus joyas en un lugar seco y alejado de la humedad puede ayudar a prevenir el empañamiento. También es útil limpiarlas regularmente y guardarlas en bolsas o estuches para joyas cuando no las estés usando.</p>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="bg-white p-4 shadow-xl" id="apartado4">
+					<p class="text-xl">Sección de Políticas y Seguridad</p>
+					<br>
+					<div class="flex justify-between">
+						<div class="w-1/2 pr-2">
+							<p class="font-bold">¿Cuál es su política de privacidad y seguridad?</p>
+							<p>Nos tomamos la privacidad y seguridad de la información personal muy en serio. Puedes revisar nuestra política de privacidad en nuestra página web para obtener detalles sobre cómo recopilamos, utilizamos y protegemos tu información.</p>
+
+							<br>
+
+							<p class="font-bold">¿Cuál es su política de precios y descuentos?</p>
+							<p>Nuestra política de precios está diseñada para ofrecer productos de alta calidad a precios justos. Los descuentos y promociones se anuncian regularmente en nuestro sitio web y a través de nuestras redes sociales. Consulta nuestras ofertas y sigue nuestras actualizaciones para aprovechar descuentos exclusivos.</p>
+
+							<br>
+
+							<p class="font-bold">¿Cómo funcionan los programas de recompensas o afiliados, si los tienen?</p>
+							<p>Ofrecemos programas de recompensas para clientes leales y programas de afiliados para aquellos que deseen colaborar con nosotros. Visita nuestra sección de "Programas" en el sitio web para obtener detalles sobre cómo participar y disfrutar de beneficios exclusivos.</p>
+
+						</div>
+						<div class="w-1/2 pl-2">
+							<p class="font-bold">¿Cómo protegen mi información personal y de pago?</p>
+							<p>Utilizamos medidas de seguridad avanzadas, como encriptación SSL, para proteger tu información personal y de pago. Trabajamos con procesadores de pago confiables que cumplen con estándares de seguridad rigurosos. Puedes tener la tranquilidad de que tu información está segura con nosotros.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="mx-auto max-w-screen-lg p-2 mb-6">
+			<p class="text-4xl font-bold text-center">Espero que las siguientes preguntas que son comunmente hechas, hayan
+				            sido de tu ayuda!
+				            no olvides contactarnos para cualquier cosa, sabes que tus preguntas son tan importantes como la calidad de
+				            nuestras joyas!
+			</p>
+		</div>
+	</main>
+
+{% endblock %}

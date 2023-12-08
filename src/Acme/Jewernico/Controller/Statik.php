@@ -25,4 +25,9 @@ class Statik
     {
         Flight::view()->display("contact.twig", []);
     }
+
+    public static function faq(): void
+    {
+        Flight::view()->display("faq.twig", []);
+    }
 }
