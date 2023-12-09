@@ -13,6 +13,10 @@ class Statik
             "introduction_text" => "This is the skeleton for a Flight app."
         ];
 
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
         Flight::view()->display("index.twig", $context);
     }
 
