@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 // -------------------------------------------------- //
 // INIT
 // -------------------------------------------------- //
@@ -39,6 +37,9 @@ Flight::register("view", "Twig\Environment", [$twig_loader, TWIG_CONFIG], functi
         $twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 });
+
+// All object definitions loaded, lets start the session
+session_start();
 
 // Make twig have access to session variables
 Flight::view()->addGlobal('session', $_SESSION);

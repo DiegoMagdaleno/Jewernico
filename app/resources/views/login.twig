@@ -8,7 +8,7 @@
 					<h3 class="text-4xl font-bold pb-3">Login</h3>
 					<p class="text-lg text-gray-600">Ingresa a tu cuenta de Jewernico</p>
 				</div>
-				<form action="" id="loginForm" method="post">
+				<form action="" id="login-form" method="">
 					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 						<div>
 							<label for="correo" class="block text-lg text-gray-600 mb-2">Correo:</label>
@@ -21,8 +21,8 @@
 					</div>
 					<div class="mt-4">
 						<label class="flex items-center">
-							<input type="checkbox" class="checkbox">
-							<span class="ml-2 text-lg text-gray-600">Recuérdame</span>
+							<input type="checkbox" id="remember" name="remember" class="checkbox">
+							<label for="remember" class="ml-2 text-lg text-gray-600">Recuérdame</span>
 						</label>
 					</div>
 					<div class="mt-6">
@@ -31,17 +31,21 @@
 						<input type="text" id="captcha" name="captcha" class="input input-bordered w-full max-w-md" placeholder="Introduce el código" required>
 					</div>
 					<div class="mt-6">
-						<input id="submitButton" type="button" class="btn btn-primary w-full" value="Ingresar">
+						<input id="submitButton" type="submit" class="btn btn-primary w-full" value="Ingresar">
 					</div>
 				</form>
-                <div class="inline-flex items-center justify-center w-full">
-                    <hr class="w-64 h-px my-8 bg-gray-200 border-0">
-                    <span class="text-lg absolute px-3 font-medium -translate-x-1/2 bg-white left-1/2">O bien </span> 
-                </div>
-                <div class="text-center">
-                    <a href="/register" class="text-lg text-gray-600">¿No tienes cuenta? <span class="text-200-blue">Regístrate</span></a>
-                </div>
+				<div class="inline-flex items-center justify-center w-full">
+					<hr class="w-64 h-px my-8 bg-gray-200 border-0">
+					<span class="text-lg absolute px-3 font-medium -translate-x-1/2 bg-white left-1/2">O bien
+					</span>
+				</div>
+				<div class="text-center">
+					<a href="/register" class="text-lg text-gray-600">¿No tienes cuenta?
+						<span class="text-200-blue">Regístrate</span>
+					</a>
+				</div>
 			</div>
 		</div>
 	</main>
+	<script src="/dist/login.js"></script>
 {% endblock %}
