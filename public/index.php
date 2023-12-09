@@ -22,8 +22,6 @@ foreach (FLIGHT_SET_VARS as $key => $value) {
     Flight::set($key, $value);
 }
 
-$databaseUrl = "mysql:host=" . $_ENV["DATABASE_HOST"] . ";dbname=" . $_ENV["DATABASE_NAME"];
-
 // Configure Database
 Flight::register("db", "PDO", array($databaseUrl, $_ENV["DATABASE_USER"], $_ENV["DATABASE_PASSWORD"]), function($db){
     $db->setAttributes(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
