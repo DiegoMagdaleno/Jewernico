@@ -40,25 +40,6 @@ Flight::register("view", "Twig\Environment", [$twig_loader, TWIG_CONFIG], functi
     }
 });
 
-// Setup route authentication
-Flight::map("authenticated", function ($lvl = 0) {
-    $cookies = Flight::request()->cookies->getData();
-    if (!isset($cookies["token"])) {
-        Flight::halt(403, "Ruta protegida");
-    }
-    $token = $cookies["token"];
-    try {
-        $decoded = \Firebase\JWT\JWT::decode($token, new \Firebase\JWT\Key($_ENV["JWT_SECRET"], "HS256"));
-        if ($decoded->data->nivelPermisos < $lvl) {
-            Flight::halt(403, "No tienes permisos para realizar esta acción");
-        }
-    } catch (\Firebase\JWT\ExpiredException $e) {
-        Flight::halt(403, "Tu sesión ha expirado");
-    } catch (\Exception $e) {
-        Flight::halt(403, "Error de autenticación");
-    }
-});
-
 // Make twig have access to session variables
 Flight::view()->addGlobal('session', $_SESSION);
 
