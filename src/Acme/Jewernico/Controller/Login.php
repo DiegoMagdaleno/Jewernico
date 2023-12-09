@@ -9,6 +9,12 @@ class Login {
     
         Flight::view()->display("login.twig", []);
     }
+
+    public static function logout(): void {
+        session_destroy();
+        session_abort();
+        Flight::redirect("/");
+    }
 }
 
 ?>
