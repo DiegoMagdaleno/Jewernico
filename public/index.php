@@ -10,6 +10,9 @@ require_once(__DIR__ . "/../app/config/log_handlers.php");
 require_once(__DIR__ . "/../app/logger.php");
 require_once(__DIR__ . "/../app/config/routes.php");
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/..");
+$dotenv->load();
+
 // -------------------------------------------------- //
 // LOGIC
 // -------------------------------------------------- //
@@ -18,6 +21,8 @@ require_once(__DIR__ . "/../app/config/routes.php");
 foreach (FLIGHT_SET_VARS as $key => $value) {
     Flight::set($key, $value);
 }
+
+$databaseUrl = "mysql:host=" . $_ENV["DATABASE_HOST"] . ";dbname=" . $_ENV["DATABASE_NAME"];
 
 // Configure Database
 Flight::register("db", "PDO", array($databaseUrl, $_ENV["DATABASE_USER"], $_ENV["DATABASE_PASSWORD"]), function($db){
