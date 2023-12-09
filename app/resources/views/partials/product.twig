@@ -1,5 +1,5 @@
 <div class="p-6 max-w-sm mx-auto rounded-xl shadow-md flex items-center space-x-4">
-    <img src="{{ producto.Imagen }}" alt="Imagen del producto" class="flex-none w-24 h-24 rounded-lg object-cover">
+    <img src="{{ producto.Imagenes[0] }}" alt="Imagen del producto" class="flex-none w-24 h-24 rounded-lg object-cover">
     <div class="text-left">
         <h2 class="text-xl font-semibold">{{ producto.Nombre }}</h2>
         {% if producto.Stock > 0 %}
