@@ -26,7 +26,7 @@ foreach (FLIGHT_SET_VARS as $key => $value) {
 $databaseUrl = "mysql:host=" . $_ENV["DATABASE_HOST"] . ";dbname=" . $_ENV["DATABASE_NAME"];
 
 // Configure Database
-Flight::register("db", "PDO", array($databaseUrl, $_ENV["DATABASE_USER"], $_ENV["DATABASE_PASSWORD"]), function($db){
+Flight::register("db", "PDO", array($databaseUrl, $_ENV["DATABASE_USER"], $_ENV["DATABASE_PASSWORD"]), function ($db) {
     $db->setAttributes(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 });
@@ -34,9 +34,28 @@ Flight::register("db", "PDO", array($databaseUrl, $_ENV["DATABASE_USER"], $_ENV[
 // Configure Twig with Flight
 $twig_loader = new \Twig\Loader\FilesystemLoader(Flight::get("flight.views.path"));
 
-Flight::register("view", "Twig\Environment", [ $twig_loader, TWIG_CONFIG ], function ($twig) {
+Flight::register("view", "Twig\Environment", [$twig_loader, TWIG_CONFIG], function ($twig) {
     if (DEBUG) {
         $twig->addExtension(new \Twig\Extension\DebugExtension());
+    }
+});
+
+// Setup route authentication
+Flight::map("authenticated", function ($lvl = 0) {
+    $cookies = Flight::request()->cookies->getData();
+    if (!isset($cookies["token"])) {
+        Flight::halt(403, "Ruta protegida");
+    }
+    $token = $cookies["token"];
+    try {
+        $decoded = \Firebase\JWT\JWT::decode($token, new \Firebase\JWT\Key($_ENV["JWT_SECRET"], "HS256"));
+        if ($decoded->data->nivelPermisos < $lvl) {
+            Flight::halt(403, "No tienes permisos para realizar esta acción");
+        }
+    } catch (\Firebase\JWT\ExpiredException $e) {
+        Flight::halt(403, "Tu sesión ha expirado");
+    } catch (\Exception $e) {
+        Flight::halt(403, "Error de autenticación");
     }
 });
 
