@@ -11,6 +11,7 @@ Flight::route('/contact', ['\Acme\Jewernico\Controller\Statik', 'contact']);
 Flight::route('/faq', ['\Acme\Jewernico\Controller\Statik', 'faq']);
 Flight::route('/products/@id', ['\Acme\Jewernico\Controller\Products', 'loadProduct']);
 Flight::route("/login", ["\Acme\Jewernico\Controller\Login", "load"]);
+Flight::route("/captcha", ["\Acme\Jewernico\Controller\Captcha", "create"]);
 
 // -------------------------------------------------- //
 // API ROUTES
