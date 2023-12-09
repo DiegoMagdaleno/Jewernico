@@ -1,5 +1,7 @@
 <?php
 
+namespace Acme\Jewernico\Model;
+
 class User
 {
     private int $id;
