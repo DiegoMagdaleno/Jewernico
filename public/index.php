@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // -------------------------------------------------- //
 // INIT
@@ -22,6 +23,8 @@ foreach (FLIGHT_SET_VARS as $key => $value) {
     Flight::set($key, $value);
 }
 
+$databaseUrl = "mysql:host=" . $_ENV["DATABASE_HOST"] . ";dbname=" . $_ENV["DATABASE_NAME"];
+
 // Configure Database
 Flight::register("db", "PDO", array($databaseUrl, $_ENV["DATABASE_USER"], $_ENV["DATABASE_PASSWORD"]), function($db){
     $db->setAttributes(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -36,6 +39,9 @@ Flight::register("view", "Twig\Environment", [ $twig_loader, TWIG_CONFIG ], func
         $twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 });
+
+// Make twig have access to session variables
+Flight::view()->addGlobal('session', $_SESSION);
 
 // Lets go!
 Flight::start();
