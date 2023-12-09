@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     './app/resources/views/**/*.twig',
+    './app/resources/scripts/**/*.ts',
   ],
   theme: {
     extend: {},
