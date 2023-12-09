@@ -8,6 +8,15 @@ class Products
 {
     public static function load(): void
     {
-        Flight::view()->display("products.twig", ["products"]);
+        $products = \Acme\Jewernico\Command\Database::getProducts();
+        
+        Flight::view()->display("products.twig", ["productos" => $products]);
+    }
+
+    public static function loadProduct($id): void
+    {
+        $product = \Acme\Jewernico\Command\Database::getProduct($id);
+
+        Flight::view()->display("product.twig", ["producto" => $product]);
     }
 }
