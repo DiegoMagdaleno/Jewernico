@@ -16,8 +16,8 @@ Flight::route("/captcha", ["\Acme\Jewernico\Controller\Captcha", "create"]);
 // -------------------------------------------------- //
 // API ROUTES
 // -------------------------------------------------- //
-Flight::route("/api/message", ["\Acme\Jewernico\Controller\API", "message"]);
-
+Flight::route("POST /api/login", ["\Acme\Jewernico\Controller\API\Login", "login"]);
+Flight::route("POST /api/propagate", ["\Acme\Jewernico\Controller\API\Login", "propagate"]);
 
 // -------------------------------------------------- //
 // MAPPINGS

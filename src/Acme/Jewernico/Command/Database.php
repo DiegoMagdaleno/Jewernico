@@ -35,5 +35,12 @@ class Database
         $product = $product->fetch();
         return $product;
     }
+
+    public static function getUser($email) {
+        $db = Flight::db();
+        $user = $db->prepare("SELECT * FROM usuario WHERE CorreoElectronico = :correoElectronico");
+        $user->execute(array(":correoElectronico"=> $email));
+        return $user->fetch();
+    }
 }
 ?>
