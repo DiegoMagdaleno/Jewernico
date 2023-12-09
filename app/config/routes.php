@@ -13,6 +13,7 @@ Flight::route('/products/@id', ['\Acme\Jewernico\Controller\Products', 'loadProd
 Flight::route("/login", ["\Acme\Jewernico\Controller\Login", "load"]);
 Flight::route("/captcha", ["\Acme\Jewernico\Controller\Captcha", "create"]);
 Flight::route("/logout", ["\Acme\Jewernico\Controller\Login", "logout"]);
+Flight::route("/admin", ["\Acme\Jewernico\Controller\Admin", "load"]);
 
 // -------------------------------------------------- //
 // API ROUTES

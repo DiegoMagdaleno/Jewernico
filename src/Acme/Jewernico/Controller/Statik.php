@@ -16,7 +16,7 @@ class Statik
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        
+
         Flight::view()->display("index.twig", $context);
     }
 
