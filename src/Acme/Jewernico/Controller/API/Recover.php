@@ -53,6 +53,8 @@ class Recover
             return;
         }
 
+        \Acme\Jewernico\Command\Database::resetLoginAttemps($email);
+
         Flight::json([], 200);
     }
 }

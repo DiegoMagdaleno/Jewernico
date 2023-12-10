@@ -120,5 +120,29 @@ class Database
         );
         return $query->rowCount();
     }
+
+    public static function getLoginAttemps($email)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("SELECT IntentosDeLogin FROM usuario WHERE CorreoElectronico = :correoElectronico");
+        $query->execute(array(":correoElectronico" => $email));
+        return $query->fetch()["IntentosDeLogin"];
+    }
+
+    public static function resetLoginAttemps($email)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("UPDATE usuario SET IntentosDeLogin = 0 WHERE CorreoElectronico = :correoElectronico");
+        $query->execute(array(":correoElectronico" => $email));
+        return $query->rowCount();
+    }
+
+    public static function incrementLoginAttemps($email)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("UPDATE usuario SET IntentosDeLogin = IntentosDeLogin + 1 WHERE CorreoElectronico = :correoElectronico");
+        $query->execute(array(":correoElectronico" => $email));
+        return $query->rowCount();
+    }
 }
 ?>
