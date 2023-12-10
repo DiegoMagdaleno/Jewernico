@@ -16,6 +16,7 @@ Flight::route("/logout", ["\Acme\Jewernico\Controller\Login", "logout"]);
 Flight::route("/admin", ["\Acme\Jewernico\Controller\Admin", "load"]);
 Flight::route("/admin/products", ["\Acme\Jewernico\Controller\Admin", "loadProducts"]);
 Flight::route("/admin/products/add", ["\Acme\Jewernico\Controller\Admin", "addProduct"]);
+Flight::route("/register", ["\Acme\Jewernico\Controller\Register", "load"]);
 
 // -------------------------------------------------- //
 // API ROUTES
@@ -23,6 +24,7 @@ Flight::route("/admin/products/add", ["\Acme\Jewernico\Controller\Admin", "addPr
 Flight::route("POST /api/login", ["\Acme\Jewernico\Controller\API\Login", "login"]);
 Flight::route("POST /api/propagate", ["\Acme\Jewernico\Controller\API\Login", "propagate"]);
 Flight::route("POST /api/first_coupon", ["\Acme\Jewernico\Controller\API\EmailCoupon", "send"]);
+Flight::route("POST /api/register", ["\Acme\Jewernico\Controller\API\Register", "register"]);
 
 // -------------------------------------------------- //
 // MAPPINGS
