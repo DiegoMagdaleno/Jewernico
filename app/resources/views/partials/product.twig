@@ -1,0 +1,16 @@
+<div class="p-6 max-w-sm mx-auto rounded-xl shadow-md flex items-center space-x-4">
+    <img src="{{ producto.Imagenes[0] }}" alt="Imagen del producto" class="flex-none w-24 h-24 rounded-lg object-cover">
+    <div class="text-left">
+        <h2 class="text-xl font-semibold">{{ producto.Nombre }}</h2>
+        {% if producto.Stock > 0 %}
+            <span class="badge badge-primary">{{ producto.Stock }} disponibles</span>
+        {% else %}
+            <span class="badge badge-secondary">Agotado</span>
+        {% endif %}
+        <p class="text-gray-700">{{ producto.Descripcion }}</p>
+        <p class="text-gray-900 font-semibold mt-2">${{ producto.Precio }} MXN</p>
+        <div class="mt-4">
+            <a href=/products/{{ producto.Id }} class="px-4 py-2 btn btn-primary rounded-md">Comprar</a>
+        </div>
+    </div>
+</div>

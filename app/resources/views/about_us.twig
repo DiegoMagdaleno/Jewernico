@@ -1,0 +1,105 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+	{% include 'partials/navbar.twig' %}
+	<main role="main" class="font-sans bg-gray-100 text-gray-800">
+		<section id="about" class="section text-center mb-10">
+			<div class="isolate">
+				<div class="content full-width">
+					<div class="blocks">
+						<h1 class="text-4xl font-bold mb-4"><br>Acerca de Nosotros<br></h1>
+						<div class="text rte mx-auto max-w-2xl">
+							<p>JewerNico es una joyería dedicada a ofrecer piezas únicas y elegantes que capturan
+																															                            la esencia de la belleza y la elegancia. Nos enorgullece ofrecer joyas de alta calidad
+																															                            que destacan por su diseño excepcional y artesanía experta. En JewerNico, creemos que cada
+																															                            joya cuenta una historia única y queremos ser parte de los momentos especiales de la vida
+																															                            de nuestros clientes. Nuestra pasión por la creatividad y la excelencia se refleja en
+																															                            cada pieza que creamos.</p>
+							<br>
+							<p>En nuestra búsqueda de la perfección, seleccionamos cuidadosamente los materiales más finos
+																															                            y aplicamos técnicas de fabricación avanzadas para asegurarnos de que cada joya sea una obra
+																															                            maestra duradera. Desde anillos de compromiso y collares elegantes hasta pulseras y aretes
+																															                            llamativos, cada pieza en nuestro catálogo está diseñada para destacar y complementar la
+																															                            belleza única de quien la lleva.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="mb-12">
+			<img class="image w-1/4 h-auto rounded-l mx-auto shadow" src="resources/img/imagen1.jpg" alt="Elegante joyería de alta calidad." loading="lazy">
+		</div>
+
+		<section id="mission" class="section mb-10">
+			<div class="isolate">
+				<div class="isolate bg-gradient-to-br from-green-500 to-orange-300 p-6 rounded text-center mb-10">
+					<div class="rich-text content-container color-background-2 gradient rich-text--full-width content-container--full-width section-template--15127409393872__1638811811c903d7ca-padding">
+						<div class="max-w-screen-md mx-auto text-white">
+							<h3 class="text-2xl font-bold mb-2">Misión</h3>
+							<p class="text-gray-200">En JewerNico, nuestra misión es crear joyas excepcionales que reflejen
+																															                            la individualidad y estilo de cada persona. Nos esforzamos por ofrecer piezas que inspiren
+																															                            emociones y se conviertan en tesoros atemporales para nuestros clientes.</p>
+							<h3 class="text-2xl font-bold mt-4 mb-2">Visión</h3>
+							<p class="text-gray-200">Nuestra visión es ser reconocidos como una joyería líder que ofrece
+																															                            experiencias únicas y momentos inolvidables a través de nuestras creaciones exclusivas y
+																															                            servicio excepcional al cliente.</p>
+							<h3 class="text-2xl font-bold mt-4 mb-2">Valores</h3>
+							<p class="text-gray-200">En JewerNico, nos guiamos por la excelencia, la integridad y la pasión.
+																															                            Valoramos la autenticidad en cada joya y nos comprometemos a superar las expectativas de
+																															                            nuestros clientes en cada interacción.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div id="founder" class="image-text overlap page-width isolate collapse-corners mb-10">
+			<div class="grid gapless 1-col 2-col-tablet grid-reverse">
+				<div class="media-item medium middle">
+					<div class="media large gradient color-accent-2 flex justify-center items-center relative">
+						<div id="founder-info" class="content middle desktop-left mobile-left large gradient color-purple-500 container p-5 rounded" style="width: 500px; height: 400px; position: absolute; left: calc(10% + 100px);">
+							<div class="card bg-purple-800 p-6 rounded text-white">
+								<h2 class="text-2xl font-bold mb-4">
+									Conoce a Nicole, Fundador de JewerNico
+								</h2>
+								<div class="text rte body">
+									<p>Nicole, una apasionada amante de la joyería, fundó JewerNico con la visión de compartir la belleza y el significado detrás de cada pieza única. Su dedicación a la artesanía y la creatividad impulsa la excelencia en cada joya que ofrecemos.</p>
+								</div>
+							</div>
+						</div>
+						<img src="resources/img/Imagen2.png" alt="Imagen representativa del fundador de JewerNico." loading="lazy" style="width: 30%; margin-left: calc(10px + 300px); border-radius: 20px;">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="our-store" class="section mb-10">
+			<div class="image-text overlap page-width isolate collapse-corners">
+				<div class="flex flex-wrap relative">
+					<div class="w-full md:w-1/2 absolute top-0 left-0" style="margin-left: 200px;">
+						<div class="media-item medium middle">
+							<div class="media large gradient color-bg-2">
+								<img src="resources/img/Imagen3.png" alt="Interior de la joyería JewerNico. Elegante exhibición de joyas." loading="lazy" class="w-full" style="border-radius: 20px;">
+							</div>
+						</div>
+					</div>
+					<div class="w-full md:w-1/2" style="margin-left: 600px;">
+						<div id="store-info" class="content middle desktop-left mobile-left large gradient color-yellow-green container p-24 rounded z-10">
+							<div class="card bg-yellow-500 p-6 rounded text-white">
+								<h2 class="text-2xl font-bold mb-4">
+									Nuestra Tienda
+								</h2>
+								<div class="text rte body">
+									<p>Abrimos nuestras puertas por primera vez en 2023, brindando a nuestros clientes un espacio donde pueden descubrir y elegir joyas que resaltan su estilo único. Desde entonces, JewerNico ha sido el destino preferido para aquellos que buscan joyas excepcionales en Aguascalientes. ¡Esperamos darle la bienvenida pronto!</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+    {% include 'partials/footer.twig' %}
+{% endblock %}

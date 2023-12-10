@@ -1,0 +1,57 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+	{% include 'partials/admin_sidebar.twig' %}
+
+	<main role="main" class="p-4 sm:ml-64">
+		<div class="ml-6 mt-6">
+			<div class="flex flex-row justify-between items-center mr-6">
+				<h1 class="text-2xl font-semibold text-gray-800">Productos</h1>
+				<div class="space-x-1">
+					<button class="btn btn-success" id="add-button">Agregar</button>
+					<button class="btn btn-neutral btn-disabled" id="edit-button">Editar</button>
+					<button class="btn btn-error btn-disabled" id="delete-button">Eliminar</button>
+				</div>
+			</div>
+			<div class="card mt-6 mr-6 w-120 bg-base-100 shadow-xl">
+				<div class="card-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									<label>
+										<input type="checkbox" class="checkbox" id="check-all">
+									</label>
+								</th>
+								<th>Nombre</th>
+								<th>Descripcion</th>
+								<th>Precio</th>
+								<th>Material</th>
+								<th>Categoria</th>
+								<th>Inventario</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for producto in productos %}
+								<tr>
+									<td>
+										<label>
+											<input type="checkbox" class="checkbox" name="product" value="{{ producto.Id }}">
+										</label>
+									</td>
+									<td>{{ producto.Nombre }}</td>
+									<td>{{ producto.Descripcion }}</td>
+									<td>{{ producto.Precio }}</td>
+									<td>{{ producto.Material }}</td>
+									<td>{{ producto.Categoria }}</td>
+									<td>{{ producto.Stock }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+        <script src="/dist/admin_products.js"></script>
+	</main>
+{% endblock %}
