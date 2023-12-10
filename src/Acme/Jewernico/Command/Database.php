@@ -44,7 +44,8 @@ class Database
         return $user->fetch();
     }
 
-    public static function insertUser($name, $firstLastName, $secondLastName, $email, $password) {
+    public static function insertUser($name, $firstLastName, $secondLastName, $email, $password)
+    {
         $db = Flight::db();
         $password_enc = password_hash($password, PASSWORD_DEFAULT);
         $query = $db->prepare("INSERT INTO usuario (Nombre, ApellidoPaterno, ApellidoMaterno, CorreoElectronico, Password, NivelPermisos, IntentosDeLogin) VALUES (:nombre, :apellidoPaterno, :apellidoMaterno, :correoElectronico, :password, 0, 0)");
@@ -58,7 +59,8 @@ class Database
         return $query->rowCount();
     }
 
-    public static function linkSecurityQuestion($idQuestion, $email, $answer) {
+    public static function linkSecurityQuestion($idQuestion, $email, $answer)
+    {
         $db = Flight::db();
         $query = $db->prepare("INSERT INTO responder (IdPregunta, IdUsuario, Respuesta) VALUES (:idPregunta, (SELECT Id FROM usuario WHERE CorreoElectronico = :correoElectronico), :respuesta)");
         $query->execute(array(
@@ -81,33 +83,41 @@ class Database
     {
         $db = Flight::db();
         $query = $db->prepare(
-            "SELECT Pregunta FROM pregunta WHERE Id = (
-                SELECT IdPregunta FROM responder WHERE IdUsuario = (
-                    SELECT Id FROM usuario WHERE CorreoElectronico = :email
-                )
-            )"
-        );
+            "SELECT Pregunta FROM pregunta WHERE Id = (SELECT IdPregunta FROM responder WHERE IdUsuario = (SELECT Id FROM usuario WHERE CorreoElectronico = :email))");
         $query->execute(array(":email" => $email));
         return $query->fetch();
     }
 
-    public static function getSecurityAnswerOf($email) {
+    public static function getSecurityAnswerOf($email)
+    {
         $db = Flight::db();
         $query = $db->prepare(
-            "SELECT Respuesta FROM responder WHERE IdUsuario = (
-                SELECT Id FROM usuario WHERE CorreoElectronico = :email
-            )");
+            "SELECT Respuesta FROM responder WHERE IdUsuario = (SELECT Id FROM usuario WHERE CorreoElectronico = :email)");
         $query->execute(array(":email" => $email));
         return $query->fetch();
     }
 
-    public static function linkCartToUser($email) {
+    public static function linkCartToUser($email)
+    {
         $db = Flight::db();
         $query = $db->prepare(
             "INSERT INTO carrito (IdUsuario) VALUES (
                 (SELECT Id FROM usuario WHERE CorreoElectronico = :email)
             )");
         $query->execute(array(":email" => $email));
+        return $query->rowCount();
+    }
+
+    public static function updatePasswordForUser($email, $password)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("UPDATE usuario SET Password = :password WHERE CorreoElectronico = :correoElectronico");
+        $query->execute(
+            array(
+                ":password" => password_hash($password, PASSWORD_DEFAULT),
+                ":correoElectronico" => $email
+            )
+        );
         return $query->rowCount();
     }
 }

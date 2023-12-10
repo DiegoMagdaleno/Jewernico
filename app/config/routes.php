@@ -17,6 +17,7 @@ Flight::route("/admin", ["\Acme\Jewernico\Controller\Admin", "load"]);
 Flight::route("/admin/products", ["\Acme\Jewernico\Controller\Admin", "loadProducts"]);
 Flight::route("/admin/products/add", ["\Acme\Jewernico\Controller\Admin", "addProduct"]);
 Flight::route("/register", ["\Acme\Jewernico\Controller\Register", "load"]);
+Flight::route("/recover", ["\Acme\Jewernico\Controller\Recover", "load"]);
 
 // -------------------------------------------------- //
 // API ROUTES
@@ -25,6 +26,10 @@ Flight::route("POST /api/login", ["\Acme\Jewernico\Controller\API\Login", "login
 Flight::route("POST /api/propagate", ["\Acme\Jewernico\Controller\API\Login", "propagate"]);
 Flight::route("POST /api/first_coupon", ["\Acme\Jewernico\Controller\API\EmailCoupon", "send"]);
 Flight::route("POST /api/register", ["\Acme\Jewernico\Controller\API\Register", "register"]);
+Flight::route("POST /api/recover/verify_email", ["\Acme\Jewernico\Controller\API\Recover", "verify_email"]);
+Flight::route("POST /api/recover/get_question", ["\Acme\Jewernico\Controller\API\Recover", "get_question"]);
+Flight::route("POST /api/recover/verify_question", ["\Acme\Jewernico\Controller\API\Recover", "verify_question"]);
+Flight::route("POST /api/recover/update_password", ["\Acme\Jewernico\Controller\API\Recover", "update_password"]);
 
 // -------------------------------------------------- //
 // MAPPINGS
