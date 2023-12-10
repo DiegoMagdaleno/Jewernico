@@ -5,6 +5,7 @@
 	{% include 'partials/navbar.twig' %}
 
 	<main role="main">
+    <p>{{ session.hello}}</p>
 		<section class="sec1 flex mt-10 mx-10">
 			<div id="textin" class="relative z-10 w-1/3 -mr-20 my-40 ml-10 p-16 overflow-hidden bg-gray-200 rounded-lg h-full">
 				<h1 class="font-bold text-4xl mb-4">
@@ -75,4 +76,6 @@
 			</a>
 		</section>
 	</a>
-</section></main>{% endblock %}
+</section></main>
+{% include 'partials/footer.twig' %}
+{% endblock %}
