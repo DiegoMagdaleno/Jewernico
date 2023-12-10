@@ -6,6 +6,7 @@ module.exports = {
         main: './app/resources/scripts/main.ts',
         login: './app/resources/scripts/login.ts',
         admin_products: './app/resources/scripts/admin_products.ts',
+        footer: './app/resources/scripts/footer.ts',
     },
     output: {
         path: path.resolve(__dirname, 'public', 'dist'),
