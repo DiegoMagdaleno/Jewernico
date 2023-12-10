@@ -15,12 +15,14 @@ Flight::route("/captcha", ["\Acme\Jewernico\Controller\Captcha", "create"]);
 Flight::route("/logout", ["\Acme\Jewernico\Controller\Login", "logout"]);
 Flight::route("/admin", ["\Acme\Jewernico\Controller\Admin", "load"]);
 Flight::route("/admin/products", ["\Acme\Jewernico\Controller\Admin", "loadProducts"]);
+Flight::route("/admin/products/add", ["\Acme\Jewernico\Controller\Admin", "addProduct"]);
 
 // -------------------------------------------------- //
 // API ROUTES
 // -------------------------------------------------- //
 Flight::route("POST /api/login", ["\Acme\Jewernico\Controller\API\Login", "login"]);
 Flight::route("POST /api/propagate", ["\Acme\Jewernico\Controller\API\Login", "propagate"]);
+Flight::route("POST /api/first_coupon", ["\Acme\Jewernico\Controller\API\EmailCoupon", "first_coupon"]);
 
 // -------------------------------------------------- //
 // MAPPINGS
