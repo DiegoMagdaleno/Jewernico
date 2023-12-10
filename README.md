@@ -38,7 +38,6 @@ Una vez abierta la terminal, ejecutar los siguientes comandos en orden
 cd C:\xampp\htdocs
 gh repo clone DiegoMagdaleno/Jewernico
 cd Jewernico
-git checkout the-last-great-american-dynasty
 ```
 
 **Configuracion de XAMPP y Apache**
@@ -54,11 +53,22 @@ Y copiar el siguiente contenido al final del archivo:
 </VirtualHost>
 ```
 
+**Configuracion de extensiones de PHP**
+
+Para cargar el Captcha PHP debe de ser capaz de generar imagenes, para eso, es necesario habilitar un plugin, por favor, seguir los pasos que se mencionan a continuacion:
+
+- Abrir XAMPP
+- Dar click en config en la seccion de Apache
+- Buscar `;extension=gd`
+- Quitar el `;`
+
+*Si ya no tiene el `;` pues no lo quiten.
+
 **Una vez realizado todo esto, favor de reiniciar su computadora**
 
 ## Pasos finales e importantes
 
-Para poder ejecutar todo correctamente, es necesario abrir una terminal y ejecutar los siguientes comandos:
+Para poder ejecutar todo correctamente, es necesario abrir una terminal y ejecutar los siguientes comandos, todos los comandos deben de ejecutarse desde donde clonaron el repositorio (`C:\xampp\htdocs\Jewernico`):
 
 1. Actualizar e instalar las dependencias de Node con `npm install`
 2. Actualizar e instalar los paquetes de PHP con `composer install`
