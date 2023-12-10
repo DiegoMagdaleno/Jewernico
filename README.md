@@ -58,7 +58,7 @@ Y copiar el siguiente contenido al final del archivo:
 
 ## Pasos finales e importantes
 
-Para poder ejecutar todo correctamente, es necesario abrir una terminal y ejecutar los siguientes comandos:
+Para poder ejecutar todo correctamente, es necesario abrir una terminal y ejecutar los siguientes comandos, todos los comandos deben de ejecutarse desde donde clonaron el repositorio (`C:\xampp\htdocs\Jewernico`:
 
 1. Actualizar e instalar las dependencias de Node con `npm install`
 2. Actualizar e instalar los paquetes de PHP con `composer install`
