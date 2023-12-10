@@ -41,11 +41,18 @@ class Login
                 "nivelPermisos" => $res["NivelPermisos"],
                 "password" => $res["Password"],
             );
+            \Acme\Jewernico\Command\Database::resetLoginAttemps($data["correoElectronico"]);
             Flight::json($ret, 200);
         } else {
             $db = Flight::db();
-            $query = $db->prepare("UPDATE usuario SET IntentosDeLogin = IntentosDeLogin + 1 WHERE CorreoElectronico = :correoElectronico");
-            $query->execute(array(":correoElectronico" => $data["correoElectronico"]));
+            \Acme\Jewernico\Command\Database::incrementLoginAttemps($data["correoElectronico"]);
+            $attemps = \Acme\Jewernico\Command\Database::getLoginAttemps($data["correoElectronico"]);
+            if ($attemps >= 3) {
+                $mail = new \Acme\Jewernico\Command\Email($data["correoElectronico"], "Tu cuenta ha sido bloqueada por intentos fallidos de inicio de sesión. Para desbloquearla, sigue las instrucciones en el siguiente enlace: " . $GLOBALS['url'] . "recover", "Tu cuenta ha sido bloqueada", );
+                Flight::json(array("error" => "Usuario bloqueado. Se han enviado instrucciones a tu correo para recuperarlo."), 403);
+                $mail->send();
+                return;
+            }
             Flight::json(array("error" => "Contraseña incorrecta"), 403);
             return;
         }

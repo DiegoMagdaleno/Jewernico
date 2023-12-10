@@ -26,7 +26,10 @@ class Email
         $this->mail->setFrom("nicoleflorestorres27@gmail.com");
         $this->mail->addAddress($this->to);
         $this->mail->isHTML(true);
+        $this->mail->isSMTP();
         $this->mail->Subject = $subject;
+        $this->mail->CharSet = "UTF-8";
+        $this->mail->Encoding = 'base64';
         $this->mail->Body = $this->content;
     }
 
