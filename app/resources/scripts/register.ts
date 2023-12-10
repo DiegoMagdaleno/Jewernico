@@ -42,7 +42,7 @@ $(document).ready(function () {
             questionModal.showModal();
             $("#question-modal #question-submit").click(function () {
                 const questionData = new FormData($("#question-modal #question-form")[0] as HTMLFormElement);
-                formData.append('id-pregunta', questionData.get('id-pregunta') as string);
+                formData.append('idPregunta', questionData.get('id-pregunta') as string);
                 formData.append('respuesta', questionData.get('respuesta') as string);
                 axios.post('/api/register', formData)
                     .then(function (response) {
