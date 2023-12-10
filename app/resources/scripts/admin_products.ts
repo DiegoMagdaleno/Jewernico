@@ -51,7 +51,11 @@ $(document).ready(function () {
         updateButtonStatus();
     });
 
+    $('#add-button').click(function(){
+        window.location.href = '/admin/products/add';
+    });
 
-
-
+    $('#edit-button').click(function(){
+        window.location.href = '/admin/products/edit/' + products[0];
+    });
 });
