@@ -1,10 +1,10 @@
 const axios = require('axios').default;
-const $ = require('jquery');
+import $ from 'jquery';
 
 $(document).ready(function () {
     $('#login-form').submit(function (event) {
         event.preventDefault();
-        let formData = new FormData(this);
+        let formData = new FormData(this as HTMLFormElement);
 
         axios.post('/api/login', {
             correoElectronico: formData.get('correoElectronico'),
