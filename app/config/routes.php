@@ -22,7 +22,7 @@ Flight::route("/admin/products/add", ["\Acme\Jewernico\Controller\Admin", "addPr
 // -------------------------------------------------- //
 Flight::route("POST /api/login", ["\Acme\Jewernico\Controller\API\Login", "login"]);
 Flight::route("POST /api/propagate", ["\Acme\Jewernico\Controller\API\Login", "propagate"]);
-Flight::route("POST /api/first_coupon", ["\Acme\Jewernico\Controller\API\EmailCoupon", "first_coupon"]);
+Flight::route("POST /api/first_coupon", ["\Acme\Jewernico\Controller\API\EmailCoupon", "send"]);
 
 // -------------------------------------------------- //
 // MAPPINGS
