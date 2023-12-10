@@ -8,16 +8,16 @@ class Statik
 {
     public static function index(): void
     {
-        $context = [
-            "introduction_title" => "Hello world!",
-            "introduction_text" => "This is the skeleton for a Flight app."
-        ];
+        $products = \Acme\Jewernico\Command\Database::getProducts();
+
+        // Select 4 random products
+        $random_products = array_rand($products, 4);
 
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        Flight::view()->display("index.twig", $context);
+        Flight::view()->display("index.twig", ["productos" => $random_products]);
     }
 
     public static function about_us(): void
