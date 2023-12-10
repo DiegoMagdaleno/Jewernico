@@ -14,7 +14,9 @@ class Admin {
 
         Flight::view()->display("admin_products.twig", ["productos"=> $products]);
     }
+
+    public static function addProduct() {
+        Flight::view()->display("admin_product_add.twig", []);
+    }
 }
-
-
 ?>
