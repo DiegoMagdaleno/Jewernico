@@ -35,6 +35,7 @@ Flight::route("POST /api/upload/files", ["\Acme\Jewernico\Controller\API\Files",
 Flight::route("POST /api/products", ["\Acme\Jewernico\Controller\API\Products", "add"]);
 Flight::route("POST /api/products/@id", ["\Acme\Jewernico\Controller\API\Products", "edit"]);
 Flight::route("GET /api/products/@id", ["\Acme\Jewernico\Controller\API\Products", "get"]);
+Flight::route("DELETE /api/products/@id", ["\Acme\Jewernico\Controller\API\Products", "delete"]);
 
 // -------------------------------------------------- //
 // MAPPINGS

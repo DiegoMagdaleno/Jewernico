@@ -192,6 +192,7 @@ class Database
         $query = $db->prepare("SELECT COUNT(*) AS image_count FROM imagen WHERE IdProducto = :idProducto");
         $query->execute(array(":idProducto" => $id));
         return $query->fetchColumn();
+
     }
 
     public static function updateProduct($id, $name, $description, $material, $category, $discount, $price, $stock)
@@ -208,6 +209,13 @@ class Database
             ":precio" => $price,
             ":stock" => $stock
         ));
+        return ($query->rowCount() > 0);
+    }
+
+    public static function deleteProduct($id) {
+        $db = Flight::db();
+        $query = $db->prepare("DELETE FROM producto WHERE Id = :id");
+        $query->execute(array(":id" => $id));
         return ($query->rowCount() > 0);
     }
 }
