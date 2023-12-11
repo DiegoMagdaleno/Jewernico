@@ -66,5 +66,6 @@ class Login
         }
 
         $_SESSION['user'] = new \Acme\Jewernico\Model\User($data['id'], $data['nombre'], $data['correoElectronico'], $data['password'], $data['nivelPermisos']);
+        $_SESSION['cart'] = 0;
     }
 }

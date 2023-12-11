@@ -19,6 +19,7 @@ Flight::route("/admin/products/add", ["\Acme\Jewernico\Controller\Admin", "addPr
 Flight::route("/admin/products/edit/@id", ["\Acme\Jewernico\Controller\Admin", "editProduct"]);
 Flight::route("/register", ["\Acme\Jewernico\Controller\Register", "load"]);
 Flight::route("/recover", ["\Acme\Jewernico\Controller\Recover", "load"]);
+Flight::route("/cart", ["\Acme\Jewernico\Controller\Cart", "load"]);
 
 // -------------------------------------------------- //
 // API ROUTES
