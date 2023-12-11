@@ -8,6 +8,7 @@ $(document).ready(function () {
 
     const myDropzone = new Dropzone('div#file-upload', {
         url: '/api/upload/files',
+        maxFiles: 3,
         init: function () {
             this.on('success', function (file, response) {
                 pathsArray.push(response['path']);
@@ -22,6 +23,27 @@ $(document).ready(function () {
             });
         }
     });
+
+    let productId = $("main").data('product-id');
+    if (productId) {
+        axios.get('/api/products/' + productId).then(function(response){
+            let images = response.data.producto.Imagenes;
+            if (!Array.isArray(images)) {
+                images = [images];
+            }
+            images.forEach(image => {
+                let nameArray = image.split('/');
+                let name = nameArray[nameArray.length - 1];
+                let mockFile = { name: name, size: 0 };
+                myDropzone.emit("addedfile", mockFile);
+                myDropzone.emit("thumbnail", mockFile, image);
+                myDropzone.emit("complete", mockFile);
+                pathsArray.push(image);
+            });
+        });
+    } else {
+        console.log('No hay id');
+    }
 
     $("#product-form").submit(function (event) {
         event.preventDefault();

@@ -16,6 +16,7 @@ Flight::route("/logout", ["\Acme\Jewernico\Controller\Login", "logout"]);
 Flight::route("/admin", ["\Acme\Jewernico\Controller\Admin", "load"]);
 Flight::route("/admin/products", ["\Acme\Jewernico\Controller\Admin", "loadProducts"]);
 Flight::route("/admin/products/add", ["\Acme\Jewernico\Controller\Admin", "addProduct"]);
+Flight::route("/admin/products/edit/@id", ["\Acme\Jewernico\Controller\Admin", "editProduct"]);
 Flight::route("/register", ["\Acme\Jewernico\Controller\Register", "load"]);
 Flight::route("/recover", ["\Acme\Jewernico\Controller\Recover", "load"]);
 
@@ -32,6 +33,7 @@ Flight::route("POST /api/recover/verify_question", ["\Acme\Jewernico\Controller\
 Flight::route("POST /api/recover/update_password", ["\Acme\Jewernico\Controller\API\Recover", "update_password"]);
 Flight::route("POST /api/upload/files", ["\Acme\Jewernico\Controller\API\Files", "upload"]);
 Flight::route("POST /api/products", ["\Acme\Jewernico\Controller\API\Products", "add"]);
+Flight::route("GET /api/products/@id", ["\Acme\Jewernico\Controller\API\Products", "get"]);
 
 // -------------------------------------------------- //
 // MAPPINGS
