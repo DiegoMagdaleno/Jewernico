@@ -44,5 +44,10 @@ session_start();
 // Make twig have access to session variables
 Flight::view()->addGlobal('session', $_SESSION);
 
+// Make twig have access to global variables
+Flight::view()->addGlobal('global', $GLOBALS);
+
+$GLOBALS['url'] = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+
 // Lets go!
 Flight::start();

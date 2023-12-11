@@ -16,7 +16,16 @@ class Admin {
     }
 
     public static function addProduct() {
-        Flight::view()->display("admin_product_add.twig", []);
+        $categories = \Acme\Jewernico\Command\Database::getCategories();
+        $materials = \Acme\Jewernico\Command\Database::getMaterials();
+        Flight::view()->display("admin_add_product.twig", ["categories" => $categories, "materials" => $materials]);
+    }
+
+    public static function editProduct($id) {
+        $product = \Acme\Jewernico\Command\Database::getProduct($id);
+        $categories = \Acme\Jewernico\Command\Database::getCategories();
+        $materials = \Acme\Jewernico\Command\Database::getMaterials();
+        Flight::view()->display("admin_add_product.twig", ["producto" => $product, "categories" => $categories, "materials" => $materials]);
     }
 }
 ?>

@@ -1,4 +1,5 @@
 import $ from 'jquery';
+const axios = require('axios').default;
 
 $(document).ready(function () {
     let products = new Array<any>();
@@ -51,11 +52,37 @@ $(document).ready(function () {
         updateButtonStatus();
     });
 
-    $('#add-button').click(function(){
+    $('#add-button').click(function () {
         window.location.href = '/admin/products/add';
     });
 
-    $('#edit-button').click(function(){
+    $('#edit-button').click(function () {
         window.location.href = '/admin/products/edit/' + products[0];
+    });
+
+    $('#delete-button').click(function () {
+        let deleteModal = $('#delete-modal')[0] as HTMLDialogElement;
+        deleteModal.showModal();
+        axios.get('/api/products/' + products[0])
+            .then(function (response) {
+                let product = response.data.producto;
+                $('#delete-modal #product-name').text(product.Nombre);
+                $('#delete-modal #product-image').attr('src', product.Imagenes[0]);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        $('#delete-modal #delete-cancel').click(function () {
+            deleteModal.close();
+        });
+        $('#delete-modal #delete-confirm').click(function () {
+            axios.delete('/api/products/' + products[0])
+                .then(function (response) {
+                    window.location.href = '/admin/products';
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
     });
 });
