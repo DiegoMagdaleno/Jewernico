@@ -30,6 +30,8 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@types/dropzone": "^5.7.8",
+    "dropzone": "^6.0.0-beta.2",
     "ts-loader": "^9.5.1"
   }
 }

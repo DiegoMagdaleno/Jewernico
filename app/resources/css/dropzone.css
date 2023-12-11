@@ -1,0 +1,23 @@
+.dz-preview {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    transition: filter 0.3s;
+}
+
+.dz-preview:hover::before {
+    content: 'X';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.dz-preview:hover {
+    filter: blur(2px);
+}
