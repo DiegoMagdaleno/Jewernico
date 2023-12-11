@@ -9,6 +9,7 @@ class Products
     public static function load(): void
     {
         $products = \Acme\Jewernico\Command\Database::getProducts();
+        $categories = \Acme\Jewernico\Command\Database::getCategories();
 
         for ($i = 0; $i < count($products); $i++)
         {
@@ -21,7 +22,7 @@ class Products
             }
         }
         
-        Flight::view()->display("products.twig", ["productos" => $products]);
+        Flight::view()->display("products.twig", ["productos" => $products, "categorias" => $categories]);
     }
 
     public static function loadProduct($id): void
