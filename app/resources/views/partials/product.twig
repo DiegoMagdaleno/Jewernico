@@ -1,22 +1,33 @@
-<div class="producto p-6 max-w-sm mx-auto rounded-xl shadow-xl">
-    <img src="{{ producto.Imagenes[0] }}" alt="Imagen del producto" class="w-full rounded-xl object-cover">
-    <div class="p-4">
-        <h2 class="text-xl font-semibold">{{ producto.Nombre }}</h2>
-        {% if producto.Stock > 0 %}
-            <span class="badge badge-success">{{ producto.Stock }} disponibles</span>
-        {% else %}
-            <span class="badge badge-error">Agotado</span>
-        {% endif %}
-        <p class="text-gray-700 mt-2">
-            {% if producto.Descripcion|length > 50 %}
-                {{ producto.Descripcion[:50] }}...
-            {% else %}
-                {{ producto.Descripcion }}
-            {% endif %}
-        </p>
-        <p class="text-gray-900 font-semibold mt-2">${{ producto.Precio }} MXN</p>
-        <div class="mt-4">
-            <a href="/products/{{ producto.Id }}" class="px-4 py-2 btn btn-primary rounded-md">Comprar</a>
-        </div>
-    </div>
-</div>
+<div class="producto p-6 max-w-sm mx-auto rounded-xl shadow-xl" data-category={{ producto.Categoria }} data-price={{ producto.Precio }}>
+	<img src="{{ producto.Imagenes[0] }}" alt="Imagen del producto" class="w-full rounded-xl object-cover">
+	<div class="p-4">
+		<h2 class="text-xl font-semibold">{{ producto.Nombre }}</h2>
+		{% if producto.Stock > 0 %}
+			<span class="badge badge-success">{{ producto.Stock }}
+				disponibles</span>
+		{% else %}
+			<span class="badge badge-error">Agotado</span>
+		{% endif %}
+		<p class="text-gray-700 mt-2">
+			{% if producto.Descripcion|length > 50 %}
+				{{ producto.Descripcion[:50] }}...
+			{% else %}
+				{{ producto.Descripcion }}
+			{% endif %}
+		</p>
+		<p class="text-gray-900 font-semibold mt-2">${{ producto.Precio }}
+			MXN</p>
+		<div class="mt-4 flex w-full">
+			<a href="/products/{{ producto.Id }}" class="px-4 py-2 btn btn-primary rounded-md mr-2">Mas información</a>
+			{% if session.user is defined and session.user is not null %}
+				<button onclick="cart_no_logged_modal.showModal()" class="px-4 py-2 btn btn-secondary rounded-md">
+					<i class="fa-solid fa-cart-shopping"></i>
+				</button>
+			{% else %}
+				<button onclick="cart_no_logged_modal.showModal()" class="px-4 py-2 btn btn-secondary rounded-md">
+					<i class="fa-solid fa-cart-shopping"></i>
+				</button>
+			{% endif %}
+		</a>
+	</div>
+</div></div>
