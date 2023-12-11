@@ -30,6 +30,8 @@ Flight::route("POST /api/recover/verify_email", ["\Acme\Jewernico\Controller\API
 Flight::route("POST /api/recover/get_question", ["\Acme\Jewernico\Controller\API\Recover", "get_question"]);
 Flight::route("POST /api/recover/verify_question", ["\Acme\Jewernico\Controller\API\Recover", "verify_question"]);
 Flight::route("POST /api/recover/update_password", ["\Acme\Jewernico\Controller\API\Recover", "update_password"]);
+Flight::route("POST /api/upload/files", ["\Acme\Jewernico\Controller\API\Files", "upload"]);
+Flight::route("POST /api/products", ["\Acme\Jewernico\Controller\API\Products", "add"]);
 
 // -------------------------------------------------- //
 // MAPPINGS
