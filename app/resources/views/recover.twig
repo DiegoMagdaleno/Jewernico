@@ -1,0 +1,41 @@
+{% extends 'layout.twig' %}
+
+
+{% block content %}
+	<dialog id="password-modal" class="modal">
+		<div class="modal-box">
+			<div class="flex flex-col items-center">
+				<h3 class="text-2xl font-bold mb-4">Nueva Contraseña</h3>
+				<form id="password-form" class="flex flex-col items-center">
+					<label for="password" class="block text-lg text-gray-600 mb-2">Nueva Contraseña:</label>
+					<input type="password" id="password" name="nuevaContraseña" class="input input-bordered w-full max-w-full mb-2" required>
+
+					<label for="confirm-password" class="block text-lg text-gray-600 mb-2">Confirmar Nueva Contraseña:</label>
+					<input type="password" id="confirm-password" name="confirmarContraseña" class="input input-bordered w-full max-w-full mb-2" required>
+
+					<input type="button" id="password-submit" class="btn btn-primary w-full max-w-full" value="Enviar">
+				</form>
+			</div>
+		</div>
+	</dialog>
+	<main role="main" class="flex items-center justify-center">
+		<div class="container p-8 mt-16">
+			<div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-8 w-96 mx-auto">
+				<div class="mb-6 text-center">
+					<h3 class="text-4xl font-bold pb-3">Recuperar Contraseña</h3>
+					<p class="text-lg text-gray-600">Ingresa tu correo electrónico</p>
+				</div>
+				<form action="" id="loginForm">
+					<div class="flex flex-col items-center">
+						<div class="w-full pr-2 pb-3">
+							<label for="correo" class="block text-lg text-gray-600 mb-2">Correo:</label>
+							<input type="email" id="correo" name="correoElectronico" class="input input-bordered w-full max-w-full mb-2" placeholder="tucorreo@gmail.com" required>
+							<input type="button" id="enviar" class="btn btn-primary w-full max-w-full" value="Enviar">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</main>
+	<script src="/dist/recover.js"></script>
+{% endblock %}

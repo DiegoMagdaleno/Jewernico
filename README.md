@@ -59,6 +59,7 @@ Para cargar el Captcha PHP debe de ser capaz de generar imagenes, para eso, es n
 
 - Abrir XAMPP
 - Dar click en config en la seccion de Apache
+- Buscar el archivo `php.ini` 
 - Buscar `;extension=gd`
 - Quitar el `;`
 
