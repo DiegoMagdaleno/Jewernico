@@ -2,6 +2,79 @@
 
 {% block content %}
     <main role="main">
-    <!-- tu codigo aqui -->
+        <form action="" method="">
+            <div class="max-w-3xl mx-auto my-auto">
+            <h1 class="mx-10 text-left text-3xl font-bold">Pago</h1>
+            <div class="Formu bg-purple-400 rounded-lg p-4 mx-10 my-8 grid grid-cols-5 grid-rows-2 gap-2">
+                <div class="mb-4 col-span-2">
+                <label for="numeroTarjeta">Número de Tarjeta:</label><br>
+                <input type="number" id="numeroTarjeta" name="numeroTarjeta" class="border p-2 w-full rounded-lg" required>
+                </div>
+            
+                <div class="mb-4 col-span-1">
+                <label for="mesExp">Exp:</label><br>
+                <input type="text" id="mesExpiracion" name="mesExpiracion" placeholder="MM" class="border p-2 w-12 rounded-lg" required>
+                </div>
+            
+                <div class="mb-4 col-span-1">
+                <label for="anoExp"></label><br>
+                <input type="text" id="anoExpiracion" name="anoExpiracion" placeholder="AA" class="border p-2 w-12 rounded-lg" required>
+                </div>
+            
+                <div class="mb-4 col-span-1">
+                <label for="cvv">CVV:</label><br>
+                <input type="number" id="cvv" name="cvv" class="border p-2 w-20 rounded-lg" required>
+                </div>
+            
+                <div class="col-span-2 row-start-2 mb-4">
+                <label for="nombreTarjeta">Nombre en la Tarjeta:</label><br>
+                <input type="text" id="nombreTarjeta" name="nombreTarjeta" class="border p-2 w-full rounded-lg" required>
+                </div>
+            </div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto my-auto">
+            <h1 class="mx-10 text-left text-3xl font-bold">Envío</h1>
+            <div class="Formu2 bg-purple-200 rounded-lg p-4 mx-10 my-8 grid grid-cols-3 grid-rows-3 gap-4">
+                <div class="mb-4 col-span-1">
+                <label for="pais">País:</label><br>
+                <input type="text" id="pais" name="pais" class="border p-2 h-10 rounded-lg" required>
+                </div>
+            
+                <div class="mb-4 col-start-2">
+                <label for="estado">Estado:</label><br>
+                <input type="text" id="estado" name="estado" class="border p-2 h-10 rounded-lg" required>
+                </div>
+            
+                <div class="mb-4 col-start-3">
+                <label for="codigoPostal">Código Postal:</label><br>
+                <input type="number" id="codigoPostal" name="codigoPostal" class="border p-2 h-10 rounded-lg" required>
+                </div>
+            
+                <div class="mb-4 col-span-2 row-start-2">
+                <label for="ciudad">Ciudad:</label><br>
+                <input type="text" id="ciudad" name="ciudad" class="border p-2 w-full h-10 rounded-lg" required>
+                </div>
+            
+                <div class="mb-4 col-span-1">
+                <label for="calle">Calle:</label><br>
+                <input type="text" id="calle" name="calle" class="border p-2 w-full h-10 rounded-lg" required>
+                </div>
+            
+                <div class="mb-4 col-span-2 row-start-3">
+                <label for="numeroInterior">Número Interior:</label><br>
+                <input type="number" id="numeroInterior" name="numeroInterior" class="border p-2 w-full h-10 rounded-lg" required>
+                </div>
+            
+                <div class="mb-4 col-span-1">
+                <label for="numeroExterior">Número Exterior:</label><br>
+                <input type="number" id="numeroExterior" name="numeroExterior" class="border p-2 w-full h-10 rounded-lg" required>
+                </div>
+            </div>
+            </div>
+            <div class="flex items-center justify-center mt-8">
+            <button type="submit" class="bg-blue-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">Pagar</button>
+            </div>
+        </form>
     </main>
 {% endblock %}
