@@ -2,13 +2,13 @@
 
 {% block content %}
 	<div class="banner text-center bg-gray-200">
-    	<p>¡Obtén un 15% de descuento usando el código: J7pR9Wq!</p>
+		<p>¡Obtén un 15% de descuento usando el código: J7pR9Wq!</p>
 	</div>
 
 	{% include 'partials/navbar.twig' %}
 
 	<main role="main">
-    <p>{{ session.hello}}</p>
+		<p>{{ session.hello}}</p>
 		<section class="sec1 flex mt-10 mx-10">
 			<div id="textin" class="relative z-10 w-1/3 -mr-20 my-40 ml-10 p-16 overflow-hidden bg-gray-200 rounded-lg h-full">
 				<h1 class="font-bold text-4xl mb-4">
@@ -16,9 +16,9 @@
 				</h1>
 				<p class="text-justify">
 					Bienvenido a Jewernico, espero estés preparado para deslumbrarte con nuestra brillante, original
-					        y divertida joyería. Nuestros productos son hechos a mano con materiales de la más alta calidad. Hecha un
-					        vistazo
-					        que seguro tenemos algo para ti. Deja que la fantasía y la prehistoria adornen tu vida.
+										        y divertida joyería. Nuestros productos son hechos a mano con materiales de la más alta calidad. Hecha un
+										        vistazo
+										        que seguro tenemos algo para ti. Deja que la fantasía y la prehistoria adornen tu vida.
 				</p>
 				<button class="btn btn-outline btn-primary mt-4">Comprar</button>
 			</div>
@@ -27,16 +27,15 @@
 			</div>
 		</section>
 
-		<section class="sec2 mt-20 mx-10 mb-20">
+		<section class="sec2 mt-20 mx-20 mb-20">
 			<h2 class="font-bold text-2xl mb-10">Conoce algunos productos de nuestro catalogo</h2>
-
-			<div class="flex space-x-4" id="productosAleatorios">
+			<div class="flex space-x-4 justify-between" id="productosAleatorios">
 				{% for producto in productos %}
-					<div class="max-w-xs rounded overflow-hidden shadow-lg h-100 w-150">
-						<img src="{{ producto.Imagenes[0] }}" alt="Imagen del producto" class="flex-none w-24 h-24 rounded-lg object-cover">
-						<div class="px-6 py-4">
+					<div class="max-w-xs rounded overflow-hidden shadow-lg w-96">
+						<img src="{{ producto.Imagenes[0] }}" alt="Imagen del producto" class="flex-none rounded-lg object-cover">
+						<div class="px-6 py-4 text-center">
 							<div class="font-bold text-xl mb-2">{{ producto.Nombre }}</div>
-							<p class="text-gray-700 text-base">${{ producto.Precio }}</p>
+							<p class="text-gray-700 text-base">$ {{ producto.Precio }}</p>
 						</div>
 					</div>
 				{% endfor %}
@@ -48,9 +47,9 @@
 			<div class="mision text-center">
 				<h2 class="text-4xl text-black">
 					"Recuerda que en JewerNico, cuidamos nuestras joyas asi como los paleontologos que cuidan los restos de los
-					        dinosaurios y,
-					        sabes que tienen en comun el meteorito que extinguió a los dinosaurios y las princesas de Disney? Que ambos los
-					        encuentras en nuestras joyas! Tan brillantes y tan magicos!
+										        dinosaurios y,
+										        sabes que tienen en comun el meteorito que extinguió a los dinosaurios y las princesas de Disney? Que ambos los
+										        encuentras en nuestras joyas! Tan brillantes y tan magicos!
 				</h2>
 				<p>Equipo Jewernico</p>
 			</div>
@@ -102,5 +101,5 @@
 			</div>
 		</section>
 	</main>
-{% include 'partials/footer.twig' %}
+	{% include 'partials/footer.twig' %}
 {% endblock %}

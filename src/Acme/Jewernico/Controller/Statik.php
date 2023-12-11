@@ -10,9 +10,20 @@ class Statik
     {
         $products = \Acme\Jewernico\Command\Database::getProducts();
 
-        // Select 4 random products
-        $random_products = array_rand($products, 4);
+        for ($i = 0; $i < count($products); $i++)
+        {
+            if (!is_array($products[$i]["Imagenes"])) {
+                $images = $products[$i]["Imagenes"];
+                $products[$i]["Imagenes"] = [];
+                if (!empty($images)) {
+                    $products[$i]["Imagenes"][] = $images;
+                }
+            }
+        }
 
+        shuffle($products);
+        $random_products = array_slice($products, 0, 4);
+        
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
