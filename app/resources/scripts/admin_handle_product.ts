@@ -18,9 +18,8 @@ $(document).ready(function () {
             this.on('addedfile', function (file) {
                 file.previewElement.addEventListener('click', function () {
                     myDropzone.removeFile(file);
-                    file.previewElement.remove();
+                    file.previewElement.remove()
                     pathsArray.splice(pathsArray.indexOf(file.name), 1);
-
                 });
             });
         }
