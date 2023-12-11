@@ -24,8 +24,11 @@
 			<div class="flex justify-between items-center mb-4">
 				<div class="flex space-x-4 items-center">
 					<p class="font-bold">Filtros</p>
-					<select class="select select-bordered w-32" id="categorias">
-						<option disabled="disabled" selected="selected">Categoria</option>
+					<select class="select select-bordered w-32" id="categories">
+						<option value="all" selected="selected">Todos</option>
+                        {% for categoria in categorias %}
+                            <option value="{{categoria.Nombre}}">{{categoria.Nombre}}</option>
+                        {% endfor %}
 					</select>
 					<select class="select select-bordered w-32">
 						<option disabled="disabled" selected="selected">Price</option>
@@ -47,5 +50,6 @@
 			</div>
 		</div>
 	</main>
+	<script src="/dist/products.js"></script>
 	{% include "partials/footer.twig" %}
 {% endblock %}
