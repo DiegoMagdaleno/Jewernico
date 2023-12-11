@@ -24,6 +24,15 @@ class Products {
             return;
         }
     }
+
+    public static function get($id): void {
+        $product = \Acme\Jewernico\Command\Database::getProduct($id);
+        if ($product === false) {
+            Flight::json(["error"=> "No existe dicho producto"],404);
+        }
+
+        Flight::json(["producto" => $product], 200);
+    }
 }
 
 ?>

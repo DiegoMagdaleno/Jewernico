@@ -4,7 +4,7 @@
 {% block content %}
 	{% include 'partials/admin_sidebar.twig' %}
 
-	<main class="p-4 sm:ml-64">
+	<main class="p-4 sm:ml-64" data-product-id="{{ producto.Id }}">
 		<div class="p-8 flex items-center">
 			<button class="btn btn-circle" id="back-button">
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewbox="0 0 24 24" stroke="currentColor">
@@ -12,7 +12,11 @@
 				</svg>
 			</button>
 			<div class="w-1/2 pr-4 ml-10">
-				<h1 class="text-lg font-bold">Añadir Producto</h1>
+                {% if producto is defined and producto is not null %}
+                    <h1 class="text-lg font-bold">Editar Producto</h1>
+                {% else %}
+                    <h1 class="text-lg font-bold">Añadir Producto</h1>
+                {% endif %}
 			</div>
 		</div>
 		<form id="product-form" method="post">
@@ -20,24 +24,24 @@
 				<div class="w-1/2 pr-4 ml-32 bg-base-100 rounded shadow-md p-8">
 					<div class="mb-4">
 						<label for="nombre" class="block text-md font-bold mb-2">Nombre*</label>
-						<input type="text" id="nombre" name="nombre" class="input input-bordered w-full" placeholder="Camisa, Playera, Pantalón, etc" required>
+						<input type="text" id="nombre" name="nombre" class="input input-bordered w-full" placeholder="Camisa, Playera, Pantalón, etc" value="{{ producto.Nombre }}" required>
 					</div>
 					<div>
 						<label for="descripcion" class="block text-md font-bold mb-2">Descripción*</label>
-						<textarea id="descripcion" name="descripcion" class="textarea textarea-bordered w-full h-48" placeholder="Talla, Color, Diseño, etc" required></textarea>
+						<textarea id="descripcion" name="descripcion" class="textarea textarea-bordered w-full h-48" placeholder="Talla, Color, Diseño, etc" required>{{ producto.Descripcion }}</textarea>
 					</div>
 				</div>
 				<div class="w-1/4 ml-8 bg-base-100 rounded shadow-md p-8">
 					<div class="mb-4">
 						<label for="categoria" class="block text-md font-bold pb-4">Categoria*</label>
-						<select id="categoria-select" name="idMaterial" class="w-full border p-2 rounded select select-bordered" required>
+						<select id="categoria-select" name="idMaterial" class="w-full border p-2 rounded select select-bordered" value="{{ producto.IdCategoria}}" required>
 							{% for category in categories %}
 								<option value="{{ category.Id }}">{{ category.Nombre }}</option>
 							{% endfor %}
 						</select>
 						<hr class="my-4 border-t-2 border-gray-300 w-full">
 						<label for="material" class="block text-md font-bold pb-4">Material*</label>
-						<select id="material-select" name="idCategoria" class="w-full border p-2 select select-bordered" required>
+						<select id="material-select" name="idCategoria" class="w-full border p-2 select select-bordered" value="{{ producto.IdMaterial }}" required>
 							{% for material in materials %}
 								<option value="{{ material.Id }}">{{ material.Nombre }}</option>
 							{% endfor %}
@@ -58,15 +62,15 @@
 					<div class="flex">
 						<div class="m-2">
 							<label for="precio" class="block text-sm font-semibold mb-2">Precio*</label>
-							<input type="number" id="precio" name="precio" class="w-full p-2 rounded input input-bordered" min="0" placeholder="$ 0.00" required>
+							<input type="number" id="precio" name="precio" class="w-full p-2 rounded input input-bordered" min="0" placeholder="$ 0.00" value="{{ producto.Precio }}" required>
 						</div>
 						<div class="m-2">
 							<label for="descuento" class="block text-sm font-semibold mb-2">Descuento*</label>
-							<input type="number" id="descuento" name="descuento" class="w-full border p-2 rounded input input-bordered" min="0" placeholder="0%" required>
+							<input type="number" id="descuento" name="descuento" class="w-full border p-2 rounded input input-bordered" min="0" placeholder="0%" value="{{ producto.Descuento }}" required>
 						</div>
 						<div class="m-2">
 							<label for="stock" class="block text-sm font-semibold mb-2">Cantidad*</label>
-							<input type="number" id="stock" name="stock" class="w-full border p-2 rounded input input-bordered" min="0" placeholder="0" required>
+							<input type="number" id="stock" name="stock" class="w-full border p-2 rounded input input-bordered" min="0" placeholder="0" value="{{ producto.Stock }}" required>
 						</div>
 					</div>
 				</div>
