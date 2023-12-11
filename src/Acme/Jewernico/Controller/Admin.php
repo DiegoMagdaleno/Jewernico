@@ -16,7 +16,9 @@ class Admin {
     }
 
     public static function addProduct() {
-        Flight::view()->display("admin_product_add.twig", []);
+        $categories = \Acme\Jewernico\Command\Database::getCategories();
+        $materials = \Acme\Jewernico\Command\Database::getMaterials();
+        Flight::view()->display("admin_add_product.twig", ["categories" => $categories, "materials" => $materials]);
     }
 }
 ?>

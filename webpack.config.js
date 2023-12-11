@@ -9,6 +9,7 @@ module.exports = {
         footer: './app/resources/scripts/footer.ts',
         register: './app/resources/scripts/register.ts',
         recover: './app/resources/scripts/recover.ts',
+        admin_handle_product: './app/resources/scripts/admin_handle_product.ts',
     },
     output: {
         path: path.resolve(__dirname, 'public', 'dist'),
@@ -33,6 +34,13 @@ module.exports = {
                     'sass-loader',
                 ],
             },
+            {
+                test: /\.css$/,
+                use: [
+                    'css-loader',
+                    'postcss-loader',
+                ],
+            }
         ],
     },
     plugins: [

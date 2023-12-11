@@ -144,5 +144,37 @@ class Database
         $query->execute(array(":correoElectronico" => $email));
         return $query->rowCount();
     }
+
+    public static function addProduct($name, $description, $material, $category, $price, $stock)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("INSERT INTO producto (Nombre, Descripcion, IdMaterial, IdCategoria, Precio, Stock) VALUES (:nombre, :descripcion, :idMaterial, :idCategoria, :precio, :stock)");
+        $query->execute(array(
+            ":nombre" => $name,
+            ":descripcion" => $description,
+            ":idMaterial" => $material,
+            ":idCategoria" => $category,
+            ":precio" => $price,
+            ":stock" => $stock
+        ));
+        if ($query->rowCount() > 0) {
+            return $db->lastInsertId();
+        } else {
+            return false;
+        }
+    }
+
+    public static function linkProductToImages($product_id, $images)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("INSERT INTO imagen (IdProducto, Ruta) VALUES (:idProducto, :ruta)");
+        for ($i = 0; $i < count($images); $i++) {
+            $query->execute(array(
+                ":idProducto" => $product_id,
+                ":ruta" => $images[$i],
+            ));
+        }
+        return ($query->rowCount() > 0);
+    }
 }
 ?>
