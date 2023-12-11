@@ -74,6 +74,17 @@ class Products
 
         Flight::json(["success" => "Producto actualizado"], 200);
     }
+
+    public static function delete($id): void
+    {
+        $res = \Acme\Jewernico\Command\Database::deleteProduct($id);
+        if ($res === false) {
+            Flight::json(["error" => "Error al eliminar el producto"], 400);
+            return;
+        }
+
+        Flight::json(["success" => "Producto eliminado"], 200);
+    }
 }
 
 ?>
