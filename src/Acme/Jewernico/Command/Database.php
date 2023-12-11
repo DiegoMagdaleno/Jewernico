@@ -145,15 +145,16 @@ class Database
         return $query->rowCount();
     }
 
-    public static function addProduct($name, $description, $material, $category, $price, $stock)
+    public static function addProduct($name, $description, $material, $category, $discount, $price, $stock)
     {
         $db = Flight::db();
-        $query = $db->prepare("INSERT INTO producto (Nombre, Descripcion, IdMaterial, IdCategoria, Precio, Stock) VALUES (:nombre, :descripcion, :idMaterial, :idCategoria, :precio, :stock)");
+        $query = $db->prepare("INSERT INTO producto (Nombre, Descripcion, IdMaterial, IdCategoria, Descuento, Precio, Stock) VALUES (:nombre, :descripcion, :idMaterial, :idCategoria, :descuento, :precio, :stock)");
         $query->execute(array(
             ":nombre" => $name,
             ":descripcion" => $description,
             ":idMaterial" => $material,
             ":idCategoria" => $category,
+            ":descuento" => $discount,
             ":precio" => $price,
             ":stock" => $stock
         ));
@@ -174,6 +175,39 @@ class Database
                 ":ruta" => $images[$i],
             ));
         }
+        return ($query->rowCount() > 0);
+    }
+
+    public static function pruneImagesForProduct($id)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("DELETE FROM imagen WHERE IdProducto = :idProducto");
+        $query->execute(array(":idProducto" => $id));
+        return ($query->rowCount() > 0);
+    }
+
+    public static function getImageCountForProduct($id)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("SELECT COUNT(*) AS image_count FROM imagen WHERE IdProducto = :idProducto");
+        $query->execute(array(":idProducto" => $id));
+        return $query->fetchColumn();
+    }
+
+    public static function updateProduct($id, $name, $description, $material, $category, $discount, $price, $stock)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("UPDATE producto SET Nombre = :nombre, Descripcion = :descripcion, IdMaterial = :idMaterial, IdCategoria = :idCategoria, Descuento = :descuento, Precio = :precio, Stock = :stock WHERE Id = :id");
+        $query->execute(array(
+            ":id" => $id,
+            ":nombre" => $name,
+            ":descripcion" => $description,
+            ":idMaterial" => $material,
+            ":idCategoria" => $category,
+            ":descuento" => $discount,
+            ":precio" => $price,
+            ":stock" => $stock
+        ));
         return ($query->rowCount() > 0);
     }
 }

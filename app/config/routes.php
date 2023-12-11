@@ -33,6 +33,7 @@ Flight::route("POST /api/recover/verify_question", ["\Acme\Jewernico\Controller\
 Flight::route("POST /api/recover/update_password", ["\Acme\Jewernico\Controller\API\Recover", "update_password"]);
 Flight::route("POST /api/upload/files", ["\Acme\Jewernico\Controller\API\Files", "upload"]);
 Flight::route("POST /api/products", ["\Acme\Jewernico\Controller\API\Products", "add"]);
+Flight::route("POST /api/products/@id", ["\Acme\Jewernico\Controller\API\Products", "edit"]);
 Flight::route("GET /api/products/@id", ["\Acme\Jewernico\Controller\API\Products", "get"]);
 
 // -------------------------------------------------- //
