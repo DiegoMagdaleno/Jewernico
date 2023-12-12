@@ -19,6 +19,15 @@ $(document).ready(function () {
         });
     }
 
+    function updateTax() {
+        let subtotal = 0;
+        $('.total-price-item').each(function () {
+            subtotal += $(this).data('price');
+        });
+        let tax = subtotal * $('#pais-select').find(':selected').data('tax');
+        $('#tax-display').text(`$ ${tax.toFixed(2)} MXN (Impuesto de: ${$('#pais-select').find(':selected').data('tax') * 100}%)`);
+    }
+
     function updateStates() {
         let pais = $('#pais-select').val();
         let url = pais === 'MX' ? MEXICO : USA;
@@ -27,7 +36,32 @@ $(document).ready(function () {
 
     $('#pais-select').on('change', function () {
         updateStates();
+        updateTax();
     });
 
     updateStates();
+
+    let shippingCost = 89.00;
+
+    let subtotal = 0;
+    $('.total-price-item').each(function () {
+        subtotal += $(this).data('price');
+    });
+    $('#subtotal-display').text(`$ ${subtotal.toFixed(2)}`);
+
+    if (subtotal > 299) {
+        $('#shipping-display').text('Gratis');
+        $('#shipping-display').addClass('text-success');
+        shippingCost = 0;
+    } else {
+        $('#shipping-display').text(`$ ${shippingCost.toFixed(2)} MXN`);
+    }
+
+    updateTax();
+
+    let total = subtotal + parseFloat($('#tax-display').text().split(' ')[1]) + shippingCost;
+    $('#total-display').text(`$ ${total.toFixed(2)}`);
+
+    $('#pay-button').on('click', function () {
+        
 });
