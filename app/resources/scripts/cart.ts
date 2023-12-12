@@ -4,6 +4,11 @@ const axios = require('axios').default;
 $(document).ready(function () {
     let subtotal = 0;
 
+    $("#checkout-button").on("click", function () {
+        let modal = $("#checkout-modal")[0] as HTMLDialogElement;
+        modal.showModal();
+    });
+
     function updateSubtotal() {
         subtotal = 0;
         $(".product").each(function () {
