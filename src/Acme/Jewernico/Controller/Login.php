@@ -13,6 +13,8 @@ class Login {
     public static function logout(): void {
         session_destroy();
         session_abort();
+        setcookie("correoElectronico", "", time() - 3600, "/");
+        setcookie("password", "", time() - 3600, "/");
         Flight::redirect("/");
     }
 }
