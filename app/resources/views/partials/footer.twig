@@ -1,86 +1,95 @@
-<div id="custom-footer-container" class="bg-base-200">
-	<div id="custom-footer" class="isolate p-6 rounded text-center mb-10 text-black">
-		<h2 class="text-3xl font-bold mb-6">¡Consigue un 20% de descuento en tu primer compra!</h2>
-		<p class="mb-8">Únete a nosotros mediante tu email para recibir noticias y descuentos exclusivos</p>
-		<form method="post" action="" id="contact_form" accept-charset="UTF-8">
-			<div class="flex justify-center items-center">
-				<div class="mb-4 flex items-center">
-					<input id="newsteller-email" type="email" name="solicitante" class="input input-bordered w-full" value="" autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="Email" required>
-					<button id="newsteller-email-submit" type="button" class="btn ml-2 p-2 btn-square bg-primary">
-						<i class="fas fa-arrow-right text-white"></i>
-					</button>
-				</div>
-			</div>
-		</form>
-	</div>
+<footer class="bg-base-200">
+    <div id="custom-footer-container" class="container mx-auto py-6 px-4">
+        <div id="custom-footer" class="isolate p-6 rounded mb-10 text-black w-full text-center">
+            <h2 class="text-3xl font-bold mb-6">¡Consigue un 20% de descuento en tu primer compra!</h2>
+            <p class="text-sm mb-8">Únete a nosotros mediante tu email para recibir noticias y descuentos exclusivos</p>
+            <form method="post" action="" id="contact_form" accept-charset="UTF-8">
+                <div class="flex justify-center items-center">
+                    <div class="mb-4 flex items-center">
+                        <input id="newsteller-email" type="email" name="solicitante" class="input input-bordered w-full" value="" autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="Email" required>
+                        <button id="newsteller-email-submit" type="button" class="btn ml-2 p-2 btn-square bg-primary">
+                            <i class="fas fa-arrow-right text-white"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-	<div class="container mx-auto py-6 px-4">
-		<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-			<div class="md:col-span-1">
-				<h2 class="text-lg font-bold mb-2 ml-12">Mapa del sitio</h2>
-				<ul class="space-y-2">
-					<li>
-						<a href="/" class="text-black link link-hover ml-12">Inicio</a>
-					</li>
-					<li>
-						<a href="/products" class="text-black link link-hover ml-12">Productos</a>
-					</li>
-					<li>
-						<a href="/contact" class="text-black link link-hover ml-12">Contacto</a>
-					</li>
-					<li>
-						<a href="/about-us" class="text-black link link-hover ml-12">About Us</a>
-					</li>
-					<li>
-						<a href="/faq" class="text-black link link-hover ml-12">FAQ</a>
-					</li>
-				</ul>
-			</div>
-			<div class="md:col-span-1">
-				<h2 class="text-lg font-bold mb-2">Nuestras Sucursales</h2>
-				<ul class="space-y-2">
-					<li>
-						<p class="text-black">213 Jose Maria Morelos y Pavón, Zona Centro</p>
-					</li>
-					<li>
-						<p class="text-black">513 Blvd. Luis Donaldo Colosio</p>
-					</li>
-					<li>
-						<p class="text-black">Lunes a Viernes de 9 a.m. a 8 p.m.</p>
-					</li>
-					<li>
-						<p class="text-black">Sábados de 10 a.m. a 5 p.m.</p>
-					</li>
-				</ul>
-			</div>
-			<div class="md:col-span-1">
-				<img class="image w-1/2 h-1/2" src="/resources/img/diamond.png" alt="Elegante joyería de alta calidad." loading="lazy">
-			</div>
-			<div class="md:col-span-1">
-				<h2 class="text-lg font-bold mb-2 -ml-11">Nuestro Compromiso</h2>
-				<ul class="space-y-2">
-					<li>
-						<p class="text-black -ml-11 text-justify">En JewerNico no solo nos comprometemos a crear joyas de calidad, sino también, a crear joyas que sean seguras en todos los aspectos, para que así, nuestros clientes tengan la mejor calidad cargando en su cuello!</p>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="flex justify-center items-center mt-16">
-			<ul class="flex space-x-4 mb-8">
-				<li>
-					<a href="https://www.facebook.com/profile.php?id=61551430979910" class="text-black text-lg">
-						<i class="fab fa-facebook-f"></i>
-					</a>
-				</li>
-				<li>
-					<a href="https://instagram.com/jewer_nico?utm_source=qr&igshid=MzNlNGNkZWQ4Mg==" class="text-black text-lg">
-						<i class="fab fa-instagram"></i>
-					</a>
-				</li>
-			</ul>
-		</div>
-		<p class="text-center font-bold">Esta pagina es ficticia, forma parte de un proyecto academico y es solamente con fines educativos</p>
-		<p class="text-center font-bold">Ultima actualización: <span>{{ global.last_modified }}</p>
-	</div>
-</div>
-<script src="/dist/footer.js"></script>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mx-4">
+            <div class="md:col-span-1 mb-8 mx-auto text-center">
+                <h2 class="text-lg font-bold mb-2">Mapa del sitio</h2>
+                <ul class="space-y-2 text-center">
+                    <li>
+                        <a href="/" class="text-black link link-hover">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="/products" class="text-black link link-hover">Productos</a>
+                    </li>
+                    <li>
+                        <a href="/contact" class="text-black link link-hover">Contacto</a>
+                    </li>
+                    <li>
+                        <a href="/about-us" class="text-black link link-hover">About Us</a>
+                    </li>
+                    <li>
+                        <a href="/faq" class="text-black link link-hover">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-1 mb-8 mx-auto text-center">
+                <h2 class="text-lg font-bold mb-2">Nuestras Sucursales</h2>
+                <ul class="space-y-2">
+                    <li>
+                        <p class="text-black">213 Jose Maria Morelos y Pavón, Zona Centro</p>
+                    </li>
+                    <li>
+                        <p class="text-black">513 Blvd. Luis Donaldo Colosio</p>
+                    </li>
+                    <li>
+                        <p class="text-black">Lunes a Viernes de 9 a.m. a 8 p.m.</p>
+                    </li>
+                    <li>
+                        <p class="text-black">Sábados de 10 a.m. a 5 p.m.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-1 mb-8 mx-auto flex items-center justify-center mt-8">
+                <img class="image object-contain w-2/3 h-2/3 mx-auto rounded" src="/resources/img/diamond.png" alt="Elegante joyería de alta calidad." loading="lazy">
+            </div>
+
+            <div class="md:col-span-1 mb-8 mx-auto text-center">
+                <h2 class="text-lg font-bold mb-2">Nuestro Compromiso</h2>
+                <ul class="space-y-2 text-center">
+                    <li>
+                        <p class="text-black ml-4 -ml-md-12 text-justify">En JewerNico no solo nos comprometemos a crear joyas de calidad, sino también, a crear joyas que sean seguras en todos los aspectos, para que así, nuestros clientes tengan la mejor calidad cargando en su cuello!</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="md:col-span-4 mb-8 mx-auto flex flex-col items-center justify-center mt-8">
+            <ul class="flex space-x-4 mb-4 justify-center">
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61551430979910" class="text-black text-lg">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://instagram.com/jewer_nico?utm_source=qr&igshid=MzNlNGNkZWQ4Mg==" class="text-black text-lg">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <p class="text-center font-bold mb-4 w-full">Esta página es ficticia, forma parte de un proyecto académico y es solamente con fines educativos</p>
+            <p class="text-center font-bold w-full">Última actualización: <span>{{ global.last_modified }}</span></p>
+        </div>
+    </div>
+
+    <!-- Asegúrate de incluir los scripts necesarios, como el script de Tailwind y cualquier otro script personalizado -->
+    <script src="ruta/a/tailwind.js"></script>
+    <script src="ruta/a/daisy.js"></script>
+    <script src="/dist/footer.js"></script>
+</footer>
