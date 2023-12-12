@@ -12,7 +12,7 @@ class EmailCoupon {
         $data = Flight::request()->data->getData();
 
         // Obtener el contenido del correo desde el archivo email.html
-        $contenido_correo = file_get_contents("../../app/resources/templates/email.html");
+        $contenido_correo = file_get_contents("../app/resources/templates/email.html");
 
         // Crear instancia de PHPMailer
         $mail = new PHPMailer(true);
@@ -26,6 +26,11 @@ class EmailCoupon {
             $mail->Password   = 'bapy xxuj lroe ysxn'; 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->Debugoutput = function ($str, $level) {
+            // Puedes registrar o imprimir los mensajes de depuración aquí
+            error_log("$str\n");
+            };
 
             // Configurar el remitente y el destinatario
             $mail->setFrom('nicoleflorestorres27@gmail.com', 'Jewernico');
