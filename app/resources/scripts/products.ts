@@ -31,6 +31,9 @@ $(document).ready(function () {
                     }
                 });
                 let currentCount = parseInt($('#cart-indicator').text());
+                if (isNaN(currentCount)) {
+                    currentCount = 0;
+                }
                 $('#cart-indicator').text(currentCount + 1);
             }
         }).catch(function (error) {
@@ -41,7 +44,6 @@ $(document).ready(function () {
     $('#search-price').on('click', function () {
         let minPrice = $('#min-price').val();
         let maxPrice = $('#max-price').val();
-        console.log("Hello");
         $(".product").each(function () {
             let price = $(this).data("price");
             if (price >= minPrice && price <= maxPrice) {
