@@ -31,16 +31,15 @@
 			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
 				<div>
 					<label class="block mb-2 text-gray-700" for="pais">País</label>
-                    <select id="pais-select" name="pais" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-                        {% for pais in paises %}
-                            <option value="{{ pais.Codigo }}">{{ pais.Nombre }}</option>
-                        {% endfor %}
-                    </select>
+					<select id="pais-select" name="pais" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+						{% for pais in paises %}
+							<option value="{{ pais.Codigo }}" data-tax="{{ pais.Impuesto }}">{{ pais.Nombre }}</option>
+						{% endfor %}
+					</select>
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="estado">Estado</label>
-                    <select id="estado-select" name="estado" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" disabled>
-                    </select>
+					<select id="estado-select" name="estado" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" disabled></select>
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="codigoPostal">Código Postal</label>
@@ -91,7 +90,7 @@
 								<td class="border px-4 py-2">{{ item.DescuentoProducto }}
 									%</td>
 							{% endif %}
-							<td class="border px-4 py-2">$
+							<td class="border px-4 py-2 total-price-item" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
 								{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
 								MXN</td>
 						</tr>
@@ -107,7 +106,7 @@
 			<div class="flex flex-row justify-between">
 				<div class="w-1/2">
 					<p class="font-semibold">Subtotal:
-						<span id="subtotal-display"></span> 
+						<span id="subtotal-display"></span>
 						MXN</p>
 					<p class="font-semibold">Envío:
 						<span id="shipping-display"></span>
@@ -120,10 +119,10 @@
 						MXN</p>
 				</div>
 				<div class="flex items-center flex-grow">
-					<button class="btn btn-primary w-full">Pagar</button>
+					<button class="btn btn-primary w-full" id=">Pagar</button>
 				</div>
 			</div>
 		</div>
 	</main>
-    <script src="/dist/checkout.js"></script>
+	<script src="/dist/checkout.js"></script>
 {% endblock %}
