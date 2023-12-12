@@ -34,14 +34,14 @@
 				<div class="w-1/4 ml-8 bg-base-100 rounded shadow-md p-8">
 					<div class="mb-4">
 						<label for="categoria" class="block text-md font-bold pb-4">Categoria*</label>
-						<select id="categoria-select" name="idMaterial" class="w-full border p-2 rounded select select-bordered" value="{{ producto.IdCategoria}}" required>
+						<select id="categoria-select" name="idCategoria" class="w-full border p-2 rounded select select-bordered" value="{{ producto.IdCategoria}}" required>
 							{% for category in categories %}
 								<option value="{{ category.Id }}">{{ category.Nombre }}</option>
 							{% endfor %}
 						</select>
 						<hr class="my-4 border-t-2 border-gray-300 w-full">
 						<label for="material" class="block text-md font-bold pb-4">Material*</label>
-						<select id="material-select" name="idCategoria" class="w-full border p-2 select select-bordered" value="{{ producto.IdMaterial }}" required>
+						<select id="material-select" name="idMaterial" class="w-full border p-2 select select-bordered" value="{{ producto.IdMaterial }}" required>
 							{% for material in materials %}
 								<option value="{{ material.Id }}">{{ material.Nombre }}</option>
 							{% endfor %}
