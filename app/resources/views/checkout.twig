@@ -1,20 +1,19 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <main role="main">
-        <section class="border-4 rounded-lg border-solid border-rose-500 p-4 m-10 grid grid-rows-3 gap-1 items-center max-w-lg mx-auto my-auto">
-            <h1 class="row-span-1 text-center text-3xl font-bold">Seleccione su método de pago</h1>
-        
-            <a href="jewernico.com/checkout/information" class="grid row-span-1 mt-4 bg-gray-200 rounded-full p-2 items-center grid-cols-3">
-                <img class="w-8 h-8 mr-2 col-span-1" src="resources/img/OXXO.png" alt="Logo OXXO">
-                <span class="col-span-2">OXXO</span>
-            </a>
-        
-            <a href="jewernico.com/checkout/information" class="grid row-span-1 mt-4 bg-gray-200 rounded-full p-2 items-center grid-cols-3">
-                <img class="w-8 h-8 mr-2 col-span-1" src="resources/img/CARD.png" alt="Logo Mastercard/VISA">
-                <span class="col-span-2">Mastercard/VISA</span>
-            </a>
-        </section>
-    </main>
-{% endblock %}
+	<main role="main">
+		<section class="border-4 rounded-lg border-solid border-rose-500 p-4 m-10 grid grid-rows-3 gap-1 items-center max-w-lg mx-auto my-auto">
+			<h1 class="row-span-1 text-center text-3xl font-bold">Seleccione su método de pago</h1>
 
+			<a href="/checkout/information" class="grid row-span-1 mt-4 bg-gray-200 rounded-full p-2 items-center grid-cols-3">
+				<img class="w-8 h-8 mr-2 col-span-1" src="/resources/img/OXXO.png" alt="Logo OXXO">
+				<span class="col-span-2">OXXO</span>
+			</a>
+
+			<a href="/checkout/information" class="grid row-span-1 mt-4 bg-gray-200 rounded-full p-2 items-center grid-cols-3">
+				<img class="w-8 h-8 mr-2 col-span-1" src="/resources/img/CARD.png" alt="Logo Mastercard/VISA">
+				<span class="col-span-2">Mastercard/VISA</span>
+			</a>
+		</section>
+	</main>
+{% endblock %}

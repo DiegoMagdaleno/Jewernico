@@ -1,0 +1,22 @@
+<div class="product grid grid-cols-3 w-full" data-price="{{ producto.PrecioProducto }}" data-pid="{{ producto.ProductoId }}">
+    <div class="grid-span-1 w-full flex flex-row">
+        <img src="{{ producto.ImagenProducto }}" class="rounded-lg w-32 h-32"/>
+        <div class="flex flex-col ml-8">
+            <p class="text-lg">{{ producto.NombreProducto }}</p>
+            <p>${{ producto.PrecioProducto }} MXN</p>
+        </div>
+    </div>
+    <div class="w-full grid-span-1 flex flex-row items-start justify-end">
+        <div class="join">
+            <button class="minus btn btn-neutral join-item">-</button>
+            <input type="number" class="input input-bordered w-16 join-item arrow-hide" value="{{ producto.CarritoCantidad }}" min="0" max="{{ producto.StockProducto }}">
+            <button class="plus btn btn-neutral join-item">+</button>
+        </div>
+        <button class="btn btn-error ml-2 remove">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    </div>
+    <div class="w-full grid-span-1 flex flex-row justify-end">
+        <p class="price-total-item">$0.00</p>
+    </div>
+</div>
