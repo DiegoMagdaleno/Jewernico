@@ -32,4 +32,18 @@ $(document).ready(function () {
             console.log(error);
         });
     });
+
+    $('#search-price').on('click', function () {
+        let minPrice = $('#min-price').val();
+        let maxPrice = $('#max-price').val();
+        console.log("Hello");
+        $(".product").each(function () {
+            let price = $(this).data("price");
+            if (price >= minPrice && price <= maxPrice) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 });
