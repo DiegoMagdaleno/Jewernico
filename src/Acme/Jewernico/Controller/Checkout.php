@@ -9,12 +9,12 @@ class Checkout {
         Flight::view()->display("checkout.twig", []);
     }
 
-    public static function information() {
+    public static function information($type) {
         $cart = \Acme\Jewernico\Command\Database::getCart($_SESSION["user"]->getId());
 
         $countries = \Acme\Jewernico\Command\Database::getCountries();
 
-        Flight::view()->display("checkout_details.twig", ["carrito" => $cart, "paises" => $countries]);
+        Flight::view()->display("checkout_details.twig", ["carrito" => $cart, "paises" => $countries, "tipo" => $type]);
     }
 }
 
