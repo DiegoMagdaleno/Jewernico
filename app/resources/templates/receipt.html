@@ -1,0 +1,83 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recivo de compra</title>
+
+
+</head>
+
+<body>
+
+    <div class="container"
+        style="display: block;width: 100%;background: #fff;max-width: 350px;padding: 25px;margin: 50px auto 0;box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
+
+        <div class="receipt_header" style="padding-bottom: 40px;border-bottom: 1px dashed #000;text-align: center;">
+            <h1 style="font-size: 20px;margin-bottom: 5px;text-transform: uppercase;">Recibo de compra <span
+                    style="display: block;font-size: 25px;">Jewernico</span></h1>
+            <h2 style="font-size: 14px;color: #727070;font-weight: 300;">Dirección: 213 Jose Maria Morelos y Pavón, Zona
+                Centro<span style="display: block;">Tel: +52 449 399 3307</span></h2>
+        </div>
+
+        <div class="receipt_body" style="margin-top: 25px;">
+
+            <div class="general" style="text-align: center;padding: 2px;margin-top: 25px;">
+                <div class="date" id="date">11/12/2020</div>
+                <div class="time" id="time">11:13:06 AM</div>
+                <div> Metodo de pago: <span id="metodo"></span></div>
+                <div> Dirección: </div>
+            </div>
+
+            <div class="items" style="margin-top: 25px;">
+                <table style="width: 100%;">
+                    <thead style="position: relative;">
+                        <th style="text-align: left;">CANT</th>
+                        <th style="text-align: left;">ITEM</th>
+                        <th style="text-align: right;">$</th>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                    <tfoot style="position: relative;">
+                        <tr>
+                            <td style="text-align: left;">Envio</td>
+                            <td style="text-align: left;"></td>
+                            <td id="delivery" style="text-align: right;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left;">Impuesto</td>
+                            <td style="text-align: left;"></td>
+                            <td id="tax" style="text-align: right;"></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: left;">Cupon</td>
+                            <td style="text-align: left;"></td>
+                            <td id="cupon" style="text-align: right;"></td>
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: left;">Total</td>
+                            <td style="text-align: left;"></td>
+                            <td id="total" style="text-align: right;"></td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+
+        </div>
+
+
+        <h3
+            style="border-top: 1px dashed #000;padding-top: 10px;margin-top: 25px;text-align: center;text-transform: uppercase;">
+            ¡Gracias por tu compra!</h3>
+
+    </div>
+
+</body>
+
+</html>
