@@ -31,11 +31,16 @@
 			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
 				<div>
 					<label class="block mb-2 text-gray-700" for="pais">País</label>
-					<input id="pais" name="pais" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+                    <select id="pais-select" name="pais" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+                        {% for pais in paises %}
+                            <option value="{{ pais.Codigo }}">{{ pais.Nombre }}</option>
+                        {% endfor %}
+                    </select>
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="estado">Estado</label>
-					<input id="estado" name="estado" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+                    <select id="estado-select" name="estado" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" disabled>
+                    </select>
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="codigoPostal">Código Postal</label>
@@ -67,57 +72,58 @@
 					<tr>
 						<th class="px-4 py-2">Producto</th>
 						<th class="px-4 py-2">Cantidad</th>
-						<th class="px-4 py-2">Precio</th>
+						<th class="px-4 py-2">Precio unitario</th>
+						<th class="px-4 py-2">Descuento</th>
+						<th class="px-4 py-2">Precio total</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td class="border px-4 py-2">Producto 1</td>
-						<td class="border px-4 py-2">1</td>
-						<td class="border px-4 py-2">$100.00</td>
-					</tr>
-					<tr>
-						<td class="border px-4 py-2">Producto 2</td>
-						<td class="border px-4 py-2">1</td>
-						<td class="border px-4 py-2">$100.00</td>
-					</tr>
-					<tr>
-						<td class="border px-4 py-2">Producto 3</td>
-						<td class="border px-4 py-2">1</td>
-						<td class="border px-4 py-2">$100.00</td>
-					</tr>
+					{% for item in carrito %}
+						<tr>
+							<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
+							<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
+							<td class="border px-4 py-2">$
+								{{ item.PrecioProducto }}
+								MXN</td>
+							{% if item.DescuentoProducto == 0 %}
+								<td class="border px-4 py-2">Sin descuento</td>
+							{% else %}
+								<td class="border px-4 py-2">{{ item.DescuentoProducto }}
+									%</td>
+							{% endif %}
+							<td class="border px-4 py-2">$
+								{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
+								MXN</td>
+						</tr>
+						<tr>
+						{% endfor %}
+					</tbody>
 				</tbody>
 			</table>
 		</div>
 
-		<!-- Adicional -->
-		<div class="mb-6">
-			<h2 class="text-xl font-semibold mb-2">Adicional</h2>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-				<div>
-					<label class="block mb-2 text-gray-700" for="subtotal">Subtotal</label>
-					<input id="subtotal" name="subtotal" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+		<div>
+			<h2 class="text-xl font-semibold mb-2">Desgloce de pago</h2>
+			<div class="flex flex-row justify-between">
+				<div class="w-1/2">
+					<p class="font-semibold">Subtotal:
+						<span id="subtotal-display"></span> 
+						MXN</p>
+					<p class="font-semibold">Envío:
+						<span id="shipping-display"></span>
+					</p>
+					<p class="font-semibold">Impuesto:
+						<span id="tax-display"></span>
+					</p>
+					<p class="font-semibold">Total:
+						<span id="total-display"></span>
+						MXN</p>
 				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="descuentoCupon">Descuento por Cupón</label>
-					<input id="descuentoCupon" name="descuentoCupon" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="impuesto">Impuesto</label>
-					<input id="impuesto" name="impuesto" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="costoEnvio">Costo de Envío</label>
-					<input id="costoEnvio" name="costoEnvio" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="total">Total</label>
-					<input id="total" name="total" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+				<div class="flex items-center flex-grow">
+					<button class="btn btn-primary w-full">Pagar</button>
 				</div>
 			</div>
 		</div>
-		<div class="flex justify-end">
-			<button class="btn btn-primary">Pagar</button>
-		</div>
-	</div>
-</main>{% endblock %}
+	</main>
+    <script src="/dist/checkout.js"></script>
+{% endblock %}
