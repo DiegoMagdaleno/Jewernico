@@ -63,5 +63,39 @@ $(document).ready(function () {
     $('#total-display').text(`$ ${total.toFixed(2)}`);
 
     $('#pay-button').on('click', function () {
-        
+        $('#pay-button').attr('disabled', 'disabled');
+        $('#pay-button').html("<span class='loading loading-infinity loading-lg'></span>");
+        axios.post('/api/checkout', {
+        }).then(function (response) {
+            if (response.data.success) {
+                $('#pay-button').removeAttr('disabled');
+                $('#pay-button').html('Pagar');
+                let toast = $('<div class="toast toast-end">' +
+                    '<div class="alert alert-success">' +
+                    '<span>Se ha realizado el pago</span>' +
+                    '</div>' +
+                    '</div>');
+                $('body').append(toast);
+                setTimeout(function () {
+                    toast.fadeOut('slow', function () {
+                        $(this).remove();
+                    });
+                }, 5000);
+            }
+        }).catch(function (error) {
+            $('#pay-button').removeAttr('disabled');
+            $('#pay-button').html('Pagar');
+            let toast = $('<div class="toast toast-end">' +
+                '<div class="alert alert-error">' +
+                '<span>Ha ocurrido un error</span>' +
+                '</div>' +
+                '</div>');
+            $('body').append(toast);
+            setTimeout(function () {
+                toast.fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 5000);
+        });
+    });
 });

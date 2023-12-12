@@ -43,6 +43,7 @@ Flight::route("POST /api/contact", ["\Acme\Jewernico\Controller\API\Contact", "s
 Flight::route("POST /api/cart/add", ["\Acme\Jewernico\Controller\API\Cart", "add"]);
 Flight::route("POST /api/cart/remove", ["\Acme\Jewernico\Controller\API\Cart", "remove"]);
 Flight::route("POST /api/cart/update", ["\Acme\Jewernico\Controller\API\Cart", "update"]);
+Flight::route("POST /api/checkout", ["\Acme\Jewernico\Controller\API\Checkout", "checkout"]);   
 
 // -------------------------------------------------- //
 // MAPPINGS
