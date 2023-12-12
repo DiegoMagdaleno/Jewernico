@@ -6,7 +6,9 @@ use Flight;
 
 class Cart {
     public static function load(){
-        Flight::view()->display("cart.twig", []);
+        $cart = \Acme\Jewernico\Command\Database::getCart($_SESSION["user"]->getId());
+        
+        Flight::view()->display("cart.twig", ["productos" => $cart]);
     }
 }
 

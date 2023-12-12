@@ -20,6 +20,8 @@ Flight::route("/admin/products/edit/@id", ["\Acme\Jewernico\Controller\Admin", "
 Flight::route("/register", ["\Acme\Jewernico\Controller\Register", "load"]);
 Flight::route("/recover", ["\Acme\Jewernico\Controller\Recover", "load"]);
 Flight::route("/cart", ["\Acme\Jewernico\Controller\Cart", "load"]);
+Flight::route("/checkout", ["\Acme\Jewernico\Controller\Checkout", "load"]);
+Flight::route("/checkout/information", ["\Acme\Jewernico\Controller\Checkout", "information"]);
 
 // -------------------------------------------------- //
 // API ROUTES
@@ -38,6 +40,9 @@ Flight::route("POST /api/products/@id", ["\Acme\Jewernico\Controller\API\Product
 Flight::route("GET /api/products/@id", ["\Acme\Jewernico\Controller\API\Products", "get"]);
 Flight::route("DELETE /api/products/@id", ["\Acme\Jewernico\Controller\API\Products", "delete"]);
 Flight::route("POST /api/contact", ["\Acme\Jewernico\Controller\API\Contact", "send"]);
+Flight::route("POST /api/cart/add", ["\Acme\Jewernico\Controller\API\Cart", "add"]);
+Flight::route("POST /api/cart/remove", ["\Acme\Jewernico\Controller\API\Cart", "remove"]);
+Flight::route("POST /api/cart/update", ["\Acme\Jewernico\Controller\API\Cart", "update"]);
 
 // -------------------------------------------------- //
 // MAPPINGS

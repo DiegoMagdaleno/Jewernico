@@ -1,4 +1,4 @@
-<div class="product p-6 max-w-sm mx-auto rounded-xl shadow-xl transition duration-500 ease-in-out" data-category={{ producto.Categoria }} data-price={{ producto.Precio }}>
+<div class="product p-6 max-w-sm mx-auto rounded-xl shadow-xl transition duration-500 ease-in-out" data-pid={{ producto.Id}} data-category={{ producto.Categoria }} data-price={{ producto.Precio }}>
 	<img src="{{ producto.Imagenes[0] }}" alt="Imagen del producto" class="w-full rounded-xl object-cover">
 	<div class="p-4">
 		<h2 class="text-xl font-semibold">{{ producto.Nombre }}</h2>
@@ -20,7 +20,7 @@
 		<div class="mt-4 flex w-full">
 			<a href="/products/{{ producto.Id }}" class="px-4 py-2 btn btn-primary rounded-md mr-2">Mas información</a>
 			{% if session.user is defined and session.user is not null %}
-				<button onclick="cart_no_logged_modal.showModal()" class="px-4 py-2 btn btn-secondary rounded-md">
+				<button class="shopping-cart px-4 py-2 btn btn-secondary rounded-md">
 					<i class="fa-solid fa-cart-shopping"></i>
 				</button>
 			{% else %}

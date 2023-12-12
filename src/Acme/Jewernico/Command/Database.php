@@ -212,11 +212,106 @@ class Database
         return ($query->rowCount() > 0);
     }
 
-    public static function deleteProduct($id) {
+    public static function deleteProduct($id)
+    {
         $db = Flight::db();
         $query = $db->prepare("DELETE FROM producto WHERE Id = :id");
         $query->execute(array(":id" => $id));
         return ($query->rowCount() > 0);
+    }
+
+    public static function getCartIdByUserId($id)
+    {
+        $db = Flight::db();
+        $query = $db->prepare("SELECT Id FROM carrito WHERE IdUsuario = :idUsuario");
+        $query->execute(array(":idUsuario" => $id));
+        return $query->fetch()["Id"];
+    }
+
+    public static function addToCart($userId, $productId, $quantity)
+    {
+        $db = Flight::db();
+
+        $cartId = self::getCartIdByUserId($userId);
+
+        $query = $db->prepare("INSERT INTO detalle_carrito (IdCarrito, IdProducto, Cantidad) VALUES (:idCarrito, :idProducto, :cantidad)");
+        $query->execute(array(
+            ":idCarrito" => $cartId,
+            ":idProducto" => $productId,
+            ":cantidad" => $quantity
+        ));
+        return ($query->rowCount() > 0);
+    }
+
+    public static function updateCartItemQuantity($userId, $productId, $newQuantity)
+    {
+        $db = Flight::db();
+
+        $cartId = self::getCartIdByUserId($userId);
+
+        $query = $db->prepare("UPDATE detalle_carrito SET Cantidad = :cantidad WHERE IdCarrito = :idCarrito AND IdProducto = :idProducto");
+        $query->execute(array(
+            ":cantidad" => $newQuantity,
+            ":idCarrito" => $cartId,
+            ":idProducto" => $productId
+        ));
+        return ($query->rowCount() > 0);
+    }
+
+    public static function deleteCartItem($userId, $productId)
+    {
+        $db = Flight::db();
+
+        $cartId = self::getCartIdByUserId($userId);
+
+        $query = $db->prepare("DELETE FROM detalle_carrito WHERE IdCarrito = :idCarrito AND IdProducto = :idProducto");
+        $query->execute(array(
+            ":idCarrito" => $cartId,
+            ":idProducto" => $productId
+        ));
+        return ($query->rowCount() > 0);
+    }
+
+    public static function getQuantityOfProductInCart($userId, $productId)
+    {
+        $db = Flight::db();
+
+        $cartId = self::getCartIdByUserId($userId);
+
+        $query = $db->prepare("SELECT Cantidad FROM detalle_carrito WHERE IdCarrito = :idCarrito AND IdProducto = :idProducto");
+        $query->execute(array(
+            ":idCarrito" => $cartId,
+            ":idProducto" => $productId
+        ));
+        return $query->fetch()["Cantidad"];
+    }
+
+    public static function getCart($userId)
+    {
+        $db = Flight::db();
+
+        $cartId = self::getCartIdByUserId($userId);
+
+        $query = $db->prepare("SELECT * FROM cart_view WHERE CarritoId = :idCarrito");
+
+        $query->execute(array(
+            ":idCarrito" => $cartId,
+        ));
+        return $query->fetchAll();
+    }
+
+    public static function getTotalCartItems($userId)
+    {
+        $db = Flight::db();
+
+        $cartId = self::getCartIdByUserId($userId);
+
+        $query = $db->prepare("SELECT SUM(Cantidad) AS total FROM detalle_carrito WHERE IdCarrito = :idCarrito");
+
+        $query->execute(array(
+            ":idCarrito" => $cartId,
+        ));
+        return $query->fetch()["total"];
     }
 }
 ?>

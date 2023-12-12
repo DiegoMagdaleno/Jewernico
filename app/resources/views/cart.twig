@@ -3,60 +3,51 @@
 {% block content %}
 	{% include 'partials/navbar.twig' %}
 	<main role="main" class="mb-12 mt-12 flex items-center flex-col">
-		<div class="flex-grow lg:w-2/3">
-			<div class="flex justify-between">
-				<h1 class="text-4xl font-bold mb-4">Tu carrito</h1>
-				<a href="/products" class="">Seguir comprando</a>
+		{% if productos|length != 0 %}
+			<div class="flex-grow lg:w-2/3">
+				<div class="flex justify-between">
+					<h1 class="text-4xl font-bold mb-4">Tu carrito</h1>
+					<a href="/products" class="">Seguir comprando</a>
+				</div>
 			</div>
-		</div>
-		<div class="flex flex-row flex-grow lg:w-2/3">
-			<div class="flex flex-row justify-between flex-grow items-baseline">
-				<p>Producto</p>
-				<p>Cantidad</p>
-				<p>Total</p>
+			<div class="flex flex-row flex-grow lg:w-2/3">
+				<div class="flex flex-row justify-between flex-grow items-baseline">
+					<p>Producto</p>
+					<p>Cantidad</p>
+					<p>Total</p>
+				</div>
 			</div>
-		</div>
-		<hr class="w-2/3 flex-grow h-px my-8 bg-grey-100">
-		<div class="flex flex-row flex-grow lg:w-2/3">
-			<div class="flex flex-row justify-between flex-grow text-left items-baseline">
-				<div
-					class="flex flex-row items-start">
-					<!-- Item -->
-					<img src="https://picsum.photos/200" class="rounded-lg w-32 h-32"/>
-					<div class="flex flex-col ml-8">
-						<p class="text-lg">Lorem ipsum</p>
-						<p>$ 0.00 MXN</p>
+			<hr class="w-2/3 flex-grow h-px my-8 bg-grey-100">
+			<div class="flex flex-row flex-grow lg:w-2/3">
+				<div class="flex flex-col flex-grow">
+					{% for producto in productos %}
+							{% include 'partials/cart_product.twig' with producto %}
+						<hr class="flex-grow h-px my-8 bg-grey-100">
+					{% endfor %}
+				</div>
+			</div>
+			<div class="flex flex-row mt-8 flex-grow lg:w-2/3 justify-between">
+				<div class="flex flex-col">
+					<p class="mb-2">Instrucciones especiales de compra</p>
+					<textarea class="textarea textarea-bordered w-96 h-36"></textarea>
+				</div>
+				<div class="lg:ml-8">
+					<div class="p-4">
+						<p class="text-sm font-medium mb-2">Subtotal</p>
+						<p class="text-lg font-bold mb-4" id="price-subtotal">$0.00 MXN</p>
+						<p class="text-sm text-gray-500 mb-2">Los impuestos y costos de envio, son calculados al comprar</p>
+						<button class="btn btn-primary w-full">Comprar</button>
 					</div>
 				</div>
-				<div class="flex flex-row items-start self-start">
-					<div class="join">
-						<button class="btn btn-neutral join-item">-</button>
-						<input type="text" class="input input-bordered w-16 join-item" value="1">
-						<button class="btn btn-neutral join-item">+</button>
-					</div>
-					<button class="btn btn-error ml-2">
-						<i class="fa-solid fa-trash"></i>
-					</button>
-				</div>
-				<div class="self-start">
-					<p>$ 0.00 MXN</p>
-				</div>
 			</div>
 		</div>
-		<div class="flex flex-row mt-8 flex-grow lg:w-2/3 justify-between">
-			<div class="flex flex-col">
-				<p class="mb-2">Instrucciones especiales de compra</p>
-				<textarea class="textarea textarea-bordered w-96 h-36"></textarea>
-			</div>
-			<div class="lg:ml-8">
-				<div class="p-4">
-					<p class="text-sm font-medium mb-2">Subtotal</p>
-					<p class="text-lg font-bold mb-4">$0.00 MXN</p>
-					<p class="text-sm text-gray-500 mb-2">Los impuestos y costos de envio, son calculados al comprar</p>
-					<button class="btn btn-primary w-full">Comprar</button>
-				</div>
-			</div>
+	{% else %}
+		<div class="flex flex-col items-center">
+			<h1 class="text-4xl font-bold mb-4">Tu carrito</h1>
+			<p class="text-lg mb-4">No tienes productos en tu carrito</p>
+			<a href="/products" class="btn btn-primary">Seguir comprando</a>
 		</div>
-	</div>
+	{% endif %}
+	<script src="/dist/cart.js"></script>
 </main>
 {% include 'partials/footer.twig' %}{% endblock %}

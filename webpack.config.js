@@ -12,6 +12,7 @@ module.exports = {
         admin_handle_product: './app/resources/scripts/admin_handle_product.ts',
         products: "./app/resources/scripts/products.ts",
         contact: "./app/resources/scripts/contact.ts",
+        cart: "./app/resources/scripts/cart.ts",
     },
     output: {
         path: path.resolve(__dirname, 'public', 'dist'),
