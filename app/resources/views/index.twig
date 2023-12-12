@@ -1,24 +1,25 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-	<div class="banner text-center bg-yellow-500 p-2">
-		<p class="text-x sm:text-base">¡Obtén un 15% de descuento usando el código: DINO15</p>
-	</div>
+    <div class="banner text-center bg-yellow-500 p-2">
+        <p class="text-x sm:text-base">¡Obtén un 15% de descuento usando el código: DINO15</p>
+    </div>
 
-	{% include 'partials/navbar.twig' %}
+    {% include 'partials/navbar.twig' %}
 
-	<main role="main">
-		<p>{{ session.hello}}</p>
-		<section class="sec1 flex mt-10 mx-10">
+    <main role="main" class="min-h-screen bg-base-100 mt-4 mx-4">
+        <p>{{ session.hello}}</p>
+
+		<!-- Sección visible solo en computadoras de escritorio -->
+		<section class="sec1 flex mt-10 mx-10 hidden lg:flex">
 			<div id="textin" class="relative z-10 w-1/3 -mr-20 my-40 ml-10 p-16 overflow-hidden bg-gray-200 rounded-lg h-full">
 				<h1 class="font-bold text-4xl mb-4">
 					Tan brillante como el meteórito que exintinguió a los dinosaurios.
 				</h1>
 				<p class="text-justify">
 					Bienvenido a Jewernico, espero estés preparado para deslumbrarte con nuestra brillante, original
-										        y divertida joyería. Nuestros productos son hechos a mano con materiales de la más alta calidad. Hecha un
-										        vistazo
-										        que seguro tenemos algo para ti. Deja que la fantasía y la prehistoria adornen tu vida.
+					y divertida joyería. Nuestros productos son hechos a mano con materiales de la más alta calidad. Hecha un
+					vistazo que seguro tenemos algo para ti. Deja que la fantasía y la prehistoria adornen tu vida.
 				</p>
 				<button class="btn btn-outline btn-primary mt-4">Comprar</button>
 			</div>
@@ -26,90 +27,176 @@
 				<img class="w-full h-full shadow-lg rounded-lg" src="resources/img/collageIndex.png" alt="Error"/>
 			</div>
 		</section>
+		
+
+		<!-- Sección visible solo en dispositivos móviles -->
+		<section class="sec1 flex flex-col mt-10 mx-5 md:hidden lg:hidden xl:hidden 2xl:hidden">
+			<div class="relative w-full mb-5">
+				<img class="w-full h-48 md:h-full object-cover shadow-lg rounded-lg" src="resources/img/collageIndex.png" alt="Error">
+			</div>
+			<div id="textin" class="relative z-10 w-full p-4 bg-gray-200 rounded-lg">
+				<h1 class="font-bold text-2xl mb-2">
+					Tan brillante como el meteórito que exintinguió a los dinosaurios.
+				</h1>
+				<p class="text-justify text-sm">
+					Bienvenido a Jewernico, espero estés preparado para deslumbrarte con nuestra brillante, original y divertida joyería. Nuestros productos son hechos a mano con materiales de la más alta calidad. Hecha un vistazo que seguro tenemos algo para ti. Deja que la fantasía y la prehistoria adornen tu vida.
+				</p>
+				<button class="btn btn-outline btn-primary mt-2">Comprar</button>
+			</div>
+		</section>
+		
+
+
+
+
+		
 
 		<section class="sec2 mt-20 mx-20 mb-20">
-			<h2 class="font-bold text-2xl mb-10">Conoce algunos productos de nuestro catalogo</h2>
-			<div class="flex space-x-4 justify-between" id="productosAleatorios">
+			<h2 class="font-bold text-2xl mb-10">Conoce algunos productos de nuestro catálogo</h2>
+			<div class="flex flex-wrap justify-between" id="productosAleatorios">
+				{% set contador = 0 %}
 				{% for producto in productos %}
-					<div class="rounded overflow-hidden shadow-lg max-h-80 w-96 max-w-xs">
-						<img src="{{ producto.Imagenes[0] }}" alt="Imagen del producto" class=" max-w-sm flex-none rounded-lg ">
-						<div class="px-6 py-4 text-center">
-							<div class="font-bold text-xl mb-2">{{ producto.Nombre }}</div>
-							<p class="text-gray-700 text-base">$ {{ producto.Precio }}</p>
+					{% if contador < 3 %}
+						<div class="rounded overflow-hidden shadow-lg w-96 max-w-xs mb-8 sm:w-48 md:w-56 lg:w-64">
+							<img src="{{ producto.Imagenes[0] }}" alt="Imagen del producto" class="max-w-full h-auto flex-none rounded-lg">
+							<div class="px-6 py-4 text-center">
+								<div class="font-bold text-xl mb-2">{{ producto.Nombre }}</div>
+								<p class="text-gray-700 text-base">$ {{ producto.Precio }}</p>
+							</div>
 						</div>
-					</div>
+						{% set contador = contador + 1 %}
+					{% endif %}
 				{% endfor %}
 			</div>
 		</section>
+		
+		
+		
 
 
-		<section class="sec3 bg-gray-200 p-20">
+		<section class="sec3 bg-gray-200 p-5 md:p-20">
 			<div class="mision text-center">
-				<h2 class="text-4xl text-black">
-					"Recuerda que en JewerNico, cuidamos nuestras joyas asi como los paleontologos que cuidan los restos de los
-										        dinosaurios y,
-										        sabes que tienen en comun el meteorito que extinguió a los dinosaurios y las princesas de Disney? Que ambos los
-										        encuentras en nuestras joyas! Tan brillantes y tan magicos!
+				<h2 class="text-2xl md:text-4xl text-black">
+					"Recuerda que en JewerNico, cuidamos nuestras joyas así como los paleontólogos cuidan los restos de los dinosaurios y,
+					¿sabes qué tienen en común el meteorito que extinguió a los dinosaurios y las princesas de Disney? ¡Que ambos los
+					encuentras en nuestras joyas! ¡Tan brillantes y tan mágicos!"
 				</h2>
-				<p>Equipo Jewernico</p>
+				<p class="mt-4">Equipo Jewernico</p>
 			</div>
 		</section>
+		
 
-		<section class="sec4 mt-20 p-10 grid grid-cols-3 grid-rows-2">
-			<a href="#" class="card m-7 bg-base-100 shadow-xl">
-				<figure>
-					<img class="w-full max-h-72" src="resources/img/Choker-dino.jpg" alt="Producto"/>
-				</figure>
-				<div class="card-body max-h-36 text-center">
-					<p>Choker Dino</p>
-					<p>El favorito de muchos! No te quedes sin tu collar de dijes de dinosaurios que sin duda será un plus en tulook!</p>
-				</div>
-			</a>
 
-			<a href="#" class="card m-7 bg-base-100 shadow-xl row-start-2">
-				<figure>
-					<img class="w-full max-h-72" src="resources/img/princessCenicienta3.webp" alt="Producto"/>
-				</figure>
-				<div class="badge m-4 badge-secondary absolute">Nuevo</div>
-				<div class="card-body max-h-36 text-center">
-					<p>Set de aretes Princesa Cenicienta</p>
-					<p>Adorna tus bellas orejas con nuestro set de la princesa mas azul!</p>
-				</div>
-			</a>
+			<!-- Sección de tarjetas para computadoras de escritorio -->
+			
+			<!-- NO PUDE HACER QUE SOLO SE VIERA EN COMPUTADORA Y NO EN CELULARES -->
+			
+			<section class="sec4 mt-20 p-10 grid grid-cols-3 grid-rows-2">
+				<a href="#" class="card m-7 bg-base-100 shadow-xl">
+					<figure>
+						<img class="w-full max-h-72" src="resources/img/Choker-dino.jpg" alt="Producto"/>
+					</figure>
+					<div class="card-body max-h-36 text-center">
+						<p>Choker Dino</p>
+						<p>El favorito de muchos! No te quedes sin tu collar de dijes de dinosaurios que sin duda será un plus en tulook!</p>
+					</div>
+				</a>
+			
+				<a href="#" class="card m-7 bg-base-100 shadow-xl row-start-2">
+					<figure>
+						<img class="w-full max-h-72" src="resources/img/princessCenicienta3.webp" alt="Producto"/>
+					</figure>
+					<div class="badge m-4 badge-secondary absolute">Nuevo</div>
+					<div class="card-body max-h-36 text-center">
+						<p>Set de aretes Princesa Cenicienta</p>
+						<p>Adorna tus bellas orejas con nuestro set de la princesa mas azul!</p>
+					</div>
+				</a>
+			
+				<a href="#" class="card m-5  bg-base-100 shadow-xl col-span-2 row-span-2">
+					<figure class="w-full">
+						<img class="w-full h-[800px]" src="resources/img/colgantesPrincess.jpeg" alt="Producto"/>
+					</figure>
+					<div class="card-body text-center">
+						<p>Collar Princess</p>
+						<p>Un hermoso collar de chapa de oro con dijes de tus princesas favoritas!</p>
+					</div>
+				</a>
+			</section>
+			
 
-			<a href="#" class="card m-5  bg-base-100 shadow-xl col-span-2 row-span-2">
-				<figure class="w-full">
-					<img class="w-full h-[800px]" src="resources/img/colgantesPrincess.jpeg" alt="Producto"/>
-				</figure>
-				<div class="card-body text-center">
-					<p>Collar Princess</p>
-					<p>Un hermoso collar de chapa de oro con dijes de tus princesas favoritas!</p>
-				</div>
-			</a>
-		</section>
+<!-- Sección de tarjetas para dispositivos móviles -->
+<section class="sec4 mt-20 p-10 block sm:block md:hidden lg:hidden xl:hidden 2xl:hidden">
+    <div class="mb-8">
+        <a href="#" class="card bg-base-100 shadow-xl">
+            <figure>
+                <img class="w-full h-48 object-cover" src="resources/img/Choker-dino.jpg" alt="Producto"/>
+            </figure>
+            <div class="card-body text-center">
+                <p>Choker Dino</p>
+                <p>El favorito de muchos! No te quedes sin tu collar de dijes de dinosaurios que sin duda será un plus en tu look!</p>
+            </div>
+        </a>
+    </div>
 
-<section class="minicard flex p-20 justify-center items-center container mx-auto space-x-8 space-y-4">
-  <div class="flex-initial text-center mx-10 w-14">
-    <img class="mx-auto w-16 h-16" src="https://img.icons8.com/ios/50/sparkling-diamond.png" alt="Error"/>
-    <h3 class="mt-4 font-bold">Brillante y Original</h3>
-    <p>Descúbrete con nuestra joyería brillante, original y divertida.</p>
-  </div>
-  <div class="flex-initial justify-between text-center mx-10 w-14">
-    <img class="mx-auto w-16 h-16" src="https://img.icons8.com/ios/50/guarantee--v1.png" alt="Error"/>
-    <h3  class="mt-4 font-bold">Elegancia Hecha a Mano</h3>
-    <p>Explora nuestra colección única, creada con cuidado y atención al detalle, utilizando materiales de calidad.</p>
-  </div>
-  <div class="flex-initial justify-between text-center mx-10 w-14">
-    <img class="mx-auto w-16 h-16" src="https://img.icons8.com/ios/50/stacking.png" alt="Error"/>
-    <h3  class="mt-4 font-bold">Envío Seguro</h3>
-    <p>Ofrecemos envío de paquetería seguro para garantizar que tus productos lleguen a ti en perfectas condiciones.</p>
-  </div>
-  <div class="flex-initial justify-between text-center mx-10 w-14">
-    <img class="mx-auto w-16 h-16" src="https://img.icons8.com/pastel-glyph/64/jewelry--v2.png" alt="jewelry--v2"/>
-    <h3 class="mt-4 font-bold">Adorna tu Vida</h3>
-    <p>Descubre algo especial para ti y deja que la fantasía y la prehistoria adornen tu vida.</p>
-  </div>
+    <div class="mb-8">
+        <a href="#" class="card bg-base-100 shadow-xl">
+            <figure>
+                <img class="w-full h-48 object-cover" src="resources/img/princessCenicienta3.webp" alt="Producto"/>
+            </figure>
+            <div class="badge badge-secondary absolute">Nuevo</div>
+            <div class="card-body text-center">
+                <p>Set de aretes Princesa Cenicienta</p>
+                <p>Adorna tus bellas orejas con nuestro set de la princesa más azul!</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="mb-8">
+        <a href="#" class="card bg-base-100 shadow-xl">
+            <figure>
+                <img class="w-full h-48 object-cover" src="resources/img/colgantesPrincess.jpeg" alt="Producto"/>
+            </figure>
+            <div class="card-body text-center">
+                <p>Collar Princess</p>
+                <p>Un hermoso collar de chapa de oro con dijes de tus princesas favoritas!</p>
+            </div>
+        </a>
+    </div>
 </section>
+
+
+
+	
+		<section class="minicard flex flex-wrap p-4 sm:p-8 md:p-12 lg:p-16 justify-center items-center container mx-auto space-x-4 space-y-4">
+			<div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 text-center mb-4 sm:mb-0">
+			  <div class="mx-auto w-16 h-16">
+				<!-- Cambié el icono por uno relevante al texto -->
+				<img src="https://img.icons8.com/wired/64/diamond.png" alt="Error"/>
+			  </div>
+			  <h3 class="mt-4 font-bold">Brillante y Original</h3>
+			  <p>Descúbrete con nuestra joyería brillante, original y divertida.</p>
+			</div>
+			<div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 text-center mb-4 sm:mb-0">
+			  <div class="mx-auto w-16 h-16">
+				<!-- Cambié el icono por uno relevante al texto -->
+				<img src="https://img.icons8.com/dotty/80/000000/handshake.png" alt="Error"/>
+			  </div>
+			  <h3 class="mt-4 font-bold">Elegancia Hecha a Mano</h3>
+			  <p>Explora nuestra colección única, creada con cuidado y atención al detalle, utilizando materiales de calidad.</p>
+			</div>
+			<div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 text-center mb-4">
+			  <img class="mx-auto w-16 h-16" src="https://img.icons8.com/ios/50/stacking.png" alt="Error"/>
+			  <h3 class="mt-4 font-bold">Envío Seguro</h3>
+			  <p>Ofrecemos envío de paquetería seguro para garantizar que tus productos lleguen a ti en perfectas condiciones.</p>
+			</div>
+			<div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 text-center mb-4">
+			  <img class="mx-auto w-16 h-16" src="https://img.icons8.com/pastel-glyph/64/jewelry--v2.png" alt="jewelry--v2"/>
+			  <h3 class="mt-4 font-bold">Adorna tu Vida</h3>
+			  <p>Descubre algo especial para ti y deja que la fantasía y la prehistoria adornen tu vida.</p>
+			</div>
+		  </section>
+		  <div class="mb-16"></div>
 
 	</main>
 	<script src="/dist/main.js"></script>
