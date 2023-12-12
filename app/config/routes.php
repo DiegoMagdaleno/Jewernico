@@ -48,6 +48,7 @@ Flight::route("POST /api/receipt", ["\Acme\Jewernico\Controller\API\Receipt", "s
 Flight::route("POST /api/receipt/pdf", ["\Acme\Jewernico\Controller\API\Receipt", "pdf"]);
 Flight::route("GET /api/stats/sales/category", ["\Acme\Jewernico\Controller\API\Stats", "salesByCategory"]);
 Flight::route("GET /api/stats/sales/month", ["\Acme\Jewernico\Controller\API\Stats", "salesByMonth"]);
+Flight::route("GET /api/coupon/@code", ["\Acme\Jewernico\Controller\API\Coupon", "get"]);
 
 // -------------------------------------------------- //
 // MAPPINGS
