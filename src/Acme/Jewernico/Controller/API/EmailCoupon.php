@@ -38,7 +38,7 @@ class EmailCoupon {
             $mail->addAddress($data['solicitante']);
 
             // Configurar el asunto y el cuerpo del correo
-            $mail->Subject = 'Cupón de descuento Jewernico';
+            $mail->Subject = 'Cupon de descuento Jewernico';
             $mail->Body    = $contenido_correo;
 
             // Enviar el correo
