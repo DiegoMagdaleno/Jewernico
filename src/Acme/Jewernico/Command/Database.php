@@ -320,5 +320,53 @@ class Database
         $query->execute();
         return $query->fetchAll();
     }
+
+    public static function updateProductStock($id, $newStock) {
+        $db = Flight::db();
+        $query = $db->prepare("UPDATE producto SET Stock = :stock WHERE Id = :id");
+        $query->execute(array(
+            ":stock" => $newStock,
+            ":id" => $id
+        ));
+        return ($query->rowCount() > 0);
+    }
+
+    public static function emptyCart($userId) {
+        $db = Flight::db();
+
+        $cartId = self::getCartIdByUserId($userId);
+
+        $query = $db->prepare("DELETE FROM detalle_carrito WHERE IdCarrito = :idCarrito");
+        $query->execute(array(
+            ":idCarrito" => $cartId,
+        ));
+        return ($query->rowCount() > 0);
+    }
+
+    public static function createOrder($userId) {
+        $db = Flight::db();
+
+        $query = $db->prepare("INSERT INTO compra (IdUsuario, Fecha) VALUES (:idUsuario, NOW())");
+        $query->execute(array(
+            ":idUsuario" => $userId,
+        ));
+        if ($query->rowCount() > 0) {
+            return $db->lastInsertId();
+        } else {
+            return false;
+        }
+    }
+
+    public static function registerOrderItem($orderId, $productId, $quantity) {
+        $db = Flight::db();
+
+        $query = $db->prepare("INSERT INTO contener (IdCompra, IdProducto, Cantidad) VALUES (:idOrden, :idProducto, :cantidad)");
+        $query->execute(array(
+            ":idOrden" => $orderId,
+            ":idProducto" => $productId,
+            ":cantidad" => $quantity
+        ));
+        return ($query->rowCount() > 0);
+    }    
 }
 ?>
