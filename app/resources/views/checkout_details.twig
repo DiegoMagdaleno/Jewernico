@@ -2,7 +2,7 @@
 
 {% block content %}
 	<dialog id="checkout-details" class="modal">
-		<div class="modal-box text-center">
+		<div class="modal-box text-center w-1/2">
 			<table class="table">
 				<thead>
 					<tr>
@@ -15,9 +15,9 @@
 				</thead>
 				<tbody>
 					{% for item in carrito %}
-						<tr>
-							<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
-							<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
+						<tr class="producto-info">
+							<td class="border px-4 py-2 nombre-producto" data-nombre="{{ item.NombreProducto }}">{{ item.NombreProducto }}</td>
+							<td class="border px-4 py-2 cantidad-producto" data-cantidad="{{ item.CarritoCantidad }}">{{ item.CarritoCantidad }}</td>
 							<td class="border px-4 py-2">$
 								{{ item.PrecioProducto }}
 								MXN</td>
@@ -27,7 +27,7 @@
 								<td class="border px-4 py-2">{{ item.DescuentoProducto }}
 									%</td>
 							{% endif %}
-							<td class="border px-4 py-2" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
+							<td class="border px-4 py-2 subtotal-producto" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
 								{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
 								MXN</td>
 						</tr>
@@ -151,69 +151,69 @@
 			</div>
 		</div>
 
-		<div class="mb-6">
-			<h2 class="text-xl font-semibold mb-2">Resumen de compra</h2>
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="px-4 py-2">Producto</th>
-						<th class="px-4 py-2">Cantidad</th>
-						<th class="px-4 py-2">Precio unitario</th>
-						<th class="px-4 py-2">Descuento</th>
-						<th class="px-4 py-2">Precio total</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for item in carrito %}
+			<div class="mb-6">
+				<h2 class="text-xl font-semibold mb-2">Resumen de compra</h2>
+				<table class="table">
+					<thead>
 						<tr>
-							<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
-							<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
-							<td class="border px-4 py-2">$
-								{{ item.PrecioProducto }}
-								MXN</td>
-							{% if item.DescuentoProducto == 0 %}
-								<td class="border px-4 py-2">Sin descuento</td>
-							{% else %}
-								<td class="border px-4 py-2">{{ item.DescuentoProducto }}
-									%</td>
-							{% endif %}
-							<td class="border px-4 py-2 total-price-item" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
-								{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
-								MXN</td>
+							<th class="px-4 py-2">Producto</th>
+							<th class="px-4 py-2">Cantidad</th>
+							<th class="px-4 py-2">Precio unitario</th>
+							<th class="px-4 py-2">Descuento</th>
+							<th class="px-4 py-2">Precio total</th>
 						</tr>
-						<tr>
-						{% endfor %}
+					</thead>
+					<tbody>
+						{% for item in carrito %}
+							<tr>
+								<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
+								<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
+								<td class="border px-4 py-2">$
+									{{ item.PrecioProducto }}
+									MXN</td>
+								{% if item.DescuentoProducto == 0 %}
+									<td class="border px-4 py-2">Sin descuento</td>
+								{% else %}
+									<td class="border px-4 py-2">{{ item.DescuentoProducto }}
+										%</td>
+								{% endif %}
+								<td class="border px-4 py-2 total-price-item" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
+									{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
+									MXN</td>
+							</tr>
+							<tr>
+							{% endfor %}
+						</tbody>
 					</tbody>
-				</tbody>
-			</table>
-		</div>
+				</table>
+			</div>
 
-		<div>
-			<h2 class="text-xl font-semibold mb-2">Desgloce de pago</h2>
-			<div class="flex flex-row justify-between">
-				<div class="w-1/2">
-					<p class="font-semibold">Subtotal:
-						<span id="subtotal-display"></span>
-						MXN</p>
-					<p class="font-semibold">Envío:
-						<span id="shipping-display"></span>
-					</p>
-					<p class="font-semibold">Impuesto:
-						<span id="tax-display"></span>
-					</p>
-					<p class="font-semibold">Descuento:
-						<span id="discount-display"></span>
-						MXN
-					</p>
-					<p class="font-semibold">Total:
-						<span id="total-display"></span>
-						MXN</p>
-				</div>
-				<div class="flex items-center flex-grow">
-					<button class="btn btn-primary w-full" id="pay-button">Pagar</button>
+			<div>
+				<h2 class="text-xl font-semibold mb-2">Desgloce de pago</h2>
+				<div class="flex flex-row justify-between">
+					<div class="w-1/2">
+						<p class="font-semibold">Subtotal:
+							<span id="subtotal-display"></span>
+							MXN</p>
+						<p class="font-semibold">Envío:
+							<span id="shipping-display"></span>
+						</p>
+						<p class="font-semibold">Impuesto:
+							<span id="tax-display"></span>
+						</p>
+						<p class="font-semibold">Descuento:
+							<span id="discount-display"></span>
+							MXN
+						</p>
+						<p class="font-semibold">Total:
+							<span id="total-display"></span>
+							MXN</p>
+					</div>
+					<div class="flex items-center flex-grow">
+						<button class="btn btn-primary w-full" id="pay-button">Pagar</button>
+					</div>
 				</div>
 			</div>
-		</div>
-	</main>
-	<script src="/dist/checkout.js"></script>
-{% endblock %}
+		</main>
+		<script src="/dist/checkout.js"></script>
+	{% endblock %}
