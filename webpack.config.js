@@ -13,6 +13,7 @@ module.exports = {
         products: "./app/resources/scripts/products.ts",
         contact: "./app/resources/scripts/contact.ts",
         cart: "./app/resources/scripts/cart.ts",
+        checkout: "./app/resources/scripts/checkout.ts",
     },
     output: {
         path: path.resolve(__dirname, 'public', 'dist'),

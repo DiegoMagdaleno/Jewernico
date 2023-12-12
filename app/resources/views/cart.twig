@@ -4,17 +4,17 @@
 	{% include 'partials/navbar.twig' %}
 	<dialog id="checkout-modal" class="modal">
 		<div class="modal-box text-center">
-			<div class="p-4 m-10 grid grid-rows-3 gap-1 items-center max-w-lg mx-auto my-auto">
-				<h1 class="row-span-1 text-center text-3xl font-bold">Seleccione su método de pago</h1>
+			<div class="p-4 m-10 grid grid-rows-3 gap-4 items-center max-w-lg mx-auto">
+				<h1 class="text-3xl font-bold">Selecciona tu método de pago</h1>
 
-				<a href="/checkout/information" class="grid row-span-1 mt-4 bg-gray-200 rounded-full p-2 items-center grid-cols-3">
-					<img class="w-8 h-8 mr-2 col-span-1" src="/resources/img/OXXO.png" alt="Logo OXXO">
-					<span class="col-span-2">OXXO</span>
+				<a href="/checkout/information" class="flex flex-row items-center justify-center bg-gray-200 rounded-full p-3">
+					<i class="h-full fa-solid fa-store w-10 fa-2xl"></i>
+					<span class="ml-2">OXXO</span>
 				</a>
 
-				<a href="/checkout/information" class="grid row-span-1 mt-4 bg-gray-200 rounded-full p-2 items-center grid-cols-3">
-					<i class="fa-solid fa-credit-card"></i>
-					<span class="col-span-2">Mastercard/VISA</span>
+				<a href="/checkout/information" class="flex flex-row items-center justify-center bg-gray-200 rounded-full p-3">
+					<i class="h-full fa-solid fa-credit-card w-10 fa-2xl"></i>
+					<span class="ml-2">Mastercard/VISA</span>
 				</a>
 			</div>
 		</div>
