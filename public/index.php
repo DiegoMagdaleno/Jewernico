@@ -38,6 +38,37 @@ Flight::register("view", "Twig\Environment", [$twig_loader, TWIG_CONFIG], functi
     }
 });
 
+//Fecha de modificación
+function get_last_modified_files($directory) {
+    $files = scandir($directory);
+    $modified_files = [];
+  
+    foreach ($files as $file) {
+      if (preg_match('/\.(twig|ts|php)$/', $file)) {
+        $modified_files[] = [
+          'filename' => $file,
+          'modified_at' => filemtime($directory . '/' . $file),
+        ];
+      }
+    }
+  
+    usort($modified_files, function ($a, $b) {
+      return $b['modified_at'] - $a['modified_at'];
+    });
+  
+    return $modified_files;
+  }
+
+    $modified_files = get_last_modified_files('../app');
+
+
+    $fecha_supongo = date('d/m/Y H:i:s', $modified_files[0]['modified_at']);
+    date_default_timezone_set('America/Mexico_City');
+        
+
+$GLOBALS['last_modified'] = $fecha_supongo;
+
+
 // All object definitions loaded, lets start the session
 session_start();
 
@@ -51,3 +82,6 @@ $GLOBALS['url'] = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SER
 
 // Lets go!
 Flight::start();
+
+
+?>
