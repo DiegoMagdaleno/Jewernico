@@ -15,19 +15,42 @@
 				{{ producto.Descripcion }}
 			{% endif %}
 		</p>
-		<p class="text-gray-900 font-semibold mt-2">${{ producto.Precio }}
-			MXN</p>
+		{% if producto.Descuento > 0 %}
+			<div class="flex flex-row">
+				<p class="text-gray-700 mt-2 mr-2">
+					<del>${{ producto.Precio }}
+						MXN</del>
+				</p>
+				<p class="text-gray-900 font-semibold mt-2">${{ producto.Precio - (producto.Precio * producto.Descuento / 100) }}
+					MXN</p>
+			</div>
+		{% else %}
+			<p class="text-gray-900 font-semibold mt-2">${{ producto.Precio }}
+				MXN</p>
+		{% endif %}
 		<div class="mt-4 flex w-full">
 			<a href="/products/{{ producto.Id }}" class="px-4 py-2 btn btn-primary rounded-md mr-2">Mas información</a>
 			{% if session.user is defined and session.user is not null %}
-				<button class="shopping-cart px-4 py-2 btn btn-secondary rounded-md">
-					<i class="fa-solid fa-cart-shopping"></i>
-				</button>
+				{% if producto.Stock > 0 %}
+					<button class="shopping-cart px-4 py-2 btn btn-secondary rounded-md">
+						<i class="fa-solid fa-cart-shopping"></i>
+					</button>
+				{% else %}
+					<button class="shopping-cart px-4 py-2 btn btn-secondary rounded-md" disabled>
+						<i class="fa-solid fa-cart-shopping"></i>
+					</button>
+				{% endif %}
 			{% else %}
-				<button onclick="cart_no_logged_modal.showModal()" class="px-4 py-2 btn btn-secondary rounded-md">
-					<i class="fa-solid fa-cart-shopping"></i>
-				</button>
+				{% if producto.Stock > 0 %}
+					<button onclick="cart_no_logged_modal.showModal()" class="px-4 py-2 btn btn-secondary rounded-md">
+						<i class="fa-solid fa-cart-shopping"></i>
+					</button>
+				{% else %}
+					<button onclick="cart_no_logged_modal.showModal()" class="px-4 py-2 btn btn-secondary rounded-md" disabled>
+						<i class="fa-solid fa-cart-shopping"></i>
+					</button>
+				{% endif %}
 			{% endif %}
-		</a>
+		</div>
 	</div>
-</div></div>
+</div>

@@ -313,5 +313,12 @@ class Database
         ));
         return $query->fetch()["total"];
     }
+
+    public static function getCountries() {
+        $db = Flight::db();
+        $query = $db->prepare("SELECT * FROM pais");
+        $query->execute();
+        return $query->fetchAll();
+    }
 }
 ?>

@@ -31,13 +31,14 @@ class EmailCoupon {
             // Puedes registrar o imprimir los mensajes de depuración aquí
             error_log("$str\n");
             };
+            $mail->isHTML(true);
 
             // Configurar el remitente y el destinatario
             $mail->setFrom('nicoleflorestorres27@gmail.com', 'Jewernico');
             $mail->addAddress($data['solicitante']);
 
             // Configurar el asunto y el cuerpo del correo
-            $mail->Subject = 'Cupón de descuento Jewernico';
+            $mail->Subject = 'Cupon de descuento Jewernico';
             $mail->Body    = $contenido_correo;
 
             // Enviar el correo
