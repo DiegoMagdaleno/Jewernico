@@ -65,7 +65,18 @@
 	</dialog>
 	<main role="main" class="w-2/3 mx-auto my-8 space-y-8 flex justify-center flex-col">
 		<h1 class="text-2xl font-semibold mb-6">Información de Pago</h1>
+	{% if tipo == "oxxo" %}
+		<div class="mb-6 card shadow-xl bg-white">
+			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Oxxo <i class="fa-brands fa-oxxo"></i></h2>
+	<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4 justi">
+		<div class="m-4 shadow-lg justify-center" style="display: flex;">
+			<img src="https://files.catbox.moe/c7qdf0.jpg" alt="Oxxo" class="w-full object-center justify-center" style="align-self: center;">	
+		</div>
+	</div>
 
+
+		</div>
+	{% else %}
 		<div class="mb-6 card shadow-xl bg-white">
 			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Tarjeta</h2>
 			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -87,6 +98,7 @@
 				</div>
 			</div>
 		</div>
+	{% endif %}
 
 		<div class="mb-6 card shadow-xl bg-white">
 			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Envio</h2>
