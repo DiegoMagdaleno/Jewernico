@@ -31,6 +31,7 @@ class EmailCoupon {
             // Puedes registrar o imprimir los mensajes de depuración aquí
             error_log("$str\n");
             };
+            $mail->isHTML(true);
 
             // Configurar el remitente y el destinatario
             $mail->setFrom('nicoleflorestorres27@gmail.com', 'Jewernico');
