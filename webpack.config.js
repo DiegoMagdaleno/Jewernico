@@ -10,6 +10,8 @@ module.exports = {
         register: './app/resources/scripts/register.ts',
         recover: './app/resources/scripts/recover.ts',
         admin_handle_product: './app/resources/scripts/admin_handle_product.ts',
+        products: "./app/resources/scripts/products.ts",
+        contact: "./app/resources/scripts/contact.ts",
     },
     output: {
         path: path.resolve(__dirname, 'public', 'dist'),
