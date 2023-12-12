@@ -40,7 +40,8 @@ $(document).ready(function () {
         const subtotal = calculateSubtotal();
         const totalCoupon = subtotal * cupon;
         const taxAmount = subtotal * tax;
-        const total = subtotal + taxAmount + shippingCost - cupon;
+        const total = subtotal + taxAmount + shippingCost - totalCoupon;
+        $('#subtotal-display').text(`$ ${subtotal.toFixed(2)} MXN`);
         $('#shipping-display').text(subtotal > 299 ? 'Gratis' : `$ ${shippingCost.toFixed(2)} MXN`).toggleClass('text-success', subtotal > 299);
         $('#tax-display').text(`$ ${taxAmount.toFixed(2)} MXN (Impuesto de: ${tax * 100} %)`);
         $('#total-display').text(`$ ${total.toFixed(2)} MXN`);
