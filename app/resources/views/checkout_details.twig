@@ -67,15 +67,15 @@
 		<h1 class="text-2xl font-semibold mb-6">Información de Pago</h1>
 
 		<div class="mb-6 card shadow-xl bg-white">
-			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Tarjeta</h2>
+			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Tarjeta <i class="fa-solid fa-credit-card"></i></h2>
 			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
 				<div>
 					<label class="block mb-2 text-gray-700" for="numeroTarjeta">Número de Tarjeta</label>
-					<input id="numeroTarjeta" name="numeroTarjeta" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					<input id="numeroTarjeta" name="numeroTarjeta" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="expiracion">Expiración</label>
-					<input id="expiracion" name="expiracion" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					<input id="expiracion" name="expiracion" type="date" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="nombreTarjeta">Nombre en la Tarjeta</label>
@@ -83,13 +83,21 @@
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="cvv">CVV</label>
-					<input id="cvv" name="cvv" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					<input id="cvv" name="cvv" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" maxlength="3">
+				</div>
+				<div>
+					<label class="block mb-2 text-gray-700" for="tipoTarjeta">Tipo de Tarjeta</label>
+					<select id="tipoTarjeta" name="tipoTarjeta" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+						<option value="visa">Visa</option>
+						<option value="mastercard">Mastercard</option>
+						<option value="americanexpress">American Express</option>
+					</select>
 				</div>
 			</div>
 		</div>
 
 		<div class="mb-6 card shadow-xl bg-white">
-			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Envio</h2>
+			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Envio <i class="fa-solid fa-truck-fast"></i></h2>
 			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
 				<div>
 					<label class="block mb-2 text-gray-700" for="pais">País</label>
@@ -105,7 +113,7 @@
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="codigoPostal">Código Postal</label>
-					<input id="codigoPostal" name="codigoPostal" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					<input id="codigoPostal" name="codigoPostal" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="ciudad">Ciudad</label>
@@ -117,18 +125,17 @@
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="numeroInterior">Número Interior</label>
-					<input id="numeroInterior" name="numeroInterior" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					<input id="numeroInterior" name="numeroInterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
 				</div>
 				<div>
 					<label class="block mb-2 text-gray-700" for="numeroExterior">Número Exterior</label>
-					<input id="numeroExterior" name="numeroExterior" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					<input id="numeroExterior" name="numeroExterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
 				</div>
 			</div>
 		</div>
 
 		<div class="mb-6 card shadow-xl bg-white">
-			<h2 class="text-xl card-title font-semibold mt-4 ml-8">¿Tienes un cupón? Ingresalo aquí para aplicar tu descuento
-			</h2>
+			<h2 class="text-xl card-title font-semibold mt-4 ml-8">¿Tienes un cupón? <i class="fa-solid fa-ticket"></i> Ingresalo aquí para aplicar tu descuento</h2>
 			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
 				<div class="mb-4 flex items-center">
 					<input id="coupon" type="text" name="cupon" class="input input-bordered w-full" value="" autocorrect="off" autocapitalize="off" placeholder="ingresa tu cupon" required>
