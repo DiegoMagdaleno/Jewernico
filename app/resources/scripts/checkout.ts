@@ -91,6 +91,15 @@ $(document).ready(function () {
         }
     }
 
+    function getPaymentMethod() {
+        const url = window.location.href;
+        if (url.includes('oxxo')) {
+            return "OXXO";
+        } else {
+            return "Tarjeta de crédito";
+        }
+    }
+
     function isFormValid() {
         let formValid = true;
         $("input[required]").each(function () {
@@ -145,7 +154,7 @@ $(document).ready(function () {
                 let address = buildAddress();
                 let tax = calculateTax();
                 let discount = getDiscount();
-                let paymentMethod = "Tarjeta de crédito";
+                let paymentMethod = getPaymentMethod();
                 let products = getProductList();
                 let total = subtotal + tax + shippingCost - discount;
 
