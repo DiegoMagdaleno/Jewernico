@@ -9,7 +9,7 @@
     <div class="w-full grid-span-1 flex flex-row items-start justify-end">
         <div class="join">
             <button class="minus btn btn-neutral join-item">-</button>
-            <input type="number" class="input input-bordered w-16 join-item arrow-hide" value="{{ producto.CarritoCantidad }}" min="0" max="{{ producto.StockProducto }}">
+            <input type="number" class="input input-bordered w-16 join-item arrow-hide" value="{{ producto.CarritoCantidad }}" min="0" max="{{ producto.StockProducto }}" disabled>
             <button class="plus btn btn-neutral join-item">+</button>
         </div>
         <button class="btn btn-error ml-2 remove">

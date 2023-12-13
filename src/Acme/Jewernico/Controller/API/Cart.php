@@ -49,10 +49,10 @@ class Cart {
         $quantity = $data["cantidad"];
         $id = $_SESSION["user"]->getId();
 
-
         $res = \Acme\Jewernico\Command\Database::updateCartItemQuantity($id, $product, $quantity);
         if ($res) {
-            Flight::json(array("success" => "Producto actualizado en el carrito", "cartCount" => $_SESSION["cartCount"]), 200);
+            Flight::json(array("success" => "Producto actualizado en el carrito", "cartCount" => $_SESSION["cartCount"]
+        ), 200);
         } else {
             $_SESSION["cartCount"] += $quantity;
             Flight::json(array("error" => "Error al actualizar producto en el carrito"), 500);
