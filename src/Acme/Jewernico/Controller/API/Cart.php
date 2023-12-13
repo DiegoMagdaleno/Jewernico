@@ -18,7 +18,7 @@ class Cart {
         $cartQuantity = \Acme\Jewernico\Command\Database::getQuantityOfProductInCart($id, $product);
 
         if ($res) {
-            Flight::json(array("success" => "Producto agregado al carrito"), 200);
+            Flight::json(array("success" => "Producto agregado al carrito", "cartCount" => $_SESSION["cartCount"]), 200);
         } else {
             Flight::json(array("error" => "Error al agregar producto al carrito"), 500);
         }
