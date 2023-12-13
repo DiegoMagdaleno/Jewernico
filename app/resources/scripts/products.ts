@@ -25,6 +25,11 @@ $(document).ready(function () {
             if (response.data.success) {
                 $('.shopping-cart').removeAttr('disabled');
                 $('.shopping-cart').html('<i class="fa-solid fa-cart-shopping"></i>');
+                $('.product').each(function () {
+                    if ($(this).data('stock') == 0) {
+                        $(this).find('.shopping-cart').attr('disabled', 'disabled');
+                    }
+                });
                 let currentCount = parseInt($('#cart-indicator').text());
                 $('#cart-indicator').text(currentCount + 1);
             }
