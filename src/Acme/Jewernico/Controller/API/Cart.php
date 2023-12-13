@@ -14,6 +14,9 @@ class Cart {
         $_SESSION["cartCount"] += $quantity;
 
         $res = \Acme\Jewernico\Command\Database::addToCart($id, $product, $quantity);
+        
+        $cartQuantity = \Acme\Jewernico\Command\Database::getQuantityOfProductInCart($id, $product);
+
         if ($res) {
             Flight::json(array("success" => "Producto agregado al carrito"), 200);
         } else {
@@ -31,7 +34,7 @@ class Cart {
 
         $res = \Acme\Jewernico\Command\Database::deleteCartItem($id, $product);
         if ($res) {
-            Flight::json(array("success" => "Producto eliminado del carrito"), 200);
+            Flight::json(array("success" => "Producto eliminado del carrito", "cartCount" => $_SESSION["cartCount"]), 200);
         } else {
             $_SESSION["cartCount"] -= $quantity;
             Flight::json(array("error" => "Error al eliminar producto del carrito"), 500);
@@ -46,10 +49,10 @@ class Cart {
         $quantity = $data["cantidad"];
         $id = $_SESSION["user"]->getId();
 
-
         $res = \Acme\Jewernico\Command\Database::updateCartItemQuantity($id, $product, $quantity);
         if ($res) {
-            Flight::json(array("success" => "Producto actualizado en el carrito"), 200);
+            Flight::json(array("success" => "Producto actualizado en el carrito", "cartCount" => $_SESSION["cartCount"]
+        ), 200);
         } else {
             $_SESSION["cartCount"] += $quantity;
             Flight::json(array("error" => "Error al actualizar producto en el carrito"), 500);

@@ -39,38 +39,54 @@ Flight::register("view", "Twig\Environment", [$twig_loader, TWIG_CONFIG], functi
 });
 
 //Fecha de modificación
-function get_last_modified_files($directory) {
+function get_last_modified_files($directory)
+{
     $files = scandir($directory);
     $modified_files = [];
-  
+
     foreach ($files as $file) {
-      if (preg_match('/\.(twig|ts|php)$/', $file)) {
-        $modified_files[] = [
-          'filename' => $file,
-          'modified_at' => filemtime($directory . '/' . $file),
-        ];
-      }
+        if (preg_match('/\.(twig|ts|php)$/', $file)) {
+            $modified_files[] = [
+                'filename' => $file,
+                'modified_at' => filemtime($directory . '/' . $file),
+            ];
+        }
     }
-  
+
     usort($modified_files, function ($a, $b) {
-      return $b['modified_at'] - $a['modified_at'];
+        return $b['modified_at'] - $a['modified_at'];
     });
-  
+
     return $modified_files;
-  }
+}
 
-    $modified_files = get_last_modified_files('../app');
+$modified_files = get_last_modified_files('../app');
 
-
-    $fecha_supongo = date('d/m/Y H:i:s', $modified_files[0]['modified_at']);
-    date_default_timezone_set('America/Mexico_City');
-        
+$fecha_supongo = date('d/m/Y H:i:s', $modified_files[0]['modified_at']);
+date_default_timezone_set('America/Mexico_City');
 
 $GLOBALS['last_modified'] = $fecha_supongo;
 
-
 // All object definitions loaded, lets start the session
 session_start();
+
+if (isset($_COOKIE["correoElectronico"]) && isset($_COOKIE["password"]) && !in_array("user", $_SESSION)) {
+    $correoElectronico = $_COOKIE["correoElectronico"];
+    $password = $_COOKIE["password"];
+    
+    $sql = "SELECT * FROM usuario WHERE CorreoElectronico = :correoElectronico";
+    $stmt = Flight::db()->prepare($sql);
+    $stmt->bindParam(':correoElectronico', $correoElectronico);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    $logger->debug($row["Password"]);
+
+    if ($row["Password"] == $password) {
+        $_SESSION["user"] = new \Acme\Jewernico\Model\User($row["Id"], $row["Nombre"], $row["CorreoElectronico"], $row["Password"], $row["NivelPermisos"]);
+        $_SESSION["cartCount"] = \Acme\Jewernico\Command\Database::getTotalCartItems($_SESSION["user"]->getId());
+    }
+}
 
 // Make twig have access to session variables
 Flight::view()->addGlobal('session', $_SESSION);

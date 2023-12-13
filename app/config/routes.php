@@ -43,6 +43,11 @@ Flight::route("POST /api/contact", ["\Acme\Jewernico\Controller\API\Contact", "s
 Flight::route("POST /api/cart/add", ["\Acme\Jewernico\Controller\API\Cart", "add"]);
 Flight::route("POST /api/cart/remove", ["\Acme\Jewernico\Controller\API\Cart", "remove"]);
 Flight::route("POST /api/cart/update", ["\Acme\Jewernico\Controller\API\Cart", "update"]);
+Flight::route("POST /api/checkout", ["\Acme\Jewernico\Controller\API\Checkout", "checkout"]);   
+Flight::route("POST /api/receipt", ["\Acme\Jewernico\Controller\API\Receipt", "send"]);
+Flight::route("POST /api/receipt/pdf", ["\Acme\Jewernico\Controller\API\Receipt", "pdf"]);
+Flight::route("GET /api/stats/sales/category", ["\Acme\Jewernico\Controller\API\Stats", "salesByCategory"]);
+Flight::route("GET /api/stats/sales/month", ["\Acme\Jewernico\Controller\API\Stats", "salesByMonth"]);
 
 // -------------------------------------------------- //
 // MAPPINGS

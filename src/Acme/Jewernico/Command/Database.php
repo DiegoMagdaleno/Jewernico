@@ -320,5 +320,79 @@ class Database
         $query->execute();
         return $query->fetchAll();
     }
+
+    public static function updateProductStock($id, $newStock) {
+        $db = Flight::db();
+        $query = $db->prepare("UPDATE producto SET Stock = :stock WHERE Id = :id");
+        $query->execute(array(
+            ":stock" => $newStock,
+            ":id" => $id
+        ));
+        return ($query->rowCount() > 0);
+    }
+
+    public static function emptyCart($userId) {
+        $db = Flight::db();
+
+        $cartId = self::getCartIdByUserId($userId);
+
+        $query = $db->prepare("DELETE FROM detalle_carrito WHERE IdCarrito = :idCarrito");
+        $query->execute(array(
+            ":idCarrito" => $cartId,
+        ));
+        return ($query->rowCount() > 0);
+    }
+
+    public static function createOrder($userId) {
+        $db = Flight::db();
+
+        $query = $db->prepare("INSERT INTO compra (IdUsuario, Fecha) VALUES (:idUsuario, NOW())");
+        $query->execute(array(
+            ":idUsuario" => $userId,
+        ));
+        if ($query->rowCount() > 0) {
+            return $db->lastInsertId();
+        } else {
+            return false;
+        }
+    }
+
+    public static function registerOrderItem($orderId, $productId, $quantity) {
+        $db = Flight::db();
+
+        $query = $db->prepare("INSERT INTO contener (IdCompra, IdProducto, Cantidad) VALUES (:idOrden, :idProducto, :cantidad)");
+        $query->execute(array(
+            ":idOrden" => $orderId,
+            ":idProducto" => $productId,
+            ":cantidad" => $quantity
+        ));
+        return ($query->rowCount() > 0);
+    }   
+    
+    public static function getSalesOfEachCategory() {
+        $db = Flight::db();
+
+        $query = $db->prepare("SELECT c.Nombre AS Categoria, COALESCE(SUM(cn.Cantidad), 0) AS TotalVentas
+        FROM categoria c
+        LEFT JOIN producto p ON c.Id = p.IdCategoria
+        LEFT JOIN contener cn ON p.Id = cn.IdProducto
+        LEFT JOIN compra cm ON cn.IdCompra = cm.Id
+        GROUP BY c.Nombre;
+        ");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public static function getSalesOfEachMonth() {
+        $db = Flight::db();
+
+        $query = $db->prepare("SELECT MONTH(cm.Fecha) AS Mes, COALESCE(SUM(cn.Cantidad), 0) AS TotalVentas
+        FROM compra cm
+        LEFT JOIN contener cn ON cm.Id = cn.IdCompra
+        GROUP BY MONTH(cm.Fecha);
+        ");
+        $query->execute();
+        return $query->fetchAll();
+    }
 }
 ?>

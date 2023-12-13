@@ -6,25 +6,24 @@
         <!-- CODIGO DEL PRODUCTO AQUI -->
         <!-- PARA ACCEDER A INFORMACION DEL PRODUCTO QUE SE ESTA VIENDO, SE PUEDE USAR LA VARIABLE "producto" -->
 
-    <section class="mt-20 p-10 grid grid-cols-2 gap-4">
-        <!-- Mitad izquierda -->
-        <div class="col-span-1">
-            <!-- Imagen grande -->
-            <div class="card bordered m-5">
-                <figure>
-                    <img class="w-full h-[100px]" src="{{ producto.Imagenes }}" alt="Producto"/>
-                </figure>
-                <div class="card-body">
-                    <h2 class="card-title">{{ producto.Nombre }}</h2> 
-                    <p>{{ producto.Descripcion }}</p>
-                </div>
-            </div>
-
-            <!-- Imágenes pequeñas -->
-            <div class="flex flex-col mt-7">
-                <div class="card bordered m-7 h-[100px]">
+        <div class="grid grid-cols-2 gap-4" style="grid-template-columns: repeat(2, 1fr);">
+            <!-- Mitad izquierda -->
+            <div class="col-span-1 grid grid-cols-2 grid-rows-2 gap-4 h-screen">
+                <!-- Imagen grande -->
+                <div class="card bordered col-span-2 m-0 mb-0 max-w-full w-full h-auto">
                     <figure>
-                        <img class="w-full h-full" src="{{ producto.Imagenes }}" alt="Producto"/>
+                        <img class="w-full h-2/4 object-cover mx-auto" src="{{ producto.Imagenes }}" alt="Producto"/>
+                    </figure>
+                    <div class="card-body p-5">
+                        <h2 class="text-xl font-semibold">{{ producto.Nombre }}</h2>
+                        <p class="text-gray-600">{{ producto.Descripcion }}</p>
+                    </div>
+                </div>
+
+                <!-- Imágenes pequeñas -->
+                <div class="card bordered col-span-1 max-w-xs h-auto">
+                    <figure>
+                        <img class="w-2/4 h-2/4 object-cover mx-auto" src="{{ producto.Imagenes }}" alt="Producto"/>
                     </figure>
                     <div class="card-body">
                         <h2 class="card-title">{{ producto.Nombre }}</h2> 
@@ -32,9 +31,9 @@
                     </div>
                 </div>
 
-                <div class="card bordered m-7 h-[100px]">
+                <div class="card bordered col-span-1 max-w-xs h-auto">
                     <figure>
-                        <img class="w-full h-full" src="{{ producto.Imagenes }}" alt="Producto"/>
+                        <img class="w-2/4 h-2/4 object-cover mx-auto" src="{{ producto.Imagenes }}" alt="Producto"/>
                     </figure>
                     <div class="badge badge-secondary absolute">Nuevo</div>
                     <div class="card-body">
@@ -43,40 +42,82 @@
                     </div>
                 </div>
             </div>
-        </div>
-    
-        <!-- Mitad derecha -->
-        <div class="col-span-1 bg-gray-200 p-6">
-            <h1 class="text-5xl font-bold mb-4">{{ producto.Nombre }}</h1>
-    
-            <div class="text-xl mb-4">
-                <span class="font-semibold">{{ producto.Precio }} MXN</span>
-                <span class="text-gray-500 line-through ml-2">{{ producto.Descuento }} MXN</span>
-                <span class="ml-2 text-green-500">En oferta</span>
-            </div>
-    
-            <div class="mb-4">
-                <label for="cantidad" class="text-xl">Cantidad:</label>
-                <input type="number" id="cantidad" name="cantidad" min="1" max="{{ producto.Stock }}" value="1" class="text-xl">
-                <span class="text-gray-500 text-xl">Disponible: {{ producto.Stock }}</span>
-            </div>
-    
-            <div class="mt-4 flex justify-center">
-                <button class="btn btn-primary">Añadir al carrito</button>
-                <button class="btn btn-success">Comprar</button>
-            </div>
-    
-            <div class="mt-4">
-                <p class="text-gray-700 text-center text-xl">{{ producto.Descripcion }}</p>
-            </div>
-    
-            <!-- Botones Shipping y Return policy -->
-            <div class="mt-4 flex justify-center">
-                <button class="btn btn-secondary">Shipping</button>
-                <button class="btn btn-secondary">Return policy</button>
-            </div>
-        </div>
-    </section>
 
+            <!-- Banner - Mitad derecha -->
+            <div class="col-span-1 banner h-screen">
+                <div class="col-span-1 bg-gray-200 p-6 h-full flex flex-col justify-between">
+                    <h1 class="text-5xl font-bold mb-4">{{ producto.Nombre }}</h1>
+            
+                    <div class="text-xl mb-4 flex items-center">
+                        <span class="font-semibold">{{ producto.Precio }} MXN</span>
+                        {% if producto.Descuento > 0 %}
+                            <span class="text-gray-500 line-through ml-2"><s>{{ producto.Descuento }} MXN</s></span>
+                            <div class="ml-auto mr-20">
+                                <button class="btn btn-danger mr-2">Oferta</button>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mb-4 flex items-center">
+                        <label for="cantidad" class="text-xl mr-2">Cantidad:</label>
+                        <div class="flex items-center">
+                            <button class="text-xl px-2 bg-gray-300 flex items-center" onclick="decrementarCantidad()">
+                                <span class="fa fa-minus"></span>
+                            </button>
+                            <input type="number" id="cantidad" name="cantidad" min="1" max="{{ producto.Stock }}" value="1" class="text-xl w-12 text-center border border-gray-300">
+                            <button class="text-xl px-2 bg-gray-300 flex items-center" onclick="incrementarCantidad()">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                        </div>
+                        <span class="text-gray-500 text-xl ml-2">Disponible: {{ producto.Stock }}</span>
+                    </div>
+            
+                    <div class="mt-4 flex justify-center">
+                        <button class="btn btn-primary w-full flex items-center">
+                            <span class="fa fa-shopping-cart mr-2"></span>
+                            Añadir al carrito
+                        </button>
+                    </div>
+            
+                    <div class="mt-2 flex justify-center">
+                        <button class="btn btn-success w-full flex items-center">
+                            <span class="fa fa-credit-card mr-2"></span>
+                            Comprar
+                        </button>
+                    </div>
+            
+                    <div class="mt-4">
+                        <p class="text-gray-700 text-center text-xl">{{ producto.Descripcion }}</p>
+                    </div>
+            
+                    <!-- Botones Shipping y Return policy -->
+                    <div class="mt-4 flex justify-center">
+                        <button class="btn btn-secondary w-full flex items-center">
+                            <span class="fa fa-truck mr-2"></span>
+                            Shipping
+                        </button>
+                    </div>
+                    <div class="mt-2 flex justify-center">
+                        <button class="btn btn-secondary w-full flex items-center">
+                            <span class="fa fa-refresh mr-2"></span>
+                            Return policy
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                function incrementarCantidad() {
+                    var cantidadInput = document.getElementById('cantidad');
+                    cantidadInput.value = Math.min(parseInt(cantidadInput.value) + 1, {{ producto.Stock }});
+                }
+            
+                function decrementarCantidad() {
+                    var cantidadInput = document.getElementById('cantidad');
+                    cantidadInput.value = Math.max(parseInt(cantidadInput.value) - 1, 1);
+                }
+            </script>
+            
+            
     </main>
 {% endblock %}

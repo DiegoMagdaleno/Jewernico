@@ -14,6 +14,7 @@ module.exports = {
         contact: "./app/resources/scripts/contact.ts",
         cart: "./app/resources/scripts/cart.ts",
         checkout: "./app/resources/scripts/checkout.ts",
+        admin: "./app/resources/scripts/admin.ts",
     },
     output: {
         path: path.resolve(__dirname, 'public', 'dist'),
