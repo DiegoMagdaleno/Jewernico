@@ -22,6 +22,7 @@ class Checkout {
         }
 
         \Acme\Jewernico\Command\Database::emptyCart($_SESSION["user"]->getId());
+        $_SESSION["cartCount"] = 0;
 
         Flight::json(array("success" => "¡Orden realizada!"), 200);
     }
