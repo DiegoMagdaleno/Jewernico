@@ -21,7 +21,7 @@ Flight::route("/register", ["\Acme\Jewernico\Controller\Register", "load"]);
 Flight::route("/recover", ["\Acme\Jewernico\Controller\Recover", "load"]);
 Flight::route("/cart", ["\Acme\Jewernico\Controller\Cart", "load"]);
 Flight::route("/checkout", ["\Acme\Jewernico\Controller\Checkout", "load"]);
-Flight::route("/checkout/information", ["\Acme\Jewernico\Controller\Checkout", "information"]);
+Flight::route("/checkout/information/@type", ["\Acme\Jewernico\Controller\Checkout", "information"]);
 
 // -------------------------------------------------- //
 // API ROUTES

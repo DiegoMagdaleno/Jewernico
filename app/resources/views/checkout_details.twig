@@ -1,6 +1,68 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+	<dialog id="checkout-details" class="modal">
+		<div class="modal-box text-center">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="px-4 py-2">Producto</th>
+						<th class="px-4 py-2">Cantidad</th>
+						<th class="px-4 py-2">Precio unitario</th>
+						<th class="px-4 py-2">Descuento</th>
+						<th class="px-4 py-2">Precio total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in carrito %}
+						<tr>
+							<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
+							<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
+							<td class="border px-4 py-2">$
+								{{ item.PrecioProducto }}
+								MXN</td>
+							{% if item.DescuentoProducto == 0 %}
+								<td class="border px-4 py-2">Sin descuento</td>
+							{% else %}
+								<td class="border px-4 py-2">{{ item.DescuentoProducto }}
+									%</td>
+							{% endif %}
+							<td class="border px-4 py-2" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
+								{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
+								MXN</td>
+						</tr>
+						<tr>
+						{% endfor %}
+					</tbody>
+				</tbody>
+			</table>
+			<div class="flex flex-col">
+				<div class="flex flex-row justify-between">
+					<p class="font-semibold">Subtotal:</p>
+					<p class="font-semibold" id="subtotal-summary-display"></p>
+				</div>
+				<div class="flex flex-row justify-between">
+					<p class="font-semibold">Envío:</p>
+					<p class="font-semibold" id="shipping-summary-display"></p>
+				</div>
+				<div class="flex flex-row justify-between">
+					<p class="font-semibold">Impuesto:</p>
+					<p class="font-semibold" id="tax-summary-display"></p>
+				</div>
+				<div class="flex flex-row justify-between">
+					<p class="font-semibold">Descuento:</p>
+					<p class="font-semibold" id="discount-summary-display"></p>
+				</div>
+				<div class="flex flex-row justify-between">
+					<p class="font-semibold">Total:</p>
+					<p class="font-semibold" id="total-summary-display"></p>
+				</div>
+				<div class="flex flex-row justify-between">
+					<p class="font-semibold">Dirección:</p>
+					<p class="font-semibold" id="address-summary-display"></p>
+			</div>
+		</div>
+	</dialog>
 	<main role="main" class="w-2/3 mx-auto my-8 space-y-8 flex justify-center flex-col">
 		<h1 class="text-2xl font-semibold mb-6">Información de Pago</h1>
 
