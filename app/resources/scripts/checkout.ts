@@ -98,4 +98,35 @@ $(document).ready(function () {
             }, 5000);
         });
     });
+
+    $('#coupon-submit').on('click', function () {
+        let coupon = $('#coupon').val();
+        console.log(coupon);
+        $('#coupon-submit').attr('disabled', 'disabled');
+        $('#coupon-submit').html("<span class='loading loading-infinity loading-lg'></span>");
+        axios.get(`/api/coupon/${coupon}`).then(function (response) {
+            if (response.data.success) {
+                $('#coupon-submit').html('<i class="fas fa-arrow-right text-white"></i>');
+                $('#coupon').val();
+                let discount = subtotal * response.data.data.Total;
+                $('#discount-display').text(`- $ ${discount.toFixed(2)}`);
+                let total = subtotal + parseFloat($('#tax-display').text().split(' ')[1]) + shippingCost - discount;
+                $('#total-display').text(`$ ${total.toFixed(2)}`);
+            }
+        }).catch(function (error) {
+            $('#coupon-submit').removeAttr('disabled');
+            $('#coupon-submit').html('<i class="fas fa-arrow-right text-white"></i>');
+            let toast = $('<div class="toast toast-end">' +
+                '<div class="alert alert-error">' +
+                '<span>El cupón no es válido</span>' +
+                '</div>' +
+                '</div>');
+            $('body').append(toast);
+            setTimeout(function () {
+                toast.fadeOut('slow', function () {
+                    $(this).remove();
+                });
+            }, 5000);
+        });
+    });
 });

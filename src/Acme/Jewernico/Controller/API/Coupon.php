@@ -11,7 +11,7 @@ class Coupon {
             Flight::json(["error" => "Cupón no encontrado"], 404);
             return;
         }
-        Flight::json(["data" => $couponDb], 200);
+        Flight::json(["success"=>"Cupon valido","data" => $couponDb], 200);
     }
 }
 
