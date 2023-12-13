@@ -1,4 +1,4 @@
-import * as $ from 'jquery';
+import $ from 'jquery';
 const axios = require('axios').default;
 
 function handleClick() {
