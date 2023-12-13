@@ -168,67 +168,71 @@ $(document).ready(function () {
                 $('#checkout-details #address-summary-display').text(address);
                 showDetailsModal();
 
-                $('#checkout-details #okay').on('click', function () {
-                    $('#checkout-details #okay').attr('disabled', 'disabled');
-                    $('#checkout-details #okay').html("<span class='loading loading-infinity loading-lg'></span>");
-                    let data = {
-                        metodoPago: paymentMethod,
-                        impuesto: tax,
-                        cupon: discount,
-                        subtotal: subtotal,
-                        total: total,
-                        direccion: address,
-                        productos: products,
-                        envio: shippingCost,
-                    }
-                    axios.post('/api/receipt', data).then(function (response) {
-                        showMessageToast('Se ha generado el recibo', 'success');
-                        axios.post('/api/receipt/pdf', data, {
-                            responseType: 'blob',
-                        }).then(function (response) {
-                            let pdfBlob = new Blob([response.data], { type: 'application/pdf' });
-                            let pdfUrl = window.URL.createObjectURL(pdfBlob);
+                if (discount < 0) {
+                    discount *= -1;
+                }
 
-                            let link = document.createElement('a');
-                            link.href = pdfUrl;
-                            link.setAttribute('download', 'recibo.pdf');
-                            document.body.appendChild(link);
-                            link.click();
-                            window.location.href = '/';
-                        }).catch(function (error) {
-                            $('#checkout-details #okay').removeAttr('disabled');
-                            $('#checkout-details #okay').html('Aceptar');
-                            showMessageToast('Ha ocurrido un error', 'error');
-                        });
+            $('#checkout-details #okay').on('click', function () {
+                $('#checkout-details #okay').attr('disabled', 'disabled');
+                $('#checkout-details #okay').html("<span class='loading loading-infinity loading-lg'></span>");
+                let data = {
+                    metodoPago: paymentMethod,
+                    impuesto: tax,
+                    cupon: discount,
+                    subtotal: subtotal,
+                    total: total,
+                    direccion: address,
+                    productos: products,
+                    envio: shippingCost,
+                }
+                axios.post('/api/receipt', data).then(function (response) {
+                    showMessageToast('Se ha generado el recibo', 'success');
+                    axios.post('/api/receipt/pdf', data, {
+                        responseType: 'blob',
+                    }).then(function (response) {
+                        let pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+                        let pdfUrl = window.URL.createObjectURL(pdfBlob);
+
+                        let link = document.createElement('a');
+                        link.href = pdfUrl;
+                        link.setAttribute('download', 'recibo.pdf');
+                        document.body.appendChild(link);
+                        link.click();
+                        window.location.href = '/';
                     }).catch(function (error) {
                         $('#checkout-details #okay').removeAttr('disabled');
                         $('#checkout-details #okay').html('Aceptar');
                         showMessageToast('Ha ocurrido un error', 'error');
                     });
+                }).catch(function (error) {
+                    $('#checkout-details #okay').removeAttr('disabled');
+                    $('#checkout-details #okay').html('Aceptar');
+                    showMessageToast('Ha ocurrido un error', 'error');
                 });
-            }
+            });
+        }
         }).catch(function (error) {
             $payButton.removeAttr('disabled');
             $payButton.html('Pagar');
             showMessageToast('Ha ocurrido un error', 'error');
         });
-    });
+});
 
-    const $couponSubmit = $('#coupon-submit');
-    const $coupon = $('#coupon');
+const $couponSubmit = $('#coupon-submit');
+const $coupon = $('#coupon');
 
-    $couponSubmit.on('click', function () {
-        $couponSubmit.attr('disabled', 'disabled').html("<span class='loading loading-infinity loading-lg'></span>");
-        axios.get(`/api/coupon/${$coupon.val()}`).then(function (response) {
-            if (response.data.success) {
-                $couponSubmit.html('<i class="fas fa-arrow-right text-white"></i>');
-                updateSummaryDisplay(response.data.data.Total, shippingCost, getTax());
-            }
-        }).catch(function (error) {
-            $('#coupon-submit').removeAttr('disabled');
-            $('#coupon-submit').html('<i class="fas fa-arrow-right text-white"></i>');
-            $('#coupon').val();
-            showMessageToast('Cupón inválido', 'error');
-        });
+$couponSubmit.on('click', function () {
+    $couponSubmit.attr('disabled', 'disabled').html("<span class='loading loading-infinity loading-lg'></span>");
+    axios.get(`/api/coupon/${$coupon.val()}`).then(function (response) {
+        if (response.data.success) {
+            $couponSubmit.html('<i class="fas fa-arrow-right text-white"></i>');
+            updateSummaryDisplay(response.data.data.Total, shippingCost, getTax());
+        }
+    }).catch(function (error) {
+        $('#coupon-submit').removeAttr('disabled');
+        $('#coupon-submit').html('<i class="fas fa-arrow-right text-white"></i>');
+        $('#coupon').val();
+        showMessageToast('Cupón inválido', 'error');
     });
+});
 });

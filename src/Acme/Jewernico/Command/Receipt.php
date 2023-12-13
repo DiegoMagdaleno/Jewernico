@@ -80,7 +80,7 @@ class Receipt
         if ($this->coupon == 0) {
             $couponCell->addChild(new \PHPHtmlParser\Dom\Node\TextNode('No aplica'));
         } else {
-            $couponCell->addChild(new \PHPHtmlParser\Dom\Node\TextNode('- $' . $$this->coupon . ' MXN'));
+            $couponCell->addChild(new \PHPHtmlParser\Dom\Node\TextNode('- $' . $this->coupon . ' MXN'));
         }
 
         $total = $this->subtotal - $this->coupon + $this->tax + $this->shipping;
