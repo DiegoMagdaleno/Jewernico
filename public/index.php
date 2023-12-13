@@ -62,8 +62,8 @@ function get_last_modified_files($directory)
 
 $modified_files = get_last_modified_files('../app');
 
-$fecha_supongo = date('d/m/Y H:i:s', $modified_files[0]['modified_at']);
 date_default_timezone_set('America/Mexico_City');
+$fecha_supongo = date('d/m/Y H:i:s', $modified_files[0]['modified_at']);
 
 $GLOBALS['last_modified'] = $fecha_supongo;
 
