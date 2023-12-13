@@ -2,8 +2,9 @@
 
 {% block content %}
 	<dialog id="checkout-details" class="modal">
-		<div class="modal-box text-center w-1/2">
-			<table class="table">
+		<div class="modal-box text-center w-3/4 mx-auto">
+			<h2 class="text-lg font-semibold mb-4">Detalles de la Compra</h2>
+			<table class="table w-full">
 				<thead>
 					<tr>
 						<th class="px-4 py-2">Producto</th>
@@ -31,200 +32,204 @@
 								{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
 								MXN</td>
 						</tr>
-						<tr>
-						{% endfor %}
-					</tbody>
+					{% endfor %}
 				</tbody>
 			</table>
-			<div class="flex flex-col">
-				<div class="flex flex-row justify-between">
+			<div class="mt-6">
+				<div class="flex justify-between mb-2">
 					<p class="font-semibold">Subtotal:</p>
 					<p class="font-semibold" id="subtotal-summary-display"></p>
 				</div>
-				<div class="flex flex-row justify-between">
+				<div class="flex justify-between mb-2">
 					<p class="font-semibold">Envío:</p>
 					<p class="font-semibold" id="shipping-summary-display"></p>
 				</div>
-				<div class="flex flex-row justify-between">
+				<div class="flex justify-between mb-2">
 					<p class="font-semibold">Impuesto:</p>
 					<p class="font-semibold" id="tax-summary-display"></p>
 				</div>
-				<div class="flex flex-row justify-between">
+				<div class="flex justify-between mb-2">
 					<p class="font-semibold">Descuento:</p>
 					<p class="font-semibold" id="discount-summary-display"></p>
 				</div>
-				<div class="flex flex-row justify-between">
+				<div class="flex justify-between mb-2">
 					<p class="font-semibold">Total:</p>
 					<p class="font-semibold" id="total-summary-display"></p>
 				</div>
-				<div class="flex flex-row justify-between">
+				<div class="flex justify-between">
 					<p class="font-semibold">Dirección:</p>
 					<p class="font-semibold" id="address-summary-display"></p>
+				</div>
+			</div>
+			<div class="mt-6">
+				<button class="w-full btn btn-primary" id="okay">Generar tickets</button>
 			</div>
 		</div>
 	</dialog>
 	<main role="main" class="w-2/3 mx-auto my-8 space-y-8 flex justify-center flex-col">
 		<h1 class="text-2xl font-semibold mb-6">Información de Pago</h1>
-	{% if tipo == "oxxo" %}
-		<div class="mb-6 card shadow-xl bg-white">
-			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Oxxo <i class="fa-brands fa-oxxo"></i></h2>
-	<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4 justi">
-		<div class="m-4 shadow-lg justify-center" style="display: flex;">
-			<img src="https://files.catbox.moe/c7qdf0.jpg" alt="Oxxo" class="w-full object-center justify-center" style="align-self: center;">	
-		</div>
-	</div>
-
-
-		</div>
-	{% else %}
-		<div class="mb-6 card shadow-xl bg-white">
-			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Tarjeta <i class="fa-solid fa-credit-card"></i></h2>
-			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
-				<div>
-					<label class="block mb-2 text-gray-700" for="numeroTarjeta">Número de Tarjeta</label>
-					<input id="numeroTarjeta" name="numeroTarjeta" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="expiracion">Expiración</label>
-					<input id="expiracion" name="expiracion" type="date" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="nombreTarjeta">Nombre en la Tarjeta</label>
-					<input id="nombreTarjeta" name="nombreTarjeta" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="cvv">CVV</label>
-					<input id="cvv" name="cvv" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" maxlength="3">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="tipoTarjeta">Tipo de Tarjeta</label>
-					<select id="tipoTarjeta" name="tipoTarjeta" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-						<option value="visa">Visa</option>
-						<option value="mastercard">Mastercard</option>
-						<option value="americanexpress">American Express</option>
-					</select>
+		{% if tipo == "oxxo" %}
+			<div class="mb-6 card shadow-xl bg-white">
+				<h2 class="text-xl card-title font-semibold mt-4 ml-8">Oxxo
+					<i class="fa-brands fa-oxxo"></i>
+				</h2>
+				<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4 justi">
+					<div class="m-4 shadow-lg justify-center" style="display: flex;">
+						<img src="https://files.catbox.moe/c7qdf0.jpg" alt="Oxxo" class="w-full object-center justify-center" style="align-self: center;">
+					</div>
 				</div>
 			</div>
-		</div>
-	{% endif %}
-
+		{% else %}
 			<div class="mb-6 card shadow-xl bg-white">
-				<h2 class="text-xl card-title font-semibold mt-4 ml-8">Envio
-					<i class="fa-solid fa-truck-fast"></i>
+				<h2 class="text-xl card-title font-semibold mt-4 ml-8">Tarjeta
+					<i class="fa-solid fa-credit-card"></i>
 				</h2>
 				<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
 					<div>
-						<label class="block mb-2 text-gray-700" for="pais">País</label>
-						<select id="pais-select" name="pais" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-							{% for pais in paises %}
-								<option value="{{ pais.Codigo }}" data-tax="{{ pais.Impuesto }}">{{ pais.Nombre }}</option>
-							{% endfor %}
+						<label class="block mb-2 text-gray-700" for="numeroTarjeta">Número de Tarjeta</label>
+						<input id="numeroTarjeta" name="numeroTarjeta" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="expiracion">Expiración</label>
+						<input id="expiracion" name="expiracion" type="date" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="nombreTarjeta">Nombre en la Tarjeta</label>
+						<input id="nombreTarjeta" name="nombreTarjeta" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="cvv">CVV</label>
+						<input id="cvv" name="cvv" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" maxlength="3" required>
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="tipoTarjeta">Tipo de Tarjeta</label>
+						<select id="tipoTarjeta" name="tipoTarjeta" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
+							<option value="visa">Visa</option>
+							<option value="mastercard">Mastercard</option>
+							<option value="americanexpress">American Express</option>
 						</select>
 					</div>
-					<div>
-						<label class="block mb-2 text-gray-700" for="estado">Estado</label>
-						<select id="estado-select" name="estado" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" disabled></select>
-					</div>
-					<div>
-						<label class="block mb-2 text-gray-700" for="codigoPostal">Código Postal</label>
-						<input id="codigoPostal" name="codigoPostal" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-					</div>
-					<div>
-						<label class="block mb-2 text-gray-700" for="ciudad">Ciudad</label>
-						<input id="ciudad" name="ciudad" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-					</div>
-					<div>
-						<label class="block mb-2 text-gray-700" for="calle">Calle</label>
-						<input id="calle" name="calle" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-					</div>
-					<div>
-						<label class="block mb-2 text-gray-700" for="numeroInterior">Número Interior</label>
-						<input id="numeroInterior" name="numeroInterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-					</div>
-					<div>
-						<label class="block mb-2 text-gray-700" for="numeroExterior">Número Exterior</label>
-						<input id="numeroExterior" name="numeroExterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-					</div>
 				</div>
 			</div>
+		{% endif %}
 
-			<div class="mb-6 card shadow-xl bg-white">
-				<h2 class="text-xl card-title font-semibold mt-4 ml-8">¿Tienes un cupón?
-					<i class="fa-solid fa-ticket"></i>
-					Ingresalo aquí para aplicar tu descuento</h2>
-				<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
-					<div class="mb-4 flex items-center">
-						<input id="coupon" type="text" name="cupon" class="input input-bordered w-full" value="" autocorrect="off" autocapitalize="off" placeholder="ingresa tu cupon" required>
-						<button id="coupon-submit" type="button" class="btn ml-2 p-2 btn-square bg-primary">
-							<i class="fas fa-arrow-right text-white"></i>
-						</button>
-					</div>
+		<div class="mb-6 card shadow-xl bg-white">
+			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Envio
+				<i class="fa-solid fa-truck-fast"></i>
+			</h2>
+			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div>
+					<label class="block mb-2 text-gray-700" for="pais">País</label>
+					<select id="pais-select" name="pais" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
+						{% for pais in paises %}
+							<option value="{{ pais.Codigo }}" data-tax="{{ pais.Impuesto }}">{{ pais.Nombre }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div>
+					<label class="block mb-2 text-gray-700" for="estado">Estado</label>
+					<select id="estado-select" name="estado" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" disabled required></select>
+				</div>
+				<div>
+					<label class="block mb-2 text-gray-700" for="codigoPostal">Código Postal</label>
+					<input id="codigoPostal" name="codigoPostal" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
+				</div>
+				<div>
+					<label class="block mb-2 text-gray-700" for="ciudad">Ciudad</label>
+					<input id="ciudad" name="ciudad" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
+				</div>
+				<div>
+					<label class="block mb-2 text-gray-700" for="calle">Calle</label>
+					<input id="calle" name="calle" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
+				</div>
+				<div>
+					<label class="block mb-2 text-gray-700" for="numeroInterior">Número Interior</label>
+					<input id="numeroInterior" name="numeroInterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
+				</div>
+				<div>
+					<label class="block mb-2 text-gray-700" for="numeroExterior">Número Exterior</label>
+					<input id="numeroExterior" name="numeroExterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" required>
 				</div>
 			</div>
+		</div>
 
-			<div class="mb-6">
-				<h2 class="text-xl font-semibold mb-2">Resumen de compra</h2>
-				<table class="table">
-					<thead>
+		<div class="mb-6 card shadow-xl bg-white">
+			<h2 class="text-xl card-title font-semibold mt-4 ml-8">¿Tienes un cupón?
+				<i class="fa-solid fa-ticket"></i>
+				Ingresalo aquí para aplicar tu descuento</h2>
+			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div class="mb-4 flex items-center">
+					<input id="coupon" type="text" name="cupon" class="input input-bordered w-full" value="" autocorrect="off" autocapitalize="off" placeholder="Ingresa tu cupon">
+					<button id="coupon-submit" type="button" class="btn ml-2 p-2 btn-square bg-primary">
+						<i class="fas fa-arrow-right text-white"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="mb-6">
+			<h2 class="text-xl font-semibold mb-2">Resumen de compra</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="px-4 py-2">Producto</th>
+						<th class="px-4 py-2">Cantidad</th>
+						<th class="px-4 py-2">Precio unitario</th>
+						<th class="px-4 py-2">Descuento</th>
+						<th class="px-4 py-2">Precio total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in carrito %}
 						<tr>
-							<th class="px-4 py-2">Producto</th>
-							<th class="px-4 py-2">Cantidad</th>
-							<th class="px-4 py-2">Precio unitario</th>
-							<th class="px-4 py-2">Descuento</th>
-							<th class="px-4 py-2">Precio total</th>
+							<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
+							<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
+							<td class="border px-4 py-2">$
+								{{ item.PrecioProducto }}
+								MXN</td>
+							{% if item.DescuentoProducto == 0 %}
+								<td class="border px-4 py-2">Sin descuento</td>
+							{% else %}
+								<td class="border px-4 py-2">{{ item.DescuentoProducto }}
+									%</td>
+							{% endif %}
+							<td class="border px-4 py-2 total-price-item" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
+								{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
+								MXN</td>
 						</tr>
-					</thead>
-					<tbody>
-						{% for item in carrito %}
-							<tr>
-								<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
-								<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
-								<td class="border px-4 py-2">$
-									{{ item.PrecioProducto }}
-									MXN</td>
-								{% if item.DescuentoProducto == 0 %}
-									<td class="border px-4 py-2">Sin descuento</td>
-								{% else %}
-									<td class="border px-4 py-2">{{ item.DescuentoProducto }}
-										%</td>
-								{% endif %}
-								<td class="border px-4 py-2 total-price-item" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
-									{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
-									MXN</td>
-							</tr>
-							<tr>
-							{% endfor %}
-						</tbody>
+						<tr>
+						{% endfor %}
 					</tbody>
-				</table>
-			</div>
+				</tbody>
+			</table>
+		</div>
 
-			<div>
-				<h2 class="text-xl font-semibold mb-2">Desgloce de pago</h2>
-				<div class="flex flex-row justify-between">
-					<div class="w-1/2">
-						<p class="font-semibold">Subtotal:
-							<span id="subtotal-display"></span>
-							MXN</p>
-						<p class="font-semibold">Envío:
-							<span id="shipping-display"></span>
-						</p>
-						<p class="font-semibold">Impuesto:
-							<span id="tax-display"></span>
-						</p>
-						<p class="font-semibold">Descuento:
-							<span id="discount-display"></span>
-							MXN
-						</p>
-						<p class="font-semibold">Total:
-							<span id="total-display"></span>
-							MXN</p>
-					</div>
-					<div class="flex items-center flex-grow">
-						<button class="btn btn-primary w-full" id="pay-button">Pagar</button>
-					</div>
+		<div>
+			<h2 class="text-xl font-semibold mb-2">Desgloce de pago</h2>
+			<div class="flex flex-row justify-between">
+				<div class="w-1/2">
+					<p class="font-semibold">Subtotal:
+						<span id="subtotal-display"></span>
+						MXN</p>
+					<p class="font-semibold">Envío:
+						<span id="shipping-display"></span>
+					</p>
+					<p class="font-semibold">Impuesto:
+						<span id="tax-display"></span>
+					</p>
+					<p class="font-semibold">Descuento: $ 0
+						<span id="discount-display"></span>
+						MXN
+					</p>
+					<p class="font-semibold">Total:
+						<span id="total-display"></span>
+						MXN</p>
+				</div>
+				<div class="flex items-center flex-grow">
+					<button class="btn btn-primary w-full" id="pay-button">Pagar</button>
 				</div>
 			</div>
-		</main>
-		<script src="/dist/checkout.js"></script>
-	{% endblock %}
+		</div>
+	</main>
+	<script src="/dist/checkout.js"></script>
+{% endblock %}
