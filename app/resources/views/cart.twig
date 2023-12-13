@@ -1,0 +1,70 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+	{% include 'partials/navbar.twig' %}
+	<dialog id="checkout-modal" class="modal">
+		<div class="modal-box text-center">
+			<div class="p-4 m-10 grid grid-rows-3 gap-4 items-center max-w-lg mx-auto">
+				<h1 class="text-3xl font-bold">Selecciona tu método de pago</h1>
+
+				<a href="/checkout/information" class="flex flex-row items-center justify-center bg-gray-200 rounded-full p-3">
+					<i class="h-full fa-solid fa-store w-10 fa-2xl"></i>
+					<span class="ml-2">OXXO</span>
+				</a>
+
+				<a href="/checkout/information" class="flex flex-row items-center justify-center bg-gray-200 rounded-full p-3">
+					<i class="h-full fa-solid fa-credit-card w-10 fa-2xl"></i>
+					<span class="ml-2">Mastercard/VISA</span>
+				</a>
+			</div>
+		</div>
+	</dialog>
+	<main role="main" class="mb-12 mt-12 flex items-center flex-col">
+		{% if productos|length != 0 %}
+			<div class="flex-grow lg:w-2/3">
+				<div class="flex justify-between">
+					<h1 class="text-4xl font-bold mb-4">Tu carrito</h1>
+					<a href="/products" class="">Seguir comprando</a>
+				</div>
+			</div>
+			<div class="flex flex-row flex-grow lg:w-2/3">
+				<div class="flex flex-row justify-between flex-grow items-baseline">
+					<p>Producto</p>
+					<p>Cantidad</p>
+					<p>Total</p>
+				</div>
+			</div>
+			<hr class="w-2/3 flex-grow h-px my-8 bg-grey-100">
+			<div class="flex flex-row flex-grow lg:w-2/3">
+				<div class="flex flex-col flex-grow">
+					{% for producto in productos %}
+						{% include 'partials/cart_product.twig' with producto %}
+						<hr class="flex-grow h-px my-8 bg-grey-100">
+					{% endfor %}
+				</div>
+			</div>
+			<div class="flex flex-row mt-8 flex-grow lg:w-2/3 justify-between">
+				<div class="flex flex-col">
+					<p class="mb-2">Instrucciones especiales de compra</p>
+					<textarea class="textarea textarea-bordered w-96 h-36"></textarea>
+				</div>
+				<div class="lg:ml-8">
+					<div class="p-4">
+						<p class="text-sm font-medium mb-2">Subtotal</p>
+						<p class="text-lg font-bold mb-4" id="price-subtotal">$0.00 MXN</p>
+						<p class="text-sm text-gray-500 mb-2">Los impuestos y costos de envio, son calculados al comprar</p>
+						<button class="btn btn-primary w-full" id="checkout-button">Comprar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% else %}
+		<div class="flex flex-col items-center">
+			<h1 class="text-4xl font-bold mb-4">Tu carrito</h1>
+			<p class="text-lg mb-4">No tienes productos en tu carrito</p>
+			<a href="/products" class="btn btn-primary">Seguir comprando</a>
+		</div>
+	{% endif %}
+	<script src="/dist/cart.js"></script>
+</main>
+{% include 'partials/footer.twig' %}{% endblock %}

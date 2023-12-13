@@ -15,6 +15,8 @@ class Login
             return;
         }
 
+
+
         $user = \Acme\Jewernico\Command\Database::getUser($data['correoElectronico']);
 
         if ($user === null) {
@@ -28,6 +30,10 @@ class Login
         }
 
         if (password_verify($data["password"], $user["Password"])) {
+            if ($data["remember"] == "on") {
+                setcookie("correoElectronico", $data["correoElectronico"], time() + 60 * 60 * 24 * 30, "/");
+                setcookie("password", $user["Password"], time() + 60 * 60 * 24 * 30, "/");
+            }
             $db = Flight::db();
             $query = $db->prepare("SELECT * FROM usuario WHERE CorreoElectronico = :correoElectronico");
             $query->execute(array(":correoElectronico" => $data["correoElectronico"]));
@@ -66,5 +72,6 @@ class Login
         }
 
         $_SESSION['user'] = new \Acme\Jewernico\Model\User($data['id'], $data['nombre'], $data['correoElectronico'], $data['password'], $data['nivelPermisos']);
+        $_SESSION['cartCount'] = \Acme\Jewernico\Command\Database::getTotalCartItems($_SESSION['user']->getId());
     }
 }
