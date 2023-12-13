@@ -2,7 +2,7 @@
 
 {% block content %}
 	<dialog id="checkout-details" class="modal">
-		<div class="modal-box text-center">
+		<div class="modal-box text-center w-1/2">
 			<table class="table">
 				<thead>
 					<tr>
@@ -15,9 +15,9 @@
 				</thead>
 				<tbody>
 					{% for item in carrito %}
-						<tr>
-							<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
-							<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
+						<tr class="producto-info">
+							<td class="border px-4 py-2 nombre-producto" data-nombre="{{ item.NombreProducto }}">{{ item.NombreProducto }}</td>
+							<td class="border px-4 py-2 cantidad-producto" data-cantidad="{{ item.CarritoCantidad }}">{{ item.CarritoCantidad }}</td>
 							<td class="border px-4 py-2">$
 								{{ item.PrecioProducto }}
 								MXN</td>
@@ -27,7 +27,7 @@
 								<td class="border px-4 py-2">{{ item.DescuentoProducto }}
 									%</td>
 							{% endif %}
-							<td class="border px-4 py-2" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
+							<td class="border px-4 py-2 subtotal-producto" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
 								{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
 								MXN</td>
 						</tr>
@@ -60,155 +60,162 @@
 				<div class="flex flex-row justify-between">
 					<p class="font-semibold">Dirección:</p>
 					<p class="font-semibold" id="address-summary-display"></p>
+				</div>
+				<button class="btn btn-primary w-full" id="okay">Hecho</button>
 			</div>
-		</div>
-	</dialog>
-	<main role="main" class="w-2/3 mx-auto my-8 space-y-8 flex justify-center flex-col">
-		<h1 class="text-2xl font-semibold mb-6">Información de Pago</h1>
+		</dialog>
+		<main role="main" class="w-2/3 mx-auto my-8 space-y-8 flex justify-center flex-col">
+			<h1 class="text-2xl font-semibold mb-6">Información de Pago</h1>
 
-		<div class="mb-6 card shadow-xl bg-white">
-			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Tarjeta <i class="fa-solid fa-credit-card"></i></h2>
-			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
-				<div>
-					<label class="block mb-2 text-gray-700" for="numeroTarjeta">Número de Tarjeta</label>
-					<input id="numeroTarjeta" name="numeroTarjeta" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="expiracion">Expiración</label>
-					<input id="expiracion" name="expiracion" type="date" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="nombreTarjeta">Nombre en la Tarjeta</label>
-					<input id="nombreTarjeta" name="nombreTarjeta" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="cvv">CVV</label>
-					<input id="cvv" name="cvv" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" maxlength="3">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="tipoTarjeta">Tipo de Tarjeta</label>
-					<select id="tipoTarjeta" name="tipoTarjeta" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-						<option value="visa">Visa</option>
-						<option value="mastercard">Mastercard</option>
-						<option value="americanexpress">American Express</option>
-					</select>
-				</div>
-			</div>
-		</div>
-
-		<div class="mb-6 card shadow-xl bg-white">
-			<h2 class="text-xl card-title font-semibold mt-4 ml-8">Envio <i class="fa-solid fa-truck-fast"></i></h2>
-			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
-				<div>
-					<label class="block mb-2 text-gray-700" for="pais">País</label>
-					<select id="pais-select" name="pais" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-						{% for pais in paises %}
-							<option value="{{ pais.Codigo }}" data-tax="{{ pais.Impuesto }}">{{ pais.Nombre }}</option>
-						{% endfor %}
-					</select>
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="estado">Estado</label>
-					<select id="estado-select" name="estado" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" disabled></select>
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="codigoPostal">Código Postal</label>
-					<input id="codigoPostal" name="codigoPostal" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="ciudad">Ciudad</label>
-					<input id="ciudad" name="ciudad" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="calle">Calle</label>
-					<input id="calle" name="calle" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="numeroInterior">Número Interior</label>
-					<input id="numeroInterior" name="numeroInterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
-				</div>
-				<div>
-					<label class="block mb-2 text-gray-700" for="numeroExterior">Número Exterior</label>
-					<input id="numeroExterior" name="numeroExterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+			<div class="mb-6 card shadow-xl bg-white">
+				<h2 class="text-xl card-title font-semibold mt-4 ml-8">Tarjeta
+					<i class="fa-solid fa-credit-card"></i>
+				</h2>
+				<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
+					<div>
+						<label class="block mb-2 text-gray-700" for="numeroTarjeta">Número de Tarjeta</label>
+						<input id="numeroTarjeta" name="numeroTarjeta" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="expiracion">Expiración</label>
+						<input id="expiracion" name="expiracion" type="date" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="nombreTarjeta">Nombre en la Tarjeta</label>
+						<input id="nombreTarjeta" name="nombreTarjeta" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="cvv">CVV</label>
+						<input id="cvv" name="cvv" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" maxlength="3">
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="tipoTarjeta">Tipo de Tarjeta</label>
+						<select id="tipoTarjeta" name="tipoTarjeta" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+							<option value="visa">Visa</option>
+							<option value="mastercard">Mastercard</option>
+							<option value="americanexpress">American Express</option>
+						</select>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="mb-6 card shadow-xl bg-white">
-			<h2 class="text-xl card-title font-semibold mt-4 ml-8">¿Tienes un cupón? <i class="fa-solid fa-ticket"></i> Ingresalo aquí para aplicar tu descuento</h2>
-			<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
-				<div class="mb-4 flex items-center">
-					<input id="coupon" type="text" name="cupon" class="input input-bordered w-full" value="" autocorrect="off" autocapitalize="off" placeholder="ingresa tu cupon" required>
-					<button id="coupon-submit" type="button" class="btn ml-2 p-2 btn-square bg-primary">
-						<i class="fas fa-arrow-right text-white"></i>
-					</button>
+			<div class="mb-6 card shadow-xl bg-white">
+				<h2 class="text-xl card-title font-semibold mt-4 ml-8">Envio
+					<i class="fa-solid fa-truck-fast"></i>
+				</h2>
+				<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
+					<div>
+						<label class="block mb-2 text-gray-700" for="pais">País</label>
+						<select id="pais-select" name="pais" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+							{% for pais in paises %}
+								<option value="{{ pais.Codigo }}" data-tax="{{ pais.Impuesto }}">{{ pais.Nombre }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="estado">Estado</label>
+						<select id="estado-select" name="estado" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500" disabled></select>
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="codigoPostal">Código Postal</label>
+						<input id="codigoPostal" name="codigoPostal" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="ciudad">Ciudad</label>
+						<input id="ciudad" name="ciudad" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="calle">Calle</label>
+						<input id="calle" name="calle" type="text" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="numeroInterior">Número Interior</label>
+						<input id="numeroInterior" name="numeroInterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					</div>
+					<div>
+						<label class="block mb-2 text-gray-700" for="numeroExterior">Número Exterior</label>
+						<input id="numeroExterior" name="numeroExterior" type="number" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="mb-6">
-			<h2 class="text-xl font-semibold mb-2">Resumen de compra</h2>
-			<table class="table">
-				<thead>
-					<tr>
-						<th class="px-4 py-2">Producto</th>
-						<th class="px-4 py-2">Cantidad</th>
-						<th class="px-4 py-2">Precio unitario</th>
-						<th class="px-4 py-2">Descuento</th>
-						<th class="px-4 py-2">Precio total</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for item in carrito %}
+			<div class="mb-6 card shadow-xl bg-white">
+				<h2 class="text-xl card-title font-semibold mt-4 ml-8">¿Tienes un cupón?
+					<i class="fa-solid fa-ticket"></i>
+					Ingresalo aquí para aplicar tu descuento</h2>
+				<div class="card-body grid grid-cols-1 md:grid-cols-2 gap-4">
+					<div class="mb-4 flex items-center">
+						<input id="coupon" type="text" name="cupon" class="input input-bordered w-full" value="" autocorrect="off" autocapitalize="off" placeholder="ingresa tu cupon" required>
+						<button id="coupon-submit" type="button" class="btn ml-2 p-2 btn-square bg-primary">
+							<i class="fas fa-arrow-right text-white"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-6">
+				<h2 class="text-xl font-semibold mb-2">Resumen de compra</h2>
+				<table class="table">
+					<thead>
 						<tr>
-							<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
-							<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
-							<td class="border px-4 py-2">$
-								{{ item.PrecioProducto }}
-								MXN</td>
-							{% if item.DescuentoProducto == 0 %}
-								<td class="border px-4 py-2">Sin descuento</td>
-							{% else %}
-								<td class="border px-4 py-2">{{ item.DescuentoProducto }}
-									%</td>
-							{% endif %}
-							<td class="border px-4 py-2 total-price-item" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
-								{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
-								MXN</td>
+							<th class="px-4 py-2">Producto</th>
+							<th class="px-4 py-2">Cantidad</th>
+							<th class="px-4 py-2">Precio unitario</th>
+							<th class="px-4 py-2">Descuento</th>
+							<th class="px-4 py-2">Precio total</th>
 						</tr>
-						<tr>
-						{% endfor %}
+					</thead>
+					<tbody>
+						{% for item in carrito %}
+							<tr>
+								<td class="border px-4 py-2">{{ item.NombreProducto }}</td>
+								<td class="border px-4 py-2">{{ item.CarritoCantidad }}</td>
+								<td class="border px-4 py-2">$
+									{{ item.PrecioProducto }}
+									MXN</td>
+								{% if item.DescuentoProducto == 0 %}
+									<td class="border px-4 py-2">Sin descuento</td>
+								{% else %}
+									<td class="border px-4 py-2">{{ item.DescuentoProducto }}
+										%</td>
+								{% endif %}
+								<td class="border px-4 py-2 total-price-item" data-price="{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}">$
+									{{ (item.PrecioProducto - (item.PrecioProducto * item.DescuentoProducto / 100)) * item.CarritoCantidad }}
+									MXN</td>
+							</tr>
+							<tr>
+							{% endfor %}
+						</tbody>
 					</tbody>
-				</tbody>
-			</table>
-		</div>
+				</table>
+			</div>
 
-		<div>
-			<h2 class="text-xl font-semibold mb-2">Desgloce de pago</h2>
-			<div class="flex flex-row justify-between">
-				<div class="w-1/2">
-					<p class="font-semibold">Subtotal:
-						<span id="subtotal-display"></span>
-						MXN</p>
-					<p class="font-semibold">Envío:
-						<span id="shipping-display"></span>
-					</p>
-					<p class="font-semibold">Impuesto:
-						<span id="tax-display"></span>
-					</p>
-					<p class="font-semibold">Descuento:
-						<span id="discount-display"></span>
-						MXN
-					</p>
-					<p class="font-semibold">Total:
-						<span id="total-display"></span>
-						MXN</p>
-				</div>
-				<div class="flex items-center flex-grow">
-					<button class="btn btn-primary w-full" id="pay-button">Pagar</button>
+			<div>
+				<h2 class="text-xl font-semibold mb-2">Desgloce de pago</h2>
+				<div class="flex flex-row justify-between">
+					<div class="w-1/2">
+						<p class="font-semibold">Subtotal:
+							<span id="subtotal-display"></span>
+							MXN</p>
+						<p class="font-semibold">Envío:
+							<span id="shipping-display"></span>
+						</p>
+						<p class="font-semibold">Impuesto:
+							<span id="tax-display"></span>
+						</p>
+						<p class="font-semibold">Descuento:
+							<span id="discount-display"></span>
+							MXN
+						</p>
+						<p class="font-semibold">Total:
+							<span id="total-display"></span>
+							MXN</p>
+					</div>
+					<div class="flex items-center flex-grow">
+						<button class="btn btn-primary w-full" id="pay-button">Pagar</button>
+					</div>
 				</div>
 			</div>
-		</div>
-	</main>
-	<script src="/dist/checkout.js"></script>
-{% endblock %}
+		</main>
+		<script src="/dist/checkout.js"></script>
+	{% endblock %}

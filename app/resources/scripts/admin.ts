@@ -1,6 +1,6 @@
 import $ from 'jquery';
 const axios = require('axios').default;
-const Chart = require('chart.js/auto');
+const Chart = require('chart.js/auto').default;
 
 $(document).ready(function () {
     axios.get('/api/stats/sales/category').then(function (response) {
