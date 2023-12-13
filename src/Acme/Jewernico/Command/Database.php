@@ -394,5 +394,24 @@ class Database
         $query->execute();
         return $query->fetchAll();
     }
+
+    public static function getCoupons() {
+        $db = Flight::db();
+
+        $query = $db->prepare("SELECT * FROM cupon");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public static function findCoupon($coupon) {
+        $db = Flight::db();
+
+        $query = $db->prepare("SELECT * FROM cupon WHERE Cupon = :codigo");
+        $query->execute(array(
+            ":codigo" => $coupon
+        ));
+        return $query->fetch();
+    }
+
 }
 ?>

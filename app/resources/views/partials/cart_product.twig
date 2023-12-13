@@ -1,9 +1,12 @@
-<div class="product grid grid-cols-3 w-full" data-price="{{ producto.PrecioProducto }}" data-pid="{{ producto.ProductoId }}">
+<div class="product grid grid-cols-3 w-full" data-price="{{ producto.PrecioProducto - (producto.PrecioProducto * producto.DescuentoProducto / 100) }}" data-pid="{{ producto.ProductoId }}">
     <div class="grid-span-1 w-full flex flex-row">
         <img src="{{ producto.ImagenProducto }}" class="rounded-lg w-32 h-32"/>
         <div class="flex flex-col ml-8">
             <p class="text-lg">{{ producto.NombreProducto }}</p>
-            <p>${{ producto.PrecioProducto }} MXN</p>
+            {% if producto.DescuentoProducto > 0 %}
+            <p class="text-sm text-gray-500 line-through">${{ producto.PrecioProducto }} MXN</p>
+            {% endif %}
+            <p>${{ producto.PrecioProducto - (producto.PrecioProducto * producto.DescuentoProducto / 100) }} MXN</p>
         </div>
     </div>
     <div class="w-full grid-span-1 flex flex-row items-start justify-end">
