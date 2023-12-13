@@ -367,6 +367,32 @@ class Database
             ":cantidad" => $quantity
         ));
         return ($query->rowCount() > 0);
-    }    
+    }   
+    
+    public static function getSalesOfEachCategory() {
+        $db = Flight::db();
+
+        $query = $db->prepare("SELECT c.Nombre AS Categoria, COALESCE(SUM(cn.Cantidad), 0) AS TotalVentas
+        FROM categoria c
+        LEFT JOIN producto p ON c.Id = p.IdCategoria
+        LEFT JOIN contener cn ON p.Id = cn.IdProducto
+        LEFT JOIN compra cm ON cn.IdCompra = cm.Id
+        GROUP BY c.Nombre;
+        ");
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public static function getSalesOfEachMonth() {
+        $db = Flight::db();
+
+        $query = $db->prepare("SELECT MONTH(cm.Fecha) AS Mes, COALESCE(SUM(cn.Cantidad), 0) AS TotalVentas
+        FROM compra cm
+        LEFT JOIN contener cn ON cm.Id = cn.IdCompra
+        GROUP BY MONTH(cm.Fecha);
+        ");
+        $query->execute();
+        return $query->fetchAll();
+    }
 }
 ?>

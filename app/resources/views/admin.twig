@@ -2,5 +2,18 @@
 
 
 {% block content %}
-    {% include 'partials/admin_sidebar.twig' %}
+	{% include 'partials/admin_sidebar.twig' %}
+	<main role="main" class="flex flex-col items-center justify-center sm:ml-64">
+		<h1 class="text-3xl font-bold self-start align-baselone">Panel de control</h1>
+        <div class="card w-1/4 bg-base-100 shadow-xl">
+			<div class="card-body">
+				<h3 class="card-title">Graficas</h3>
+				<div class="flex flex-col">
+					<canvas id="sales-category-chart"></canvas>
+                    <canvas id="sales-month-chart"></canvas>
+                </div>    
+			</div>
+		</div>
+	</main>
+    <script src="/dist/admin.js"></script>
 {% endblock %}
